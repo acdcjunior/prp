@@ -1,0 +1,55 @@
+.previsao {
+	color: gray;
+}
+
+.baseadoNaUltimaMovimentacao {
+    background: url(http://png.findicons.com/files/icons/2799/flat_icons/64/binoculars_cross.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding-left: 15px;
+}
+.baseadoNaPrevisaoDoUltimoMes {
+    background: url(http://png.findicons.com/files/icons/2799/flat_icons/64/binoculars_checkmark.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding-left: 15px;
+}
+table, tr, td {
+	border: 1px solid black;
+}
+
+.totalPrevisto,.celula {
+	cursor: pointer; 
+}
+.totalPrevisto:hover {
+	background-color: #0099FF;
+}
+.celula:hover {
+	background-color: #00DDFF;
+}
+.saldosIniciais {
+	background-color: rgba(210,255,210,0.5);
+}
+.saldosFinais {
+	background-color: rgba(11,40,255,0.5);
+}
+
+.celula {
+	color: black;
+	font-weight: bold;
+	min-width: 110px;
+}
+.celula.previsao {
+	color: #42ca8b;
+	font-weight: bold;
+}
+.qtdNoMes {
+	float: right;
+	border: 1px solid yellow;
+	padding-right: 3px;
+	padding-left: 3px;
+}
+categoria {
+	font-family: Courier;
+	background-color: #EEEEEE;
+}

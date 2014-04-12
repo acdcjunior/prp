@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+     					http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+						http://www.springframework.org/schema/jdbc
+						http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+
+	<!--
+	Substitui o datasource usado nos testes.
+	Ao inves de ir buscar via JNDI, para os testes, usamos como datasource a classe
+	"TestDataSource" que basicamente eh um banco h2 em memoria, que carrega os scripts
+	da pasta "src/test/resources/sql/".
+	 -->
+   	<bean id="prpDataSource"
+        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.h2.Driver" />
+        <property name="url" value="jdbc:h2:mem:bancoDeTestesEmMemoria;INIT=RUNSCRIPT FROM 'classpath:sql/esquema.sql'\;RUNSCRIPT FROM 'classpath:sql/dados.sql'\;" />
+        <property name="username" value="sa" />
+        <property name="password" value="" />
+	</bean>
+
+</beans>

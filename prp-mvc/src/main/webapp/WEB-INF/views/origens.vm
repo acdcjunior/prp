@@ -1,0 +1,24 @@
+#set($titulo = "Origem :: Todas")
+#set($css = ["movimentacao.css"])
+
+<div class="usuario movimentacoes">
+	<h1>Origens</h1>
+	<table>
+		<thead>
+			<tr>
+					<th>id</th>
+					<th>nome</th>
+					<th>alias</th>
+			</tr>
+		</thead>
+		<tbody>
+			#foreach ($origem in $origens)
+				<tr>
+					<td>$origem.id</td>
+					<td>$origem.nome</td>
+					<td>$origem.alias</td>
+				</tr>
+			#end
+		</tbody>
+	</table>
+</div>

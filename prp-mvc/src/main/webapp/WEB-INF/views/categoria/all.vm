@@ -1,0 +1,30 @@
+#set($titulo = "Categoria :: Todas")
+#set($css = ["movimentacao.css"])
+
+<div class="usuario movimentacoes">
+	<h1>Categorias</h1>
+	<table>
+		<thead>
+			<tr>
+					<th>id</th>
+					<th>nome</th>
+					<th>revisado</th>
+					<th>(ver detalhes)</th>
+			</tr>
+		</thead>
+		<tbody>
+			#foreach ($categoria in $categorias)
+				<tr>
+					<td>$categoria.id</td>
+					<td>$categoria.nome</td>
+					<td>$categoria.revisado</td>
+					<td>
+						<a href="#springUrl('/categoria/')$categoria.id">
+						<img src="#springUrl('/static/img/view_doc.png')" alt="ver detalhes" />
+						</a>
+					</td>
+				</tr>
+			#end
+		</tbody>
+	</table>
+</div>

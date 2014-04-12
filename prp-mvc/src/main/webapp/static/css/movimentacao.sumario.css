@@ -1,0 +1,29 @@
+.valor,.numero,.vicone {
+    height: 22px;
+    line-height: 22px;
+    float: left;
+    padding-left: 2px;
+}
+.vicone {
+    clear: both;
+}
+.valor {
+    width: 60px;
+}
+.numero {
+    border: 1px solid #F5DA81;
+    width: 20px;
+}
+.vicone > img {
+	margin-top: 2px;
+}
+.faltaCategorizar {
+	background-color: #FE2E2E;
+}
+.verMes {
+	cursor: pointer;
+}
+.verMes:hover {
+	background-color: rgba(255,255,0,.2);
+	color: black;
+}

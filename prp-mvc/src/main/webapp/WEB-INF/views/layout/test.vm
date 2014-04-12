@@ -1,0 +1,44 @@
+#set($css = ["aaa", "bbb"])
+
+<div class="test stuff">
+	<h1>Year <span id="year">$year.year</span></h1>
+	<table>
+		#foreach ($linha in $year.linhas)
+			<tr>
+				<th>
+					$linha.categoria.nome
+					<a href="#springUrl('/categoria/')$linha.categoria.id">LINK NAME</a>
+				</th>
+				#foreach ($celula in $linha.celulas)
+					## THIS IS A COMMENT
+					## AND THERE IS AN ERROR IN THE LINE BELOW !!!!!!!!!!!!!!!!!!!!!!!!
+					<td class="saldoInicial $X {thereShouldBeNotAQuestionMarkNext ? 'tru' : 'fall'}">
+					$linha.saldoInicial
+					
+					</td>
+				#end
+			</tr>
+		#end
+	</table>
+</div>
+
+#define ($script)
+	<script type="text/javascript">
+	    function javaScriptCode(json, callback, tr, other) {
+			$('<table>').appendTo(other);
+			$X .getJSON(url, function (data) {
+				callback(data);
+			});
+			$('<td colspan="4" style="padding-left: 25px;">').appendTo(tr);
+			// comment!!!!! var meses = $('.mes').map(function() {
+			return $(this).text();
+		}
+	   
+	/* Multi-line comment:
+		$('.previsao').each(function (i, e) {
+			var $p = $(e);
+			...
+		});
+	*/
+	</script>
+#end

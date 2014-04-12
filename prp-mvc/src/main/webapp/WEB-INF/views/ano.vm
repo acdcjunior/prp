@@ -1,0 +1,98 @@
+#set($titulo = "Ano")
+#set($css = ["movimentacao.css", "divPopup.css", "ano.css"])
+#set($scripts = ["prp/util/Ajax.js", "prp/util/Mes.js", "prp/Entity.js", "prp/Origem.js", "prp/movimentacao/Movimentacao.js", "prp/movimentacao/MovimentacaoRepository.js", 
+"prp/previsao/Previsao.js", "divPopup.js", "viewmodel/ano.js"])
+
+<div class="usuario movimentacoes">
+	<h1>Ano <span id="ano">$ano.ano</span></h1>
+	<button id="resetsaldos" title="Reseta os saldos (grafico), caso voce tenha inserido alguma nova previsao ou alteracoes em geral.">Resetar Saldos</button>
+		<table id="ano">
+			<thead>
+				<tr>
+						<th>Categoria</th>
+						#foreach ($mes in [1..12])
+    						<th class="mes">
+								<a href="#springUrl('/movimentacao/')${ano.ano}/$mes" style="color: black; font-size: small;">
+    								&nbsp; ${ano.ano}-$mes
+    								<img src="#springUrl('/static/img/flat/binoculars_zoom.png')" class="imagemIcone clickavel" alt="Exibir movimentacoes do mes"
+								</a>
+							</th>
+   						#end
+				</tr>
+			</thead>
+			<tbody>
+				#foreach ($categoriaNoAno in $ano.linhas)
+					<tr>
+						<th>
+							$categoriaNoAno.categoria.nome
+							<a href="#springUrl('/categoria/')$categoriaNoAno.categoria.id">
+							<img src="#springUrl('/static/img/view_doc.png')" alt="ver detalhes" />
+							</a>
+						</th>
+						#foreach ($categoriaNoMes in $categoriaNoAno.categoriaNosMeses)
+							<td class="celula clickavel #if($categoriaNoMes.previsao)previsao#{else}#end"
+								data-categoria="$categoriaNoAno.categoria.id"
+								data-ano="$categoriaNoMes.ano"
+								data-mes="$categoriaNoMes.mes"
+								title="Total #if($categoriaNoMes.previsao)previsto#{else}<b>realizado</b>:#end em ${categoriaNoMes.ano}-$categoriaNoMes.mes dentre todas as previsoes da Categoria <categoria>$categoriaNoAno.categoria.nome</categoria>">
+								<span class="valorNoMes">$categoriaNoMes.valor</span>
+								<span class="qtdNoMes qtdMovimentacoes" title="Quantidade de Movimentacoes neste mes nesta categoria">$categoriaNoMes.qtdMovimentacoes</span>
+								<span class="qtdNoMes qtdPrevisoes" title="Quantidade de Previsoes neste mes nesta categoria">$categoriaNoMes.qtdPrevisoes</span>
+							</td>
+						#end
+					</tr>
+				#end
+				<tr>
+					#set($colspan = $ano.movimentacoesNaoCategorizadasNosMeses.size() + 1)
+					<td colspan="$colspan">&nbsp;</td>
+				</tr>
+				<tr>
+					<th>Movimentacoes Nao Categorizadas</th>
+					#foreach ($movimentacoesNaoCategorizadasNoMes in $ano.movimentacoesNaoCategorizadasNosMeses)
+						<td class="naoCategorizada clickavel"
+							data-ano="$movimentacoesNaoCategorizadasNoMes.ano"
+							data-mes="$movimentacoesNaoCategorizadasNoMes.mes">
+							$movimentacoesNaoCategorizadasNoMes.somaValor
+							<span class="qtdNoMes" title="Quantidade de Movimentacoes <b>sem categoria</b> neste mes">$movimentacoesNaoCategorizadasNoMes.quantidade</span>
+						</td>
+					#end
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="13"><hr /></td>
+				</tr>
+				<tr class="saldosIniciais">
+					<td>Saldos ao inicio do mes</td>
+					#foreach ($saldo in $ano.saldos)
+						<td class="saldoInicial #if($saldo.baseadoNaUltimaMovimentacao)baseadoNaUltimaMovimentacao#{else}baseadoNaPrevisaoDoUltimoMes#end"
+							title="Saldo baseado na #if($saldo.baseadoNaUltimaMovimentacao)ultima movimentacao#{else}previsao do fim do ultimo mes#end">
+						$saldo.saldoInicial
+						</td>
+					#end
+				</tr>
+				<tr>
+					<td>Diferenca (Total) Planejada</td>
+					#foreach ($diferenca in $ano.diferencaPlanejada)
+						<td>$diferenca</td>
+					#end
+				</tr>
+				<tr class="saldosFinais">
+					<td>Saldo PREVISTO ao fim do mes</td>
+					#foreach ($saldo in $ano.saldos)
+						<td class="saldoFinal">$saldo.saldoFinal</td>
+					#end
+				</tr>
+				<tr><td colspan="13"><hr /></td></tr>
+				<tr class="saldosDeltas">
+					<td>Variacao |SaldoInicial-SaldoFinal| no Mes</td>
+					#foreach ($saldo in $ano.saldos)
+						<td class="saldoDelta">$saldo.diferencaSaldo</td>
+					#end
+				</tr>
+			</tfoot>
+		</table>
+</div>
+<div id="chart">
+	<canvas id="canvas" height="450" width="1620" style="padding-left: 200px;"></canvas>
+</div>

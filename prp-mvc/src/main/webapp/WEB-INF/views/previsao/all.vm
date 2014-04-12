@@ -1,0 +1,36 @@
+#set($titulo = "Previsao :: Todas")
+#set($css = ["movimentacao.css"])
+
+<div class="usuario movimentacoes">
+	<h1>Previsoes</h1>
+	<table>
+		<thead>
+			<tr>
+					<th>id</th>
+					<th>data</th>
+					<th>descricao</th>
+					<th>valor</th>
+					<th>realizada</th>
+					<th>Categoria</th>
+					<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			#foreach ($previsao in $previsoes)
+				<tr>
+					<td>$previsao.id</td>
+					<td>$dateTool.format("yyyy-MM-dd", $previsao.data)</td>
+					<td>$previsao.descricao</td>
+					<td>$previsao.valor</td>
+					<td>$previsao.realizada</td>
+					<td>$previsao.categoria.nome</td>
+					<td>
+						<a href="#springUrl('/previsao/')$previsao.id">
+							<img src="#springUrl('/static/img/view_doc.png')" alt="Abrir detalhes da previsao" />
+						</a>
+					</td>
+				</tr>
+			#end
+		</tbody>
+	</table>
+</div>

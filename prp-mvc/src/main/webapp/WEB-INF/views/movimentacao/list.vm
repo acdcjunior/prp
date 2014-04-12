@@ -1,0 +1,58 @@
+#set($titulo = "Movimentacao")
+#set($css = ["movimentacao.css", "movimentacao.list.css"])
+#set($scripts = ["prp/util/Ajax.js", "prp/util/Mes.js", "prp/Entity.js", "prp/movimentacao/Movimentacao.js", "prp/movimentacao/MovimentacaoRepository.js", 
+"prp/previsao/Previsao.js", "prp/movimentacao/AlterarPrevisaoDialog.js", "viewmodel/movimentacao/list.js"])
+
+<div class="usuario movimentacoes">
+	<h1>Movimentacoes $descricao</h1>
+	<img src="#springUrl('/static/img/flat/bills.png')" alt="Movimentacoes" class="imagemDetalhe" />
+	<table>
+		<thead>
+			<tr>
+					<th>id</th>
+					<th>data</th>
+					<th>numDoc</th>
+					<th>desc1</th>
+					<th>d2</th>
+					<th>d3</th>
+					<th>valor</th>
+					<th>org</th>
+					<th>saldo</th>
+					<th>ant</th>
+					<th>realiza.descricao</th>
+			</tr>
+		</thead>
+		<tbody>
+			#foreach ($movimentacao in $movimentacoes)
+				<tr>
+					<td>$movimentacao.id</td>
+					<td>$dateTool.format("yyyy-MM-dd", $movimentacao.data)</td>
+					<td>$movimentacao.numeroDocumento</td>
+					<td>$movimentacao.descricao1</td>
+					<td>$!movimentacao.descricao2</td>
+					<td>$!movimentacao.descricao3</td>
+					<td>$movimentacao.valor</td>
+					<td>$movimentacao.origem.id</td>
+					<td>$movimentacao.saldo</td>
+					<td>$!movimentacao.anteriorId</td>
+					<td style="">
+    					<a href="#springUrl('/previsao/')$movimentacao.realiza.id">
+    						<img class="imagemDetalhe imagemIcone clickavel" src="#springUrl('/static/img/flat/binoculars_zoom.png')"
+								alt="Ver detalhes da Previsao #$movimentacao.realiza.id" />
+    					</a>
+    					<img
+    						src="#springUrl('/static/img/flat/binoculars_refresh.png')"
+    						alt="Alterar previsao (uma dialog serah aberta)"
+    						class="imagemIcone clickavel alteraRealiza"
+    						data-id="$movimentacao.id"
+    						data-mes="$dateTool.format('M', $movimentacao.data)"
+    						data-ano="$dateTool.format('yyyy', $movimentacao.data)"
+    						data-previsao="$movimentacao.realiza.id"
+    					/>
+    					<span>$!movimentacao.realiza.descricao</span>
+					</td>
+				</tr>
+			#end
+		</tbody>
+	</table>
+</div>

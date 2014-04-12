@@ -1,0 +1,82 @@
+#set($titulo = "Previsao :: Detalhes")
+#set($css = ["movimentacao.css"])
+#set($scripts = ["prp/util/Ajax.js", "prp/util/Mes.js", "prp/Entity.js", "prp/previsao/Previsao.js"])
+
+<div class="usuario movimentacoes">
+	<h1>Previsoes &gt;&gt; Detalhe $previsao.descricao</h1>
+	<img src="#springUrl('/static/img/flat/binoculars.png')" alt="Previsao" class="imagemDetalhe" />
+	<table>
+		<tbody>
+			<tr><th>id</th><td>$previsao.id</td></tr>
+			<tr><th>data</th><td><fmt:formatDate value="$previsao.data" pattern="yyyy-MM-dd" /></td></tr>
+			<tr><th>descricao</th><td>$previsao.descricao</td></tr>
+			<tr><th>valor</th><td>$previsao.valor</td></tr>
+			<tr><th>realizada</th><td>$previsao.realizada</td></tr>
+			<tr><th>Categoria</th>
+				<td>
+    				<a href="#springUrl('/categoria/')$previsao.categoria.id" title="Visualizar Categoria #$previsao.categoria.id">
+    					$previsao.categoria.nome<img src="#springUrl('/static/img/view_doc.png')" alt="Visualizar Categoria #$previsao.categoria.id" style="margin-left: 10px" />
+    				</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<hr style="clear: both"/>
+	<h2>Movimentacoes Associadas: $movimentacoes.size()</h2>
+	<table>
+		<thead>
+			<tr>
+					<th>id</th>
+					<th>data</th>
+					<th>numDoc</th>
+					<th>desc1</th>
+					<th>d2</th>
+					<th>d3</th>
+					<th>valor</th>
+					<th>Origem</th>
+					<th>saldo</th>
+					<th>anteriorId</th>
+			</tr>
+		</thead>
+		<tbody>
+			#foreach ($movimentacao in $movimentacoes)
+				<tr>
+					<td>$movimentacao.id</td>
+					<td>$dateTool.format("yyyy-MM-dd", $movimentacao.data)</td>
+					<td>$movimentacao.numeroDocumento</td>
+					<td>$movimentacao.descricao1</td>
+					<td>$!movimentacao.descricao2</td>
+					<td>$!movimentacao.descricao3</td>
+					<td>$movimentacao.valor</td>
+					<td>$movimentacao.origem.id</td>
+					<td>$movimentacao.saldo</td>
+					<td>$movimentacao.anteriorId</td>
+				</tr>
+			#end
+		</tbody>
+	</table>
+	<hr style="clear: both"/>
+	<img id="editPrevisao" class="clickavel imagemDetalhe" src="#springUrl('/static/img/flat/binoculars_pencil.png')" alt="Editar Previsao #$previsao.id (Nao implementado)" />
+	<img id="excluirPrevisao" class="clickavel imagemDetalhe" src="#springUrl('/static/img/flat/binoculars_close.png')"
+		alt="Excluir Previsao #$previsao.id (Somente terah sucesso se a previsao nao tiver nenhuma movimentacao associada. Caso tenha, uma msg de erro sera retornada.)" />
+	<hr style="clear: both"/>
+	<a href="#springUrl('/previsao/add')">
+		<img class="clickavel imagemDetalhe" src="#springUrl('/static/img/flat/binoculars_add.png')" alt="Nova Previsao" />
+	</a>
+</div>
+
+#define ($script)
+    <script type="text/javascript">
+    $(function() {
+    	var previsao = new prp.Previsao(parseInt('$previsao.id'));
+    	
+    	$('#excluirPrevisao').click(function () {
+    		if (confirm("Tem certeza que deseja excluir esta previsao?")) {
+    			previsao.excluir(function (data, textStatus, jqXHR) {
+    				alert('Exclusao efetuada com sucesso!\nA previsao nao existe mais!\n\n'+jqXHR.status+' -> '+textStatus);
+    			});
+    		}
+    	});
+    });
+    </script>
+#end

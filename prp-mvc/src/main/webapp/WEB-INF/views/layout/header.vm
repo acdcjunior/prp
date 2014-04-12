@@ -1,0 +1,46 @@
+<div>
+	<h1>PRP</h1>
+	<ul id="nav">
+	    <li><a href="#springUrl('/')">Home</a></li>
+	    <li>
+	    	<a href="#">Planejamento Anual (?%)</a>
+	        <ul>
+				<li><a href="#springUrl('/ano/2011')">2011</a></li>
+				<li><a href="#springUrl('/ano/2012')">2012</a></li>
+				<li><a href="#springUrl('/ano/2013')">2013</a></li>
+	        </ul>
+	    </li>
+	    <li>
+	    	<a href="#">Movimentacoes</a>
+	        <ul>
+				<li><a href="#springUrl('/movimentacao/sumario')">Sumario</a></li>
+				<li><a href="#springUrl('/movimentacao')">Todas as Movimentacoes</a></li>
+				<li><a href="#springUrl('/movimentacao/2011')">Movimentacoes de um ano (2011)</a></li>
+				<li><a href="#springUrl('/movimentacao/2011/1')">Movimentacoes de um mes (2011-JAN)</a></li>
+				<li><a href="#springUrl('/movimentacao/add')">Adicionar</a></li>
+	        </ul>
+    	</li>
+	    <li>
+	    	<a href="#">Categorias</a>
+	    	<ul>
+				<li><a href="#springUrl('/categoria')">Todas</a></li>
+				<li><a href="#springUrl('/categoria/1')">Por ID/1</a></li>
+	        </ul>
+	    	
+    	</li>
+	    <li>
+			<a href="#">Origens</a>
+	        <ul>
+				<li><a href="#springUrl('/origem')">Todas</a></li>
+	        </ul>
+		</li>
+	    <li>
+	    	<a href="#">Previsoes</a>
+	        <ul>
+				<li><a href="#springUrl('/previsao')">Todas</a></li>
+				<li><a href="#springUrl('/previsao/1')">Por ID/1</a></li>
+				<li><a href="#springUrl('/previsao/add')">Adicionar</a></li>
+	        </ul>
+    	</li>
+	</ul>
+</div>

@@ -1,0 +1,90 @@
+#set($titulo = "Categoria :: Detalhes")
+#set($css = ["movimentacao.css"])
+#set($scripts = ["prp/util/Ajax.js", "prp/util/Mes.js", "prp/Entity.js", "prp/previsao/Previsao.js", "prp/categoria/Categoria.js"])
+
+<div class="usuario movimentacoes">
+	<h1>Categoria &gt;&gt; Detalhe $categoria.nome</h1>
+	<img src="#springUrl('/static/img/flat/open_folder.png')" alt="Categoria" class="imagemDetalhe" />
+	<table>
+		<tbody>
+			<tr><th>id</th><td>$categoria.id</td></tr>
+			<tr><th>nome</th><td>$categoria.nome</td></tr>
+			<tr><th>revisado</th><td>$categoria.revisado</td></tr>
+		</tbody>
+	</table>
+	<hr style="clear: both"/>
+	<img id="excluirCategoria" class="clickavel imagemDetalhe" src="#springUrl('/static/img/flat/open_folder_close.png')"
+		alt="Excluir categoria (Se existirem previsoes associadas, a exclusao nao sera feita e uma mensagem será exibida.)" />
+	<hr style="clear: both"/>
+	<h2>Previsoes Associadas: $meses.size() meses</h2>
+		<table>
+			<thead>
+				<tr>
+						<th>MES DE REFERENCIA</th>
+						<th>id</th>
+						<th>data</th>
+						<th>descricao</th>
+						<th>valor</th>
+						<th>Categoria</th>
+						<th>(ver)</th>
+				</tr>
+			</thead>
+			<tbody>
+				#foreach ($mes in $meses.entrySet())
+					#set ($first = true)
+					#foreach ($previsao in $mes.value)
+						<tr>
+							#if ($first)
+								<td rowspan="${mes.value.size()}">$mes.key</td>
+								#set ($first = false)
+							#end
+							
+							<td>$previsao.id</td>
+							<td>$dateTool.format("yyyy-MM-dd", $previsao.data)</td>
+							<td>$previsao.descricao</td>
+							<td>$previsao.valor</td>
+							<td>$previsao.categoria.nome</td>
+							<td>
+								<a href="#springUrl('/previsao/')$previsao.id">
+									<img class="imagemDetalhe imagemIcone clickavel" src="#springUrl('/static/img/flat/binoculars_zoom.png')" alt="ver detalhes" />
+								</a>
+								<img class="excluirPrevisao imagemDetalhe imagemIcone clickavel" data-previsao="$previsao.id"
+									src="#springUrl('/static/img/flat/binoculars_close.png')"
+									alt="Excluir Previsao (caso ela tenha Movimentacoes associadas, nao serah excluida!)" />
+							</td>
+						</tr>
+					#end
+				#end
+			</tbody>
+		</table>
+	
+</div>
+
+#define ($script)
+    <script type="text/javascript">
+    $(function() {
+    	var categoria = new prp.Categoria(parseInt('$categoria.id'));
+    	
+    	$('#excluirCategoria').click(function () {
+    		if (confirm("Tem certeza que deseja excluir esta categoria?")) {
+    			categoria.excluir(function (data, textStatus, jqXHR) {
+    				alert('Exclusao efetuada com sucesso.');
+    			});
+    		}
+    	});
+    	
+    	
+    	$('.excluirPrevisao').click(function () {
+    		var linha = $(this).closest('tr');
+    		var previsaoId = $(this).data('previsao');
+    		if (confirm("Tem certeza que deseja excluir a previsao "+previsaoId+"?")) {
+    			var previsao = new prp.Previsao(parseInt(previsaoId));
+    			previsao.excluir(function (data, textStatus, jqXHR) {
+    				linha.addClass("excluido");
+    			});
+    		}
+    	});
+
+    });
+    </script>
+#end

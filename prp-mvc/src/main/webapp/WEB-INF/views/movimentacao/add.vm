@@ -1,0 +1,75 @@
+#set($titulo = "Movimentacao :: Nova")
+#set($css = ["movimentacao.css", "movimentacao.add.css"])
+#set($scripts = ["prp/util/Ajax.js", "prp/util/Mes.js", "prp/Entity.js", "prp/Origem.js", "prp/movimentacao/Movimentacao.js", "prp/movimentacao/MovimentacaoRepository.js", 
+"prp/previsao/Previsao.js", "prp/movimentacao/AlterarPrevisaoDialog.js", "viewmodel/movimentacao/add.js"])
+
+<div id="addPrevisao" class="usuario movimentacoes">
+	<img src="#springUrl('/static/img/flat/bills.png')" alt="Movimentacoes" class="imagemDetalhe" />
+	<h1>Nova Movimentacao</h1>
+	<div style="clear: both;"></div>
+</div>
+
+<div ng-controller="MovimentacaoController" ng-app>
+	Selecione uma origem :  
+    <select ng-model="origemSelecionada" ng-options="origem.id as origem.nome for origem in origens"></select><br>
+	Data da Ultima Movimentacao: {{dataUltimaMovimentacao}}<br>
+	Saldo da Ultima Movimentacao: {{saldoUltimaMovimentacao}}<br>
+	Mes da Ultima Movimentacao: {{mesUltimaMovimentacao}}<br>
+	<br>
+	<hr/>
+	<h2>Movimentacoes</h2>
+	<table id="addTable">
+		<thead>
+            <tr>
+				<th>#</th>
+				<th>data</th>
+				<th>numDoc</th>
+				<th>desc1</th>
+				<th>d2</th>
+				<th>valor</th>
+				<th>saldo</th>
+				<th>ordSd</th>
+				<th>realiza.descricao</th>
+		        <th></th>
+		    </tr>
+        </thead>
+        <tbody ng-repeat="mov in movimentacoes">
+            <tr class="addMovimentacao" ng-class="{readOnly: mov._readOnly}">
+				<td>{{mov.__controle ? '@' + mov.__controle : ''}}</td>
+				<td>
+					<input type="date"	 ng-model="mov.data"			 class='required'	ng-readonly="mov._readOnly" />
+                	<a href='' class="copiarSeguinte" ng-class="{apagado: mov._readOnly || movimentacoes.indexOf(mov) == movimentacoes.length-1}"	ng-click="copiarDataSeguinte(mov)" title="Copiar Data da linha posterior" ><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
+                	<a href='' class="copiarAnterior" ng-class="{apagado: mov._readOnly}" #*													*#	ng-click="copiarDataAnterior(mov)" title="Copiar Data da linha anterior" ><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
+				</td>
+				<td><input type="text"	 ng-model="mov.numeroDocumento"	 class='required menor'	ng-readonly="mov._readOnly"/></td>
+				<td><input type="text"	 ng-model="mov.descricao1"		 class='required'	ng-readonly="mov._readOnly"/></td>
+				<td><input type="text"	 ng-model="mov.descricao2"		 class='required menor'	ng-readonly="mov._readOnly"/></td>
+                <td><input type="number" ng-model="mov.valor"			 class='required number' step="any" ng-change="calcularSaldo()"	ng-readonly="mov._readOnly"/></td>
+                <td>{{mov.saldo}}</td>
+                <td>{{mov.saldoCalculado}}</td>
+                <td>
+                	<img src="#springUrl('/static/img/flat/binoculars_zoom.png')" class="imagemIcone clickavel" alt="Selecionar Previsao"
+						ng-class="{apagado: mov._readOnly}" ng-click="setPrevisaoRealizada(mov, $event)">
+                	{{mov.realiza.descricao}}
+                	<a href='' class="copiarSeguinte" ng-class="{apagado: mov._readOnly || movimentacoes.indexOf(mov) == movimentacoes.length-1}"	ng-click="copiarPrevisaoSeguinte(mov)" title="Copiar Previsao da linha posterior" ><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
+                	<a href='' class="copiarAnterior" ng-class="{apagado: mov._readOnly}" #*													*#	ng-click="copiarPrevisaoAnterior(mov)" title="Copiar Previsao da linha anterior" ><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
+                </td>
+                <td>
+                	<a href='' ng-class="{apagado: mov._readOnly}" #*													*#	ng-click="remover(mov)" title="Apagar linha" ><span class="glyphicon glyphicon-remove"></span></a>
+                	<a href='' ng-class="{apagado: mov._readOnly || movimentacoes.indexOf(mov) == 1}" #*				*#	ng-click="subir(mov)" title="Swap com a linha anterior"><span class="glyphicon glyphicon-arrow-up"></span></a>
+                	<a href='' ng-class="{apagado: mov._readOnly || movimentacoes.indexOf(mov) == movimentacoes.length-1}"	ng-click="descer(mov)" title="Swap com a linha posterior"><span class="glyphicon glyphicon-arrow-down"></span></a>
+               	</td>
+			</tr>
+        </tbody>
+	</table>
+	<div class="saldo">Saldo<span ng-if="mesUltimaMovimentacao != ''"> ao final de {{mesUltimaMovimentacao}}</span>: {{saldoCalculado}}</div>
+	<div class="mensagens">
+		<div ng-repeat="mensagem in mensagens">{{mensagem.msg}}</div>
+	</div>
+	<br>
+	<button ng-click="novaMovimentacao()">Nova Movimentacao</button>
+	<br>
+	<button ng-click="enviar()">ENVIAR</button>
+	
+	<hr />
+</div>

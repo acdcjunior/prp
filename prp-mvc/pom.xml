@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>net.acdcjunior</groupId>
+		<artifactId>prp</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<artifactId>prp-mvc</artifactId>
+	<packaging>war</packaging>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>net.acdcjunior</groupId>
+			<artifactId>prp-domain</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${versao.spring}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${versao.spring}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${versao.hibernate}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.5.8</version>
+		</dependency>
+	    <dependency>
+	    	<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2</version>
+	    </dependency>
+	    
+   		<!-- Jackson JSON Mapper -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+	    
+	    <!-- INICIO: View - Apache VELOCITY -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-tools</artifactId>
+			<version>2.0</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>struts-core</artifactId>
+					<groupId>org.apache.struts</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>velocity</artifactId>
+					<groupId>org.apache.velocity</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>struts-tiles</artifactId>
+					<groupId>org.apache.struts</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>struts-taglib</artifactId>
+					<groupId>org.apache.struts</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- FIM: View - Apache VELOCITY -->
+		
+
+		<!-- INICIO: Dependencias de TESTES -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.3.174</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>${versao.spring}</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.5</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<version>1.3</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency> <!-- Utilizado no bind JNDI da InjetarEntityManagerRule -->
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>catalina</artifactId>
+			<version>6.0.18</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- FIM: Dependencias de TESTES -->
+		
+	</dependencies>
+
+	<build>
+		<finalName>${project.parent.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+			</plugin>
+			
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.12</version>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- INICIO TOMCAT7:RUN -->
+			<!-- Plugin adicionado para que o (goal) "mvn tomcat7:run" funcione. Ver 
+				mais info sobre o plugin em http://tomcat.apache.org/maven-plugin-2.2/ -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<path>/${project.build.finalName}</path>
+					<contextFile>${basedir}/src/test/resources/tomcat-run/context.xml</contextFile>
+			      	<additionalClasspathDirs>
+        				<additionalClasspathDir>${project.parent.basedir}/prp-testutil/src/main/resources/sql</additionalClasspathDir>
+      				</additionalClasspathDirs>
+				</configuration>
+			</plugin>
+			<!-- FIM TOMCAT7:RUN -->
+			
+			<!-- INICIO Cobertura -->
+			<!-- Suporte para o (goal) "mvn cobertura:cobertura".
+				 Ver: http://stackoverflow.com/a/14995390/1850609 -->
+			<plugin>
+	            <groupId>org.codehaus.mojo</groupId>
+	            <artifactId>cobertura-maven-plugin</artifactId>
+	            <version>2.6</version>
+	        </plugin>
+	        <!-- FIM Cobertura -->
+	        
+     		<!-- INICIO Jasmine-Maven -->
+			<plugin>
+				<groupId>com.github.searls</groupId>
+				<artifactId>jasmine-maven-plugin</artifactId>
+				<version>1.3.1.3</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test</goal>
+						</goals>
+					</execution>
+				</executions>
+                <configuration>
+                    <specRunnerTemplate>REQUIRE_JS</specRunnerTemplate>
+                    <jsSrcDir>${project.basedir}/src/main/webapp/static/js</jsSrcDir>
+                    <jsTestSrcDir>${project.basedir}/src/test/javascript</jsTestSrcDir>
+                    <customRunnerConfiguration>${project.basedir}/src/test/javascript/lib/jasmineConfig.txt</customRunnerConfiguration>
+                    <preloadSources><source>lib/require.js</source></preloadSources>
+                    
+                	<!-- Por conta do Saga Coverage -->
+                	<keepServerAlive>true</keepServerAlive>
+				</configuration>
+			</plugin>
+		
+			<!-- Code coverage do JavaScript com o Saga  -->
+			<plugin>
+				<groupId>com.github.timurstrekalov</groupId>
+				<artifactId>saga-maven-plugin</artifactId>
+				<version>1.4.0</version>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>coverage</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<baseDir>http://localhost:${jasmine.serverPort}</baseDir>
+					<outputDir>${project.build.directory}/javascript-coverage</outputDir>
+					<noInstrumentPatterns>
+						<pattern>.*/spec/.*</pattern> <!-- don't instrument specs -->
+						<pattern>.*/src/lib/.*</pattern> <!-- nem as libs -->
+					</noInstrumentPatterns>
+				</configuration>
+			</plugin>
+			<!-- FIM Jasmine-Maven -->
+	        
+		</plugins>
+	</build>
+	
+	<reporting>
+	    <plugins>
+	    	<!-- INICIO Cobertura relatorio HTML -->
+	    	<!-- Para que o cobertura gere o relatorio HTML em: /target/site/cobertura/index.html -->
+	        <plugin>
+	            <groupId>org.codehaus.mojo</groupId>
+	            <artifactId>cobertura-maven-plugin</artifactId>
+	            <version>2.6</version>
+	            <configuration>
+	                <check></check>
+	                <formats>
+	                    <format>html</format>
+	                </formats>
+	            </configuration>
+	        </plugin>
+	        <!-- FIM Cobertura relatorio HTML -->
+	    </plugins>
+	</reporting>
+</project>

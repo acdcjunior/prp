@@ -1,0 +1,60 @@
+body { font-family: arial; font-size: 14px; }
+
+li { list-style-type: disc; margin-left: 20px; }
+
+.addMovimentacao * {
+	font-family: Verdana; font-size: small;
+}
+.addMovimentacao input[type=text]:not(.menor) {
+	min-width: 280px;
+	width: 100%;
+}
+.addMovimentacao input[type=date] {
+	width: 140px;
+}
+.addMovimentacao input[type=number] {
+	width: 85px;
+}
+.addMovimentacao .menor {
+	width: 70px;
+}
+.painel {
+	float: left;
+	border: 1px solid black;
+	padding: 2px;
+	margin: 5px;
+}
+.painel div {
+	border: 1px solid black;
+	padding: 5px;
+	margin: 5px;
+}
+#addTable {
+	width: 100%;
+}
+.copiarAnterior,.copiarSeguinte {
+	float: right;
+	margin-left: 5px;
+}
+.copiarAnterior+.copiarSeguinte.apagado:before {
+	content: " ! ";
+	background-color: red;
+}
+.saldo {
+	text-align: right;
+	color: red;
+	font-size: xx-large;
+}
+.readOnly, .readOnly input {
+	background-color: #DDD;
+}
+.apagado {
+	visibility: hidden;
+}
+.mensagens {
+	float: right;
+	overflow-y: scroll;
+	border: 1px solid gray;
+	height: 100px;
+	width: 500px;
+}

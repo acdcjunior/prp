@@ -1,0 +1,114 @@
+#set($titulo = "Previsao :: Nova")
+#set($css = ["movimentacao.css"])
+#set($scripts = ["prp/util/Ajax.js", "prp/util/Mes.js", "prp/Entity.js", "prp/previsao/Previsao.js"])
+
+<div id="addPrevisao">
+	<h1>Previsoes &gt;&gt; Nova</h1>
+	<h5>Adicione novas previsoes. A previsao digitada aqui eh criada sem nenhuma associacao.</h5>
+	<form id="addPrevisaoForm" action="#">
+		<table>
+			<tbody>
+				<tr><th>Data de Realizacao Esperada</th>     <td><input data-bind='value: data' type="date" required="required" placeholder="Data Esperada" /></td></tr>
+				<tr><th>Descricao</th><td><input data-bind='value: descricao' required="required" placeholder="Descricao da previsao" style="width: 500px" maxlength="255" /></td></tr>
+				<tr><th>Valor (R$)</th>
+					<td>
+						<input data-bind='value: valor' type="number" step="any" required="required" placeholder="Valor esperado" />
+						Utilize valores <strong>negativos</strong> para previsoes de debito.
+					</td>
+				</tr>
+				<tr><th>Categoria</th><td><select data-bind='value: categoria, options: categorias, optionsText: "nome"'></select></td></tr>
+			</tbody>
+		</table>
+		<br>
+		<input type="button" id="salvar" data-bind='click: salvar' value="Salvar" />
+		<img id="loading" src="" alt="Aguarde..." style="display: none;" />
+	</form>
+</div>
+
+#define ($script)
+    <script type='text/javascript'>
+		var dataInicial = '$dataInicial';
+    	var categorias = jQuery.parseJSON('$categorias');
+		
+    	var parametroCategoria = '$categoriaInicial';
+    	var categoriaInicial = null;
+		
+		if (parametroCategoria.length > 0) {
+    		jQuery.each(categorias, function (i, categoria) {
+    			if (categoria.id == parametroCategoria) {
+    				categoriaInicial = categoria;
+    				return false;
+    			}
+    		});
+    	}
+		
+    	$('#addPrevisaoForm').on('submit', function(e) {
+    		e.preventDefault();
+    	});
+    	function formEhValido() {
+    		var form = $('#addPrevisaoForm').get(0);
+    		if (!form.checkValidity()) {
+    			// dispara mensagens do chrome
+    	    	$('<button type="submit">').appendTo($('#addPrevisaoForm')).trigger('click').remove();
+    			return false;
+    		}
+    		return true;
+    	}
+    	
+    	function PrevisaoViewModel() {
+    		var self = this;
+    		
+    		this.data = ko.observable(dataInicial);
+    		this.descricao = ko.observable("");
+    		this.valor = ko.observable(-100.55);
+              
+            this.categorias = ko.observableArray(categorias);
+            this.categoria = ko.observable(categoriaInicial);
+                            
+            this.salvar = function (model, event) {
+            	if (!formEhValido()) {
+            		return;
+            	}
+            	
+            	var previsao = ko.toJSON(self, function (key, value) {
+            		if (key == 'categorias') return;
+            		if (key == 'categoria') return {id: value.id};
+            		if (key == 'data') return parseDate(value).getTime();
+            		return value;
+            	});
+            	
+            	$('#addPrevisao input,#addPrevisao select').prop('disabled', true);
+            	$('#loading').attr('src', "#springUrl('/static/img/loading.gif')").show();
+            	
+            	jQuery.ajax({
+            		type: "PUT",
+            		url: "#springUrl('/previsao')",
+            		contentType: "application/json",
+            		data: previsao,
+            		success : function (data, textStatus, jqXHR) {
+            			// $('#addPrevisao input,#addPrevisao select').prop('disabled', false);
+                    	$('#loading').attr('src', function (i, srcAnterior) {
+                    		return srcAnterior.replace('loading.gif', 'pack/yes.png');
+                    	});
+                    	var ano = self.data().split('-')[0];
+                    	var previsaoCriada = jqXHR.getResponseHeader('Location');
+                     	previsaoCriada += ''; // eclipse tava enchendo o saco dando warning onde nao existe nada
+						
+                    	$('#loading').after('<br>Clique <a href="'+ window.prp.URL + 'ano/' + ano + '">aqui</a> para ir para o balanco de '+ano+'.');
+                    	$('#loading').after('<br>Clique <a href="'+ previsaoCriada +'">aqui</a> para visualizar a previsao criada.');
+                    	$('#loading').after('Previsao criada com sucesso!');
+            		},
+            		error : function (jqXHR, textStatus, errorThrown) {
+            			$('#addPrevisao input,#addPrevisao select').prop('disabled', false);
+                    	$('#loading').attr('src', function (i, srcAnterior) {
+                    		return srcAnterior.replace('loading.gif', 'pack/error.png');
+                    	});
+                    	$('#loading').after('Erro ao salvar, tente novamente! Mensagem: ' + errorThrown + '<br>');
+            		}
+            	});
+            };
+    	}
+    
+    	ko.applyBindings(new PrevisaoViewModel());
+    </script>
+#end

@@ -1,0 +1,37 @@
+.alterarPrevisaoRealizadaDialog * {
+    font-size: small;
+}
+.alterarPrevisaoRealizadaDialog .previsaoAtual span {
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.alterarPrevisaoRealizadaDialog .previsaoAtual div:last-child {
+	color: red;
+}
+.alterarPrevisaoRealizadaDialog .botoes {
+	margin-bottom: 20px;
+}
+.alterarPrevisaoRealizadaDialog .botoes * {
+	width: 133px;
+}
+.alterarPrevisaoRealizadaDialog .botoes span {
+	display: inline-block;
+	text-align: center;
+}
+.alterarPrevisaoRealizadaDialog .listaPrevisoes {
+	min-height: 300px;
+}
+.alterarPrevisaoRealizadaDialog .listaPrevisoes div {
+	border: 1px solid black;
+}
+.alterarPrevisaoRealizadaDialog .listaPrevisoes div:hover,.previsaoSelecionadaAtualmente {
+	background-color: red;
+}
+.alterarPrevisaoRealizadaDialog .previsaoAtual {
+	float: left;
+	width: 350px;
+}
+.alterarPrevisaoRealizadaDialog .previsoesSelecao {
+	float: right;
+	width: 410px;
+}

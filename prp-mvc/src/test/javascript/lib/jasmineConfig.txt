@@ -1,0 +1,35 @@
+waitSeconds: 20,
+paths : { 'test-lib' : '/spec/lib' },
+map: {
+    '*': {
+    	'jQuery': 'test-lib/jasmine-jquery' 		/*		alias para jQuery		*/
+	}
+},
+shim: {
+	'test-lib/jasmine-jquery' : ['lib/jquery-1.11.0'],
+	
+    'prp/util/Mes': ['prp-mock'] ,
+    'prp/util/Ajax': ['prp-mock'] ,
+    
+    'prp/Entity': ['prp/util/Ajax'],
+    
+    'prp/movimentacao/Movimentacao' : ['prp/util/Mes', 'prp/Entity'],
+    
+    
+    'samples/Utils' : ['jQuery'],
+    'samples/Instituicao' : ['jQuery']
+}
+
+/*
+	ATENCAO:
+	Os testes executam em uma instancia do jetty.
+	Tudo que estah no sourceDir (src/main/webapp/static/js) vai pra "src" do servidor.
+	Tudo que estah no testDir (src/test/javascript) vai pra pasta "spec".
+	
+	Para debugar/desenvolver mais facilmente, use "mvn jasmine:bdd" e acesse http://127.0.0.1:8234/
+	Marcar a checkbox "No try/catch" no canto direito superior tambem pode ser util.
+	
+	Apenas apos os estes estarem rodando tranquilamente no servidor, teste com o "mvn jasmine:test".
+	Neste caso o codigo JavaScript eh executado com o HtmlUnit como browser, podendo haver
+	inconsistencias (que devem ser sanadas), portanto.
+ */

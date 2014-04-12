@@ -1,0 +1,41 @@
+#set($titulo = "Movimentacao")
+#set($css = ["movimentacao.css", "movimentacao.sumario.css"])
+
+<div class="usuario movimentacoes">
+	<h1>Sumario de Movimentacoes</h1>
+	<img src="#springUrl('/static/img/flat/bills.png')" alt="Movimentacoes" class="imagemDetalhe" />
+	<table>
+		<thead>
+			<tr>
+					<th>ano</th>
+					#foreach ($i in [1..12])
+						<th>Mes $i</th>
+					#end
+			</tr>
+		</thead>
+		<tbody>
+			#foreach ($sumario in $sumarios)
+				<tr>
+					<td>$sumario.ano</td>
+					#foreach ($mes in $sumario.meses)
+						<td class="verMes">
+							<a href="#springUrl('/movimentacao/')$sumario.ano/$mes.mes">
+    							<span class="vicone"><img src="#springUrl('/static/img/plus_circle_frame.png')"></span>
+    							<span class="valor" title="Soma das movimentacoes de credito">$mes.somaMovimentacoesCredito</span>
+    							<span class="numero" title="Quantidade de movimentacoes de credito">$mes.qtdMovimentacoesCredito</span>
+    								
+                				<span class="vicone"><img src="#springUrl('/static/img/minus_button.png')"></span>
+    							<span class="valor" title="Soma das movimentacoes de debito">$mes.somaMovimentacoesDebito</span>
+    							<span class="numero" title="Quantidade de movimentacoes de debito">$mes.qtdMovimentacoesDebito</span>
+    							
+                				<span class="vicone"><img src="#springUrl('/static/img/minus.png')"></span>
+    							<span class="valor" title="Diferenca">$mes.diferenca</span>
+    							<span class="numero #if($mes.qtdNaoCategorizada > 0)'faltaCategorizar'#end" title="Quantidade de movimentacoes nao categorizadas">$mes.qtdNaoCategorizada</span>
+							</a>
+						</td>
+					#end
+				</tr>
+			#end
+		</tbody>
+	</table>
+</div>
