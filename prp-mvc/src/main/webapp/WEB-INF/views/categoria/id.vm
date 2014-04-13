@@ -1,6 +1,6 @@
 #set($titulo = "Categoria :: Detalhes")
 #set($css = ["movimentacao.css"])
-#set($scripts = ["prp/util/Ajax.js", "prp/util/Mes.js", "prp/Entity.js", "prp/previsao/Previsao.js", "prp/categoria/Categoria.js"])
+#set($scripts = ["prp/util/Ajax.js", "prp/util/Mes.js", "prp/Entity.js", "prp/previsao/PrevisaoDEPRECATED.js", "prp/categoria/Categoria.js"])
 
 <div class="usuario movimentacoes">
 	<h1>Categoria &gt;&gt; Detalhe $categoria.nome</h1>

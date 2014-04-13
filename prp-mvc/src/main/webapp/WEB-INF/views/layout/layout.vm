@@ -2,32 +2,39 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	$!head ## trecho de HEAD definido por cada view. Exemplo: tag meta
+	
 	<title>$titulo</title>
 
-	<link rel="stylesheet" href="#springUrl('/static/css/')layout/layout.css" />
+	<link rel="stylesheet" href="#springUrl('/')static/css/prp.css" />
+	
+	<link rel="stylesheet" href="#springUrl('/')static/css/layout/layout.css" />
 	<!--[if !IE 7]>
 	<style type="text/css"> #wrap {display:table;height:100%} </style>
 	<![endif]-->
-	<link rel="stylesheet" href="#springUrl('/static/css/')layout/header.css" />
+	<link rel="stylesheet" href="#springUrl('/')static/css/layout/header.css" />
 
 	#foreach ($arquivoCss in $css)
 		<link rel="stylesheet" href="#springUrl('/static/css/')$arquivoCss" />
 	#end
 	
+	## Seta a URL para que os JavaScript possam usa-la!
 	<script type="text/javascript">
 		window.prp = {URL: "#springUrl('/')"};
 	</script>
 
+#if(!$!mobile)
 	<link  href="#springUrl('/static/js/lib/jquery-ui/jquery-ui-1.10.3.css')" rel="stylesheet" />
 	<link  href="#springUrl('/static/js/lib/jquery-ui/jquery.ui-1.10.3.theme-smoothness.css')" rel="stylesheet" />
 	<link  href="#springUrl('/static/js/lib/bootstrap-lib/css/bootstrap.css')" rel="stylesheet" />
+#else
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" rel="stylesheet" type="text/css" />
+#end
+
 </head>
-<body>
-	<div id="header"><tiles:insertAttribute name="header" /></div>
-	<div id="body"><tiles:insertAttribute name="body" /></div>
-	<div id="footer"><tiles:insertAttribute name="footer" /></div>
-	
-	
+<body #if($!mobile) class="ui-overlay-a" #end>
+	#if(!$!mobile)
 	<div class="stickyFooterWrapper">
 		<div class="portal-header">#parse('layout/header.vm')</div>
 		<div class="portal-conteudo">$screen_content</div>
@@ -35,22 +42,23 @@
 	<div class="portal-footer">
 		<div class="container contain">FOOTER</div>
 	</div>
+	#else
+		$screen_content
+	#end
 	
 	## Ver: http://developer.yahoo.com/performance/rules.html#js_bottom
-	<script src="#springUrl('/static/js/lib/Chart.js')" type="text/javascript"></script>
-	<script src="#springUrl('/static/js/lib/angular-1.2.10.js')" type="text/javascript"></script>
-	<script src="#springUrl('/static/js/lib/knockout-3.0.0.debug.js')" type="text/javascript"></script>
+	<script src="#springUrl('/')static/js/lib/moment-2.6.0.min.js"	 type="text/javascript"></script>
+	<script src="#springUrl('/')static/js/lib/Chart.js"				 type="text/javascript"></script>
+	<script src="#springUrl('/')static/js/lib/angular-1.2.10.js"	 type="text/javascript"></script>
 	
-	<script src="#springUrl('/static/js/lib/jquery-1.11.0.js')" type="text/javascript"></script>
-	<script src="#springUrl('/static/js/lib/jquery-ui/jquery-ui-1.10.3.js')" type="text/javascript"></script>
-	<script type="text/javascript" src="#springUrl('/static/js/prp.js')"></script>
+	<script src="#springUrl('/')static/js/lib/jquery-1.11.0.js"		 type="text/javascript"></script>
+	<script src="#springUrl('/')static/js/lib/jquery-ui/jquery-ui-1.10.3.js" type="text/javascript"></script>
+	<script src="#springUrl('/')static/js/prp.js"					 type="text/javascript"></script>
 	
 	#foreach ($arquivoJs in $scripts)
-		<script type="text/javascript" src="#springUrl('/static/js/')$arquivoJs"></script>
+		<script src="#springUrl('/')static/js/$arquivoJs"			 type="text/javascript"></script>
 	#end
 	
 	$!script ## trecho de JavaScript definido por cada view
-	
-
 </body>
 </html>

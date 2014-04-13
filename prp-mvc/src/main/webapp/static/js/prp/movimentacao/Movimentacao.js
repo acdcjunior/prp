@@ -1,7 +1,7 @@
 /**
  * Classe prp.movimentacao.Movimentacao.
  */
-prp.dependencias('jQuery', 'prp.Ajax', 'prp.util.Mes');
+prp.dependencias('jQuery', 'moment', 'prp.Ajax', 'prp.util.Mes');
 
 (function (prp) {
 	
@@ -16,7 +16,7 @@ prp.dependencias('jQuery', 'prp.Ajax', 'prp.util.Mes');
 	prp.movimentacao.Movimentacao.URL = 'movimentacao/';
 	
 	prp.movimentacao.Movimentacao.prototype.id = null; // int
-	prp.movimentacao.Movimentacao.prototype.data = new Date().format(); // string
+	prp.movimentacao.Movimentacao.prototype.data = moment().format('YYYY-MM-DD'); // string
 	prp.movimentacao.Movimentacao.prototype.numeroDocumento = ""; // string
 	prp.movimentacao.Movimentacao.prototype.descricao1 = ""; // string
 	prp.movimentacao.Movimentacao.prototype.descricao2 = ""; // string

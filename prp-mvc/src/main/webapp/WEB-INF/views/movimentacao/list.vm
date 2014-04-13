@@ -1,7 +1,7 @@
 #set($titulo = "Movimentacao")
 #set($css = ["movimentacao.css", "movimentacao.list.css"])
 #set($scripts = ["prp/util/Ajax.js", "prp/util/Mes.js", "prp/Entity.js", "prp/movimentacao/Movimentacao.js", "prp/movimentacao/MovimentacaoRepository.js", 
-"prp/previsao/Previsao.js", "prp/movimentacao/AlterarPrevisaoDialog.js", "viewmodel/movimentacao/list.js"])
+"prp/previsao/PrevisaoDEPRECATED.js", "prp/movimentacao/AlterarPrevisaoDialog.js", "viewmodel/movimentacao/list.js"])
 
 <div class="usuario movimentacoes">
 	<h1>Movimentacoes $descricao</h1>

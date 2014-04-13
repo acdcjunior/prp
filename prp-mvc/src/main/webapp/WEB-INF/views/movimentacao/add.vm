@@ -1,7 +1,7 @@
 #set($titulo = "Movimentacao :: Nova")
 #set($css = ["movimentacao.css", "movimentacao.add.css"])
 #set($scripts = ["prp/util/Ajax.js", "prp/util/Mes.js", "prp/Entity.js", "prp/Origem.js", "prp/movimentacao/Movimentacao.js", "prp/movimentacao/MovimentacaoRepository.js", 
-"prp/previsao/Previsao.js", "prp/movimentacao/AlterarPrevisaoDialog.js", "viewmodel/movimentacao/add.js"])
+"prp/previsao/PrevisaoDEPRECATED.js", "prp/movimentacao/AlterarPrevisaoDialog.js", "viewmodel/movimentacao/add.js"])
 
 <div id="addPrevisao" class="usuario movimentacoes">
 	<img src="#springUrl('/static/img/flat/bills.png')" alt="Movimentacoes" class="imagemDetalhe" />

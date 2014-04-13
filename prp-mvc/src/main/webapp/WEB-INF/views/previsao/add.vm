@@ -1,114 +1,85 @@
+#set($mobile = true)
 #set($titulo = "Previsao :: Nova")
 #set($css = ["movimentacao.css"])
-#set($scripts = ["prp/util/Ajax.js", "prp/util/Mes.js", "prp/Entity.js", "prp/previsao/Previsao.js"])
+#set($scripts = ["prp/util/Ajax.js", "prp/previsao/Previsao.js",  "prp/previsao/PrevisaoRepository.js", "viewmodel/previsao/add.js"])
 
-<div id="addPrevisao">
-	<h1>Previsoes &gt;&gt; Nova</h1>
-	<h5>Adicione novas previsoes. A previsao digitada aqui eh criada sem nenhuma associacao.</h5>
-	<form id="addPrevisaoForm" action="#">
-		<table>
-			<tbody>
-				<tr><th>Data de Realizacao Esperada</th>     <td><input data-bind='value: data' type="date" required="required" placeholder="Data Esperada" /></td></tr>
-				<tr><th>Descricao</th><td><input data-bind='value: descricao' required="required" placeholder="Descricao da previsao" style="width: 500px" maxlength="255" /></td></tr>
-				<tr><th>Valor (R$)</th>
-					<td>
-						<input data-bind='value: valor' type="number" step="any" required="required" placeholder="Valor esperado" />
-						Utilize valores <strong>negativos</strong> para previsoes de debito.
-					</td>
-				</tr>
-				<tr><th>Categoria</th><td><select data-bind='value: categoria, options: categorias, optionsText: "nome"'></select></td></tr>
-			</tbody>
-		</table>
-		<br>
-		<input type="button" id="salvar" data-bind='click: salvar' value="Salvar" />
-		<img id="loading" src="" alt="Aguarde..." style="display: none;" />
-	</form>
+<div class="ui-page-theme-a"  id="addPrevisao" ng-app ng-controller="PrevisaoAddController">
+	
+    <div class="ui-header ui-bar-inherit">
+		 <a class="ui-btn-left ui-btn-corner-all ui-btn ui-icon-home ui-btn-icon-notext ui-shadow" title=" Home " href="#springUrl('/')previsao" > Home </a>
+         <h1 class="ui-title" aria-level="1">Adicionar Nova Previsao</h1>
+    </div>
+	
+	<div class="ui-content">
+        <form>
+
+            <div class="ui-field-contain">
+                <label for="previsao_data">Data de Realizacao Esperada:</label>
+                <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset" ng-class="{'ui-disabled': desabilitarTodos}">
+					<input ng-model="previsao.data" type="date" id="previsao_data" required="required" placeholder="Data Esperada" ng-disabled="desabilitarTodos" />
+                </div>
+            </div>
+			
+            <div class="ui-field-contain">
+                <label for="previsao_descricao">Descricao:</label>
+                <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset" ng-class="{'ui-disabled': desabilitarTodos}">
+					<input ng-model="previsao.descricao" type="text" required="required" placeholder="Descricao da previsao" id="previsao_descricao" style="width: 500px" maxlength="255" ng-disabled="desabilitarTodos" />
+                </div>
+            </div>
+			<div class="ui-field-contain">
+                <label></label>
+                <div>
+					A string <span class="code">&nbsp;$MES </span> serah substituida pelo ano e mes da data de realizacao fornecida. Ex.: <span class="code">"Lazer $MES"</span> serah salva como <span class="code">"Lazer {{previsao.data.split('-')[0]+"."+previsao.data.split('-')[1]}}"</span>.
+                </div>
+            </div>
+			
+            <div class="ui-field-contain">
+                <label for="previsao_valor">Valor (R$):</label>
+                <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset" ng-class="{'ui-disabled': desabilitarTodos}">
+					<input ng-model="previsao.valor" type="number" step="any" required="required" placeholder="Valor esperado" id="previsao_valor" ng-disabled="desabilitarTodos" />
+                </div>
+            </div>
+            <div class="ui-field-contain">
+                <label></label>
+                <div>
+					Utilize valores <strong>negativos</strong> para previsoes de <span class="debito">debito</span>.
+                </div>
+            </div>
+			
+            <div class="ui-field-contain">
+                <label for="previsao_categoria">Categoria:</label>
+                <div class="ui-select" ng-class="{'ui-disabled': desabilitarTodos}">
+                    <div class="ui-btn ui-icon-carat-d ui-btn-icon-right ui-corner-all ui-shadow">
+						<span>{{previsao.categoria.nome}}&nbsp;</span>
+						<select ng-model="previsao.categoria" ng-options="c as c.nome for c in categorias" id="previsao_categoria" ng-disabled="desabilitarTodos"></select>
+                    </div>
+                </div>
+            </div>
+          
+			<br>
+			<button id="salvar" ng-click="salvar()" class="ui-btn ui-corner-all ui-shadow ui-icon-check ui-btn-icon-right" ng-class="{'ui-disabled': desabilitarTodos}" ng-disabled="desabilitarTodos">Salvar</button>
+
+			<div id="status"></div>
+
+        </form>
+    </div>
 </div>
 
 #define ($script)
     <script type='text/javascript'>
-		var dataInicial = '$dataInicial';
-    	var categorias = jQuery.parseJSON('$categorias');
+        var dataInicial = '$dataInicial';
+        var categorias = jQuery.parseJSON('$categorias');
+        
+        var parametroCategoria = '$categoriaInicial';
+        var categoriaInicial = null;
 		
-    	var parametroCategoria = '$categoriaInicial';
-    	var categoriaInicial = null;
-		
-		if (parametroCategoria.length > 0) {
-    		jQuery.each(categorias, function (i, categoria) {
-    			if (categoria.id == parametroCategoria) {
-    				categoriaInicial = categoria;
-    				return false;
-    			}
-    		});
-    	}
-		
-    	$('#addPrevisaoForm').on('submit', function(e) {
-    		e.preventDefault();
-    	});
-    	function formEhValido() {
-    		var form = $('#addPrevisaoForm').get(0);
-    		if (!form.checkValidity()) {
-    			// dispara mensagens do chrome
-    	    	$('<button type="submit">').appendTo($('#addPrevisaoForm')).trigger('click').remove();
-    			return false;
-    		}
-    		return true;
-    	}
-    	
-    	function PrevisaoViewModel() {
-    		var self = this;
-    		
-    		this.data = ko.observable(dataInicial);
-    		this.descricao = ko.observable("");
-    		this.valor = ko.observable(-100.55);
-              
-            this.categorias = ko.observableArray(categorias);
-            this.categoria = ko.observable(categoriaInicial);
-                            
-            this.salvar = function (model, event) {
-            	if (!formEhValido()) {
-            		return;
-            	}
-            	
-            	var previsao = ko.toJSON(self, function (key, value) {
-            		if (key == 'categorias') return;
-            		if (key == 'categoria') return {id: value.id};
-            		if (key == 'data') return parseDate(value).getTime();
-            		return value;
-            	});
-            	
-            	$('#addPrevisao input,#addPrevisao select').prop('disabled', true);
-            	$('#loading').attr('src', "#springUrl('/static/img/loading.gif')").show();
-            	
-            	jQuery.ajax({
-            		type: "PUT",
-            		url: "#springUrl('/previsao')",
-            		contentType: "application/json",
-            		data: previsao,
-            		success : function (data, textStatus, jqXHR) {
-            			// $('#addPrevisao input,#addPrevisao select').prop('disabled', false);
-                    	$('#loading').attr('src', function (i, srcAnterior) {
-                    		return srcAnterior.replace('loading.gif', 'pack/yes.png');
-                    	});
-                    	var ano = self.data().split('-')[0];
-                    	var previsaoCriada = jqXHR.getResponseHeader('Location');
-                     	previsaoCriada += ''; // eclipse tava enchendo o saco dando warning onde nao existe nada
-						
-                    	$('#loading').after('<br>Clique <a href="'+ window.prp.URL + 'ano/' + ano + '">aqui</a> para ir para o balanco de '+ano+'.');
-                    	$('#loading').after('<br>Clique <a href="'+ previsaoCriada +'">aqui</a> para visualizar a previsao criada.');
-                    	$('#loading').after('Previsao criada com sucesso!');
-            		},
-            		error : function (jqXHR, textStatus, errorThrown) {
-            			$('#addPrevisao input,#addPrevisao select').prop('disabled', false);
-                    	$('#loading').attr('src', function (i, srcAnterior) {
-                    		return srcAnterior.replace('loading.gif', 'pack/error.png');
-                    	});
-                    	$('#loading').after('Erro ao salvar, tente novamente! Mensagem: ' + errorThrown + '<br>');
-            		}
-            	});
-            };
-    	}
-    
-    	ko.applyBindings(new PrevisaoViewModel());
+        if (parametroCategoria.length > 0) {
+        	jQuery.each(categorias, function (i, categoria) {
+        		if (categoria.id == parametroCategoria) {
+        			categoriaInicial = categoria;
+        			return false;
+        		}
+        	});
+        }
     </script>
 #end

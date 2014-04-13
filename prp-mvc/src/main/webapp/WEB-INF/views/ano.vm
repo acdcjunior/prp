@@ -1,7 +1,7 @@
 #set($titulo = "Ano")
 #set($css = ["movimentacao.css", "divPopup.css", "ano.css"])
 #set($scripts = ["prp/util/Ajax.js", "prp/util/Mes.js", "prp/Entity.js", "prp/Origem.js", "prp/movimentacao/Movimentacao.js", "prp/movimentacao/MovimentacaoRepository.js", 
-"prp/previsao/Previsao.js", "divPopup.js", "viewmodel/ano.js"])
+"prp/previsao/PrevisaoDEPRECATED.js", "divPopup.js", "viewmodel/ano.js"])
 
 <div class="usuario movimentacoes">
 	<h1>Ano <span id="ano">$ano.ano</span></h1>

@@ -1,6 +1,6 @@
 #set($titulo = "Previsao :: Detalhes")
 #set($css = ["movimentacao.css"])
-#set($scripts = ["prp/util/Ajax.js", "prp/util/Mes.js", "prp/Entity.js", "prp/previsao/Previsao.js"])
+#set($scripts = ["prp/util/Ajax.js", "prp/util/Mes.js", "prp/Entity.js", "prp/previsao/PrevisaoDEPRECATED.js"])
 
 <div class="usuario movimentacoes">
 	<h1>Previsoes &gt;&gt; Detalhe $previsao.descricao</h1>
@@ -8,7 +8,7 @@
 	<table>
 		<tbody>
 			<tr><th>id</th><td>$previsao.id</td></tr>
-			<tr><th>data</th><td><fmt:formatDate value="$previsao.data" pattern="yyyy-MM-dd" /></td></tr>
+			<tr><th>data</th><td>$dateTool.format("yyyy-MM-dd", $previsao.data)</td></tr>
 			<tr><th>descricao</th><td>$previsao.descricao</td></tr>
 			<tr><th>valor</th><td>$previsao.valor</td></tr>
 			<tr><th>realizada</th><td>$previsao.realizada</td></tr>

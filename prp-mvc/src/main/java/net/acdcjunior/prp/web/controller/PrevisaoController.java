@@ -108,11 +108,6 @@ public class PrevisaoController {
 	@RequestMapping(method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
 	public ResponseEntity<Void> add(@RequestBody Previsao previsao) {
-		System.out.println(previsao.getCategoria());
-		if (previsao.getCategoria() != null)
-			System.out.println(previsao.getCategoria().getId());
-		else
-			System.out.println("Eh null!");
 		previsaoService.salvar(previsao);
 		
 		HttpHeaders responseHeaders = new HttpHeaders();
