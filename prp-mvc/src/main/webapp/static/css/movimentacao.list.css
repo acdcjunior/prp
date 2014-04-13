@@ -4,3 +4,6 @@
 	margin-top: 3px;
 	margin-left: 5px;
 }
+.lista-movimentacoes tr:hover {
+	background-color: #DDD;
+}

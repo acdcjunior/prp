@@ -1,12 +1,12 @@
-#set($titulo = "Movimentacao")
+#set($titulo = $descricao + " - Movimentacoes de " + $descricao + " - PRP")
 #set($css = ["movimentacao.css", "movimentacao.list.css"])
 #set($scripts = ["prp/util/Ajax.js", "prp/util/Mes.js", "prp/Entity.js", "prp/movimentacao/Movimentacao.js", "prp/movimentacao/MovimentacaoRepository.js", 
 "prp/previsao/PrevisaoDEPRECATED.js", "prp/movimentacao/AlterarPrevisaoDialog.js", "viewmodel/movimentacao/list.js"])
 
 <div class="usuario movimentacoes">
-	<h1>Movimentacoes $descricao</h1>
+	<h1>Movimentacoes de $descricao</h1>
 	<img src="#springUrl('/static/img/flat/bills.png')" alt="Movimentacoes" class="imagemDetalhe" />
-	<table>
+	<table class="lista-movimentacoes">
 		<thead>
 			<tr>
 					<th>id</th>
@@ -24,7 +24,7 @@
 		</thead>
 		<tbody>
 			#foreach ($movimentacao in $movimentacoes)
-				<tr>
+				<tr class="#if ($movimentacao.valor > 0) credito #{else} debito #end">
 					<td>$movimentacao.id</td>
 					<td>$dateTool.format("yyyy-MM-dd", $movimentacao.data)</td>
 					<td>$movimentacao.numeroDocumento</td>

@@ -43,7 +43,7 @@ public class MovimentacaoController {
     @RequestMapping(method=RequestMethod.GET, produces=MediaType.TEXT_HTML_VALUE)
     public String all(Model model) {
         model.addAttribute("movimentacoes", movimentacaoRepository.findAll());
-        model.addAttribute("descricao", " de todos os anos");
+        model.addAttribute("descricao", "Todos os anos");
         return "movimentacao/list";
     }
     
@@ -55,14 +55,14 @@ public class MovimentacaoController {
     @RequestMapping(value="/{ano}", method=RequestMethod.GET, produces=MediaType.TEXT_HTML_VALUE)
     public String ano(@PathVariable("ano") int ano, Model model) {
     	model.addAttribute("movimentacoes", movimentacaoRepository.findByAno(ano));
-    	model.addAttribute("descricao", " de "+ano);
+    	model.addAttribute("descricao", ano);
     	return "movimentacao/list";
     }
     
     @RequestMapping(value="/{ano}/{mes}", method=RequestMethod.GET, produces=MediaType.TEXT_HTML_VALUE)
     public String anoMes(@PathVariable("ano") int ano, @PathVariable("mes") int mes, Model model) {
     	model.addAttribute("movimentacoes", movimentacaoRepository.findByAnoMes(ano, mes));
-    	model.addAttribute("descricao", " de "+ano+"/"+mes);
+    	model.addAttribute("descricao", ano+"/"+mes);
     	return "movimentacao/list";
     }
     
