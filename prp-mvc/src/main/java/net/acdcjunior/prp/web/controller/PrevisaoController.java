@@ -86,7 +86,7 @@ public class PrevisaoController {
     public String categoriaAnoMesHTML(@PathVariable("categoriaId") int categoriaId, Model model) {
     	Categoria categoria = categoriaRepository.findById(categoriaId);
     	model.addAttribute("previsoes", previsaoRepository.findByCategoria(categoria));
-    	model.addAttribute("descricao", "Da Categoria "+categoria.getNome());
+    	model.addAttribute("descricao", categoria.getNome()+" (Categoria)");
     	return "previsao/list";
     }
     
