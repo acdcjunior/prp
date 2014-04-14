@@ -15,5 +15,7 @@ public interface PrevisaoRepository extends BaseRepository<Previsao> {
 	BigDecimal sumByAnoMesCategoria(int ano, int mes, Categoria categoria);
 
 	List<Previsao> findByAnoMes(int ano, int mes);
+
+	List<Previsao> findByAno(int ano);
 	
 }

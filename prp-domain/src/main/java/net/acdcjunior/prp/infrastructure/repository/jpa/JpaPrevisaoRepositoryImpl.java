@@ -16,6 +16,7 @@ public class JpaPrevisaoRepositoryImpl extends JpaAbstractRepository<Previsao>
 	private static final String FIND_BY_CATEGORIA = "Previsao.findByCategoria";
 	private static final String FIND_BY_ANO_MES_CATEGORIA = "Previsao.findByAnoMesCategoria";
 	private static final String FIND_BY_ANO_MES = "Previsao.findByAnoMes";
+	private static final String FIND_BY_ANO = "Previsao.findByAno";
 	private static final String SUM_VALOR_BY_ANO_MES_CATEGORIA = "Previsao.sumValorByAnoMesCategoria";
 	
 	@Override
@@ -49,6 +50,13 @@ public class JpaPrevisaoRepositoryImpl extends JpaAbstractRepository<Previsao>
 		return this.em.createNamedQuery(FIND_BY_ANO_MES, Previsao.class)
 				.setParameter("ano", ano)
 				.setParameter("mes", mes)
+				.getResultList();
+	}
+
+	@Override
+	public List<Previsao> findByAno(int ano) {
+		return this.em.createNamedQuery(FIND_BY_ANO, Previsao.class)
+				.setParameter("ano", ano)
 				.getResultList();
 	}
 

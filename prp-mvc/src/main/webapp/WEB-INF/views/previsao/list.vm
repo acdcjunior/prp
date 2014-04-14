@@ -1,8 +1,15 @@
-#set($titulo = "Previsao :: Todas")
+#set($titulo = $descricao + " - Previsoes de " + $descricao + " - PRP")
 #set($css = ["movimentacao.css"])
 
 <div class="usuario movimentacoes">
-	<h1>Previsoes</h1>
+	<h1>Previsoes de $descricao</h1>
+	#if ("$!linkPrev" != "")
+	<div style="font-size: large; margin-left: 240px">
+		<a href="#springUrl('/')$linkPrev">&lt;&lt;&lt; Periodo Anterior</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#springUrl('/')$linkNext">Periodo Seguinte &gt;&gt;&gt;</a>
+	</div>
+	#end	
 	<table>
 		<thead>
 			<tr>
@@ -25,8 +32,8 @@
 					<td>$previsao.realizada</td>
 					<td>$previsao.categoria.nome</td>
 					<td>
-						<a href="#springUrl('/previsao/')$previsao.id">
-							<img src="#springUrl('/static/img/view_doc.png')" alt="Abrir detalhes da previsao" />
+						<a href="#springUrl('/')previsao/$previsao.id">
+							<img src="#springUrl('/')static/img/view_doc.png" alt="Abrir detalhes da previsao" />
 						</a>
 					</td>
 				</tr>

@@ -9,7 +9,7 @@
 					<th>id</th>
 					<th>nome</th>
 					<th>revisado</th>
-					<th>(ver detalhes)</th>
+					<th style="width: 60px"></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -20,7 +20,10 @@
 					<td>$categoria.revisado</td>
 					<td>
 						<a href="#springUrl('/categoria/')$categoria.id">
-						<img src="#springUrl('/static/img/view_doc.png')" alt="ver detalhes" />
+							<img src="#springUrl('/static/img/view_doc.png')" alt="ver detalhes" class="imagemIcone clickavel" />
+						</a>
+						<a href="#springUrl('/')previsao/categoria/$categoria.id">
+							<img src="#springUrl('/static/img/flat/binoculars.png')" alt="Ver previsoes" class="imagemIcone clickavel" />
 						</a>
 					</td>
 				</tr>

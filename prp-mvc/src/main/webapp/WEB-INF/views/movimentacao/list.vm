@@ -5,7 +5,7 @@
 
 <div class="usuario movimentacoes">
 	<h1>Movimentacoes de $descricao</h1>
-	#if ($!linkPrev != "")
+	#if ("$!linkPrev" != "")
 	<div style="font-size: large; margin-left: 450px">
 		<a href="#springUrl('/')$linkPrev">&lt;&lt;&lt; Periodo Anterior</a>
 		&nbsp;&nbsp;&nbsp;&nbsp;

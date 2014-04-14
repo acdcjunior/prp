@@ -40,6 +40,17 @@
 		</query>
 	</named-query>
 	
+	<named-query name="Previsao.findByAno">
+		<query>
+			SELECT
+				p
+			FROM
+				Previsao p
+			WHERE
+				YEAR(p.data) = :ano
+		</query>
+	</named-query>
+	
 	<named-query name="Previsao.sumValorByAnoMesCategoria">
 		<query>
 			SELECT

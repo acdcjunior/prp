@@ -57,10 +57,37 @@ public class PrevisaoController {
 	@Autowired
 	private CategoriaNoAnoFactory categoriaNoAnoFactory;
     
-    @RequestMapping(method=RequestMethod.GET, produces=MediaType.TEXT_HTML_VALUE)
+    @RequestMapping(method=RequestMethod.GET, produces={MediaType.ALL_VALUE, MediaType.TEXT_HTML_VALUE})
     public String all(Model model) {
         model.addAttribute("previsoes", previsaoRepository.findAll());
-        return "previsao/all";
+        model.addAttribute("descricao", "Todos os anos");
+        return "previsao/list";
+    }
+    
+    @RequestMapping(value="ano/{ano}", method=RequestMethod.GET, produces={MediaType.ALL_VALUE, MediaType.TEXT_HTML_VALUE})
+    public String ano(@PathVariable("ano") int ano, Model model) {
+    	model.addAttribute("previsoes", previsaoRepository.findByAno(ano));
+    	model.addAttribute("descricao", ano);
+    	model.addAttribute("linkNext", "movimentacao/"+(ano+1));
+    	model.addAttribute("linkPrev", "movimentacao/"+(ano-1));
+    	return "previsao/list";
+    }
+    
+    @RequestMapping(value="/{ano}/{mes}", method=RequestMethod.GET, produces={MediaType.ALL_VALUE, MediaType.TEXT_HTML_VALUE})
+    public String anoMes(@PathVariable("ano") int ano, @PathVariable("mes") int mes, Model model) {
+    	model.addAttribute("previsoes", previsaoRepository.findByAnoMes(ano, mes));
+    	model.addAttribute("descricao", ano+"/"+mes);
+    	model.addAttribute("linkNext", "previsao/" + (mes == 12 ? (ano+1)+"/1" : ano+"/"+(mes+1)) );
+    	model.addAttribute("linkPrev", "previsao/" + (mes == 1 ? (ano-1)+"/12" : ano+"/"+(mes-1)) );
+    	return "previsao/list";
+    }
+    
+    @RequestMapping(value="/categoria/{categoriaId}", method=RequestMethod.GET, produces={MediaType.ALL_VALUE, MediaType.TEXT_HTML_VALUE})
+    public String categoriaAnoMesHTML(@PathVariable("categoriaId") int categoriaId, Model model) {
+    	Categoria categoria = categoriaRepository.findById(categoriaId);
+    	model.addAttribute("previsoes", previsaoRepository.findByCategoria(categoria));
+    	model.addAttribute("descricao", "Da Categoria "+categoria.getNome());
+    	return "previsao/list";
     }
     
     @RequestMapping(method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
