@@ -5,6 +5,13 @@
 
 <div class="usuario movimentacoes">
 	<h1>Movimentacoes de $descricao</h1>
+	#if ($!linkPrev != "")
+	<div style="font-size: large; margin-left: 450px">
+		<a href="#springUrl('/')$linkPrev">&lt;&lt;&lt; Periodo Anterior</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#springUrl('/')$linkNext">Periodo Seguinte &gt;&gt;&gt;</a>
+	</div>
+	#end
 	<img src="#springUrl('/static/img/flat/bills.png')" alt="Movimentacoes" class="imagemDetalhe" />
 	<table class="lista-movimentacoes">
 		<thead>

@@ -56,6 +56,8 @@ public class MovimentacaoController {
     public String ano(@PathVariable("ano") int ano, Model model) {
     	model.addAttribute("movimentacoes", movimentacaoRepository.findByAno(ano));
     	model.addAttribute("descricao", ano);
+    	model.addAttribute("linkNext", "movimentacao/"+(ano+1));
+    	model.addAttribute("linkPrev", "movimentacao/"+(ano-1));
     	return "movimentacao/list";
     }
     
@@ -63,6 +65,8 @@ public class MovimentacaoController {
     public String anoMes(@PathVariable("ano") int ano, @PathVariable("mes") int mes, Model model) {
     	model.addAttribute("movimentacoes", movimentacaoRepository.findByAnoMes(ano, mes));
     	model.addAttribute("descricao", ano+"/"+mes);
+    	model.addAttribute("linkNext", "movimentacao/" + (mes == 12 ? (ano+1)+"/1" : ano+"/"+(mes+1)) );
+    	model.addAttribute("linkPrev", "movimentacao/" + (mes == 1 ? (ano-1)+"/12" : ano+"/"+(mes-1)) );
     	return "movimentacao/list";
     }
     
