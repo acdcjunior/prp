@@ -1,17 +1,17 @@
-package net.acdcjunior.prp.domain.saldo;
+package net.acdcjunior.prp.domain.ano.saldodomesnoano;
 
 import java.math.BigDecimal;
 
 import net.acdcjunior.prp.domain.valueobject.Mes;
 
-public class Saldo {
+public class SaldoDoMesNoAno {
 	
 	private Mes mes;
 	private BigDecimal saldoInicial;
 	private BigDecimal saldoFinal;
 	private boolean baseadoNaUltimaMovimentacao;
 	
-	Saldo(Mes mes, BigDecimal saldoInicial, BigDecimal saldoFinal, boolean baseadoNaUltimaMovimentacao) {
+	SaldoDoMesNoAno(Mes mes, BigDecimal saldoInicial, BigDecimal saldoFinal, boolean baseadoNaUltimaMovimentacao) {
 		this.mes = mes;
 		this.saldoInicial = saldoInicial;
 		this.saldoFinal = saldoFinal;

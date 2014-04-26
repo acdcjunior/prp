@@ -1,4 +1,4 @@
-package net.acdcjunior.prp.domain.categorianoano;
+package net.acdcjunior.prp.domain.ano.categorianoano;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasProperty;
@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
+import net.acdcjunior.prp.domain.ano.categorianoano.CategoriaNoMes;
 import net.acdcjunior.prp.domain.previsaomovimentacoes.PrevisaoComMovimentacoes;
 
 import org.junit.Before;

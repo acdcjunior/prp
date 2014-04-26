@@ -4,13 +4,13 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.acdcjunior.prp.domain.ano.categorianoano.CategoriaNoAno;
+import net.acdcjunior.prp.domain.ano.categorianoano.CategoriaNoAnoFactory;
+import net.acdcjunior.prp.domain.ano.saldodomesnoano.SaldoDoMesNoAno;
+import net.acdcjunior.prp.domain.ano.saldodomesnoano.SaldoDoMesNoAnoFactory;
 import net.acdcjunior.prp.domain.categoria.Categoria;
 import net.acdcjunior.prp.domain.categoria.CategoriaRepository;
-import net.acdcjunior.prp.domain.categorianoano.CategoriaNoAno;
-import net.acdcjunior.prp.domain.categorianoano.CategoriaNoAnoFactory;
 import net.acdcjunior.prp.domain.movimentacao.MovimentacaoRepository;
-import net.acdcjunior.prp.domain.saldo.Saldo;
-import net.acdcjunior.prp.domain.saldo.SaldoFactory;
 import net.acdcjunior.prp.domain.valueobject.Mes;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class AnoFactory {
 	@Autowired
 	private CategoriaNoAnoFactory categoriaNoAnoFactory;
 	@Autowired
-	private SaldoFactory saldoFactory;
+	private SaldoDoMesNoAnoFactory saldoFactory;
 
 	public Ano createAno(int numeroAno) {
 		List<Categoria> categorias = categoriaRepository.findAll();
@@ -39,7 +39,7 @@ public class AnoFactory {
     	List<BigDecimal> totaisPlanejados = new ArrayList<>(Mes.QTD_MESES_NO_ANO);
     	List<MovimentacoesNaoCategorizadasNoMes> movimentacoesNaoCategorizadasNosMeses = new ArrayList<>(Mes.QTD_MESES_NO_ANO);
     	
-    	List<Saldo> saldos = new ArrayList<>(Mes.QTD_MESES_NO_ANO);
+    	List<SaldoDoMesNoAno> saldos = new ArrayList<>(Mes.QTD_MESES_NO_ANO);
     	
     	for (int iMes = 1; iMes <= Mes.QTD_MESES_NO_ANO; iMes++) {
     		MovimentacoesNaoCategorizadasNoMes movimentacoesNaoCategorizadasNoMes = createMovimentacoesNaoCategorizadasNoMes(numeroAno, iMes);
@@ -48,7 +48,7 @@ public class AnoFactory {
     		BigDecimal valorPreviso = totalValoresPrevistos(iMes, linhas);
         	totaisPlanejados.add(movimentacoesNaoCategorizadasNoMes.getSomaValor().add(valorPreviso));
     		
-        	Saldo saldo = saldoFactory.getSaldo(numeroAno, iMes);
+        	SaldoDoMesNoAno saldo = saldoFactory.getSaldo(numeroAno, iMes);
         	saldos.add(saldo);
 		}
     	return new Ano(numeroAno, linhas, totaisPlanejados, movimentacoesNaoCategorizadasNosMeses, saldos);

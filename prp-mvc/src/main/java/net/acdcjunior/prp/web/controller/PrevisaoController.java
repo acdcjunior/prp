@@ -9,10 +9,10 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 
 import net.acdcjunior.prp.domain.ImpossivelExcluirException;
+import net.acdcjunior.prp.domain.ano.categorianoano.CategoriaNoAnoFactory;
+import net.acdcjunior.prp.domain.ano.categorianoano.CategoriaNoMes;
 import net.acdcjunior.prp.domain.categoria.Categoria;
 import net.acdcjunior.prp.domain.categoria.CategoriaRepository;
-import net.acdcjunior.prp.domain.categorianoano.CategoriaNoAnoFactory;
-import net.acdcjunior.prp.domain.categorianoano.CategoriaNoMes;
 import net.acdcjunior.prp.domain.movimentacao.Movimentacao;
 import net.acdcjunior.prp.domain.movimentacao.MovimentacaoRepository;
 import net.acdcjunior.prp.domain.previsao.Previsao;

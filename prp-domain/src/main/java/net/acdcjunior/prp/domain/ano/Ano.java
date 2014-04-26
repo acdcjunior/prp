@@ -3,8 +3,8 @@ package net.acdcjunior.prp.domain.ano;
 import java.math.BigDecimal;
 import java.util.List;
 
-import net.acdcjunior.prp.domain.categorianoano.CategoriaNoAno;
-import net.acdcjunior.prp.domain.saldo.Saldo;
+import net.acdcjunior.prp.domain.ano.categorianoano.CategoriaNoAno;
+import net.acdcjunior.prp.domain.ano.saldodomesnoano.SaldoDoMesNoAno;
 
 public class Ano {
 	
@@ -14,9 +14,9 @@ public class Ano {
 	private List<BigDecimal> diferencaPlanejada;
 	private List<MovimentacoesNaoCategorizadasNoMes> movimentacoesNaoCategorizadasNosMeses;
 	
-	private List<Saldo> saldos;
+	private List<SaldoDoMesNoAno> saldos;
 	
-	Ano(int numeroAno, List<CategoriaNoAno> linhas, List<BigDecimal> totaisPlanejados, List<MovimentacoesNaoCategorizadasNoMes> movimentacoesNaoCategorizadasNosMeses, List<Saldo> saldos) {
+	Ano(int numeroAno, List<CategoriaNoAno> linhas, List<BigDecimal> totaisPlanejados, List<MovimentacoesNaoCategorizadasNoMes> movimentacoesNaoCategorizadasNosMeses, List<SaldoDoMesNoAno> saldos) {
 		this.ano = numeroAno;
 		this.linhas = linhas;
 		this.diferencaPlanejada = totaisPlanejados;
@@ -40,7 +40,7 @@ public class Ano {
 		return movimentacoesNaoCategorizadasNosMeses;
 	}
 
-	public List<Saldo> getSaldos() {
+	public List<SaldoDoMesNoAno> getSaldos() {
 		return saldos;
 	}
 	

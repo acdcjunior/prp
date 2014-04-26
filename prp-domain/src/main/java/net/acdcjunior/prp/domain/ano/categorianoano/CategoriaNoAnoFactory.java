@@ -1,4 +1,4 @@
-package net.acdcjunior.prp.domain.categorianoano;
+package net.acdcjunior.prp.domain.ano.categorianoano;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package net.acdcjunior.prp.domain.saldo;
+package net.acdcjunior.prp.domain.ano.saldodomesnoano;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -8,17 +8,17 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import net.acdcjunior.prp.domain.ano.categorianoano.CategoriaNoAnoFactory;
+import net.acdcjunior.prp.domain.ano.categorianoano.CategoriaNoMes;
 import net.acdcjunior.prp.domain.categoria.Categoria;
 import net.acdcjunior.prp.domain.categoria.CategoriaRepository;
-import net.acdcjunior.prp.domain.categorianoano.CategoriaNoAnoFactory;
-import net.acdcjunior.prp.domain.categorianoano.CategoriaNoMes;
 import net.acdcjunior.prp.domain.movimentacao.Movimentacao;
 import net.acdcjunior.prp.domain.movimentacao.MovimentacaoRepository;
 import net.acdcjunior.prp.domain.previsao.PrevisaoRepository;
 import net.acdcjunior.prp.domain.valueobject.Mes;
 
 @Component
-public class SaldoFactory {
+public class SaldoDoMesNoAnoFactory {
 	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
@@ -29,15 +29,15 @@ public class SaldoFactory {
 	@Autowired
 	private CategoriaNoAnoFactory categoriaNoAnoFactory;
 
-	private Map<String, Saldo> saldos = new HashMap<>();
+	private Map<String, SaldoDoMesNoAno> saldos = new HashMap<>();
 	
 	public void resetSaldos() {
 		this.saldos = new HashMap<>();
 	}
 	
-	public Saldo getSaldo(int ano, int mes) {
+	public SaldoDoMesNoAno getSaldo(int ano, int mes) {
 		String anoMes = ano + "-" + mes;
-		Saldo saldo = saldos.get(anoMes);
+		SaldoDoMesNoAno saldo = saldos.get(anoMes);
 		if (saldo == null) {
 			Mes m = new Mes(ano, mes);
 			saldo = createSaldo(m);
@@ -46,7 +46,7 @@ public class SaldoFactory {
 		return saldo;
 	}
 	
-	private Saldo createSaldo(Mes mes) {
+	private SaldoDoMesNoAno createSaldo(Mes mes) {
 		List<Categoria> categorias = categoriaRepository.findAll();
 		
 		BigDecimal saldoInicial;
@@ -64,7 +64,7 @@ public class SaldoFactory {
 		
 		BigDecimal saldoFinal = calcularSaldoFinal(mes, categorias, saldoInicial);
 		
-		return new Saldo(mes, saldoInicial, saldoFinal, baseadoNaUltimaMovimentacao);
+		return new SaldoDoMesNoAno(mes, saldoInicial, saldoFinal, baseadoNaUltimaMovimentacao);
 	}
 	
 

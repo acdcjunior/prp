@@ -2,7 +2,7 @@ package net.acdcjunior.prp.web.controller;
 
 import net.acdcjunior.prp.domain.ano.Ano;
 import net.acdcjunior.prp.domain.ano.AnoFactory;
-import net.acdcjunior.prp.domain.saldo.SaldoFactory;
+import net.acdcjunior.prp.domain.ano.saldodomesnoano.SaldoDoMesNoAnoFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ public class AnoController {
     @Autowired
     private AnoFactory anoFactory;
     @Autowired
-    private SaldoFactory saldoFactory;
+    private SaldoDoMesNoAnoFactory saldoFactory;
     
     @RequestMapping(value="/{numeroAno}")
     public ModelAndView ano(@PathVariable int numeroAno) {

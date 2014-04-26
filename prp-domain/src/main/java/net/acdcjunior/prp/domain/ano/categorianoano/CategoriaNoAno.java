@@ -1,4 +1,4 @@
-package net.acdcjunior.prp.domain.categorianoano;
+package net.acdcjunior.prp.domain.ano.categorianoano;
 
 import java.math.BigDecimal;
 import java.util.List;

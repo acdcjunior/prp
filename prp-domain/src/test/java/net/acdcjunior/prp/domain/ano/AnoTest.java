@@ -6,9 +6,9 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import net.acdcjunior.prp.domain.ano.Ano;
+import net.acdcjunior.prp.domain.ano.categorianoano.CategoriaNoAno;
+import net.acdcjunior.prp.domain.ano.categorianoano.CategoriaNoMes;
 import net.acdcjunior.prp.domain.categoria.CategoriaRepository;
-import net.acdcjunior.prp.domain.categorianoano.CategoriaNoAno;
-import net.acdcjunior.prp.domain.categorianoano.CategoriaNoMes;
 import net.acdcjunior.prp.domain.movimentacao.MovimentacaoRepository;
 import net.acdcjunior.prp.domain.previsao.PrevisaoRepository;
 import net.acdcjunior.prp.infrastructure.repository.jpa.JpaCategoriaRepositoryImpl;
