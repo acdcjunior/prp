@@ -114,7 +114,7 @@ public class JpaMovimentacaoRepositoryImplTest {
 		// when
 		Long count = jpaMovimentacaoRepositoryImpl.countByAnoMesSemRealizacao(ano, mes);
 		// then
-		assertThat(count, equalTo(7L));
+		assertThat(count, equalTo(13L));
 	}
 
 	@Test
