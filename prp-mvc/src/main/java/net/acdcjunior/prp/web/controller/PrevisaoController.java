@@ -3,6 +3,7 @@ package net.acdcjunior.prp.web.controller;
 import static org.apache.commons.lang.StringUtils.leftPad;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -79,6 +80,22 @@ public class PrevisaoController {
     	model.addAttribute("descricao", ano+"/"+mes);
     	model.addAttribute("linkNext", "previsao/" + (mes == 12 ? (ano+1)+"/1" : ano+"/"+(mes+1)) );
     	model.addAttribute("linkPrev", "previsao/" + (mes == 1 ? (ano-1)+"/12" : ano+"/"+(mes-1)) );
+    	return "previsao/list";
+    }
+    
+    @RequestMapping(value="bills/{ano}/{mes}", method=RequestMethod.GET, produces={MediaType.ALL_VALUE, MediaType.TEXT_HTML_VALUE})
+    public String billAnoMes(@PathVariable("ano") int ano, @PathVariable("mes") int mes, Model model) {
+    	List<Previsao> findByAnoMes = previsaoRepository.findByAnoMes(ano, mes);
+    	for (Iterator<Previsao> iterator = findByAnoMes.iterator(); iterator.hasNext();) {
+			Previsao previsao = iterator.next();
+			if (!previsao.isBill()) {
+				iterator.remove();
+			}
+		}
+		model.addAttribute("previsoes", findByAnoMes);
+    	model.addAttribute("descricao", ano+"/"+mes);
+    	model.addAttribute("linkNext", "previsao/bills/" + (mes == 12 ? (ano+1)+"/1" : ano+"/"+(mes+1)) );
+    	model.addAttribute("linkPrev", "previsao/bills/" + (mes == 1 ? (ano-1)+"/12" : ano+"/"+(mes-1)) );
     	return "previsao/list";
     }
     

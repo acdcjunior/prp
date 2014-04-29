@@ -40,6 +40,7 @@
 				<li><a href="#springUrl('/previsao')">Todas</a></li>
 				<li><a href="#springUrl('/previsao/ano/2011')">Previsoes de um ano (2011)</a></li>
 				<li><a href="#springUrl('/previsao/2011/1')">Previsoes de um mes (2011-JAN)</a></li>
+				<li><a href="#springUrl('/previsao/bills/2014/4')">BILLs de um mes (2014-ABR)</a></li>
 				<li><a href="#springUrl('/previsao/categoria/8')">Previsoes de uma Categoria (8)</a></li>
 				<li><a href="#springUrl('/previsao/1')">Por ID/1</a></li>
 				<li><a href="#springUrl('/previsao/add')">Adicionar</a></li>

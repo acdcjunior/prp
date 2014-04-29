@@ -18,6 +18,7 @@
 					<th>descricao</th>
 					<th>valor</th>
 					<th>realizada</th>
+					<th>bill</th>
 					<th>Categoria</th>
 					<th></th>
 			</tr>
@@ -30,6 +31,7 @@
 					<td>$previsao.descricao</td>
 					<td>$previsao.valor</td>
 					<td>$previsao.realizada</td>
+					<td>$previsao.bill</td>
 					<td>$previsao.categoria.nome</td>
 					<td>
 						<a href="#springUrl('/')previsao/$previsao.id">
