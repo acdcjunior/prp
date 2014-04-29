@@ -1,5 +1,5 @@
 define(['prp/movimentacao/Movimentacao'], function() {
-
+/*
 	describe("prp.movimentacao.Movimentacao", function() {
 		
 		var jsonMovimentacao = 
@@ -76,4 +76,5 @@ define(['prp/movimentacao/Movimentacao'], function() {
 		});
 		
 	});
+*/
 });
