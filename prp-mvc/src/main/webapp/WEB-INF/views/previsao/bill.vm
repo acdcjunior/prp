@@ -1,0 +1,43 @@
+#set($mobile = true)
+#set($titulo = "Previsao :: Listar Bills")
+#set($css = ["movimentacao.cssx", "previsao.bill.css"])
+#set($scripts = ["prp/util/Ajax.js", "prp/previsao/Previsao.js",  "prp/previsao/PrevisaoRepository.js", "viewmodel/previsao/bill.js"])
+
+
+<div class="ui-page-theme-a">
+	
+    <div class="ui-header ui-bar-inherit">
+		 <a class="ui-btn-left ui-btn-corner-all ui-btn ui-icon-home ui-btn-icon-notext ui-shadow" title=" Home " href="#springUrl('/')previsao" > Home </a>
+         <h1 class="ui-title" aria-level="1">Bills de $descricao</h1>
+    	#if ("$!linkPrev" != "")
+		 <a class="ui-btn-right ui-btn-corner-all ui-btn ui-icon-carat-l ui-btn-icon-notext ui-shadow" title="Prev" href="#springUrl('/')$linkPrev" style="margin-right: 40px">a</a>
+		 <a class="ui-btn-right ui-btn-corner-all ui-btn ui-icon-carat-r ui-btn-icon-notext ui-shadow" title="Prox" href="#springUrl('/')$linkNext">b</a>
+    	#end
+    </div>
+	
+	<div class="ui-content">
+		<div ng-app="myApp" ng-controller="MyCtrl">
+			<div class="gridStyle" ng-grid="gridOptions"></div>
+		</div>
+    </div>
+</div>
+
+<script type='text/javascript'>
+    window.billPrevisoes = [
+		#foreach ($previsao in $previsoes)
+			{
+    			id: $previsao.id,
+    			data: "$dateTool.format("yyyy-MM-dd", $previsao.data)",
+    			descricao: "$previsao.descricao",
+    			valor: $previsao.valor,
+    			realizada: $previsao.realizada,
+    			## bill: $previsao.bill,
+    			categoria: "$previsao.categoria.nome",
+    			## link: "#springUrl('/')previsao/$previsao.id"
+			},
+		#end
+	];
+</script>
+
+#define ($script)
+#end

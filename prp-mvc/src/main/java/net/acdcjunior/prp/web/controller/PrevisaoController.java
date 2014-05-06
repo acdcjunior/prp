@@ -2,6 +2,8 @@ package net.acdcjunior.prp.web.controller;
 
 import static org.apache.commons.lang.StringUtils.leftPad;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -92,11 +94,23 @@ public class PrevisaoController {
 				iterator.remove();
 			}
 		}
+    	Collections.sort(findByAnoMes, new Comparator<Previsao>() {
+			@Override
+			public int compare(Previsao p, Previsao q) {
+		        if (p.getData().before(q.getData())) {
+		            return -1;
+		        } else if (p.getData().after(q.getData())) {
+		            return 1;
+		        } else {
+		            return 0;
+		        }  
+			}
+		});
 		model.addAttribute("previsoes", findByAnoMes);
     	model.addAttribute("descricao", ano+"/"+mes);
     	model.addAttribute("linkNext", "previsao/bills/" + (mes == 12 ? (ano+1)+"/1" : ano+"/"+(mes+1)) );
     	model.addAttribute("linkPrev", "previsao/bills/" + (mes == 1 ? (ano-1)+"/12" : ano+"/"+(mes-1)) );
-    	return "previsao/list";
+    	return "previsao/bill";
     }
     
     @RequestMapping(value="/categoria/{categoriaId}", method=RequestMethod.GET, produces={MediaType.ALL_VALUE, MediaType.TEXT_HTML_VALUE})

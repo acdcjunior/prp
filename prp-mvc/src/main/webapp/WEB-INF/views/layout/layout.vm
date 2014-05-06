@@ -24,13 +24,15 @@
 	</script>
 
 #if(!$!mobile)
-	<link  href="#springUrl('/static/js/lib/jquery-ui/jquery-ui-1.10.3.css')" rel="stylesheet" />
-	<link  href="#springUrl('/static/js/lib/jquery-ui/jquery.ui-1.10.3.theme-smoothness.css')" rel="stylesheet" />
-	<link  href="#springUrl('/static/js/lib/bootstrap-lib/css/bootstrap.css')" rel="stylesheet" />
+	<link  href="#springUrl('/')static/js/lib/jquery-ui/jquery-ui-1.10.3.css" rel="stylesheet" />
+	<link  href="#springUrl('/')static/js/lib/jquery-ui/jquery.ui-1.10.3.theme-smoothness.css" rel="stylesheet" />
+	<link  href="#springUrl('/')static/js/lib/bootstrap-lib/css/bootstrap.css" rel="stylesheet" />
+	
 #else
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" rel="stylesheet" type="text/css" />
 #end
+	<link  href="#springUrl('/')static/js/lib/angularjs/ng-grid.min.css" rel="stylesheet" />
 
 </head>
 <body #if($!mobile) class="ui-overlay-a" #end>
@@ -54,6 +56,8 @@
 	<script src="#springUrl('/')static/js/lib/jquery-1.11.0.js"		 type="text/javascript"></script>
 	<script src="#springUrl('/')static/js/lib/jquery-ui/jquery-ui-1.10.3.js" type="text/javascript"></script>
 	<script src="#springUrl('/')static/js/prp.js"					 type="text/javascript"></script>
+	
+	<script src="#springUrl('/')static/js/lib/angularjs/ng-grid-2.0.11.min.js" type="text/javascript"></script>
 	
 	#foreach ($arquivoJs in $scripts)
 		<script src="#springUrl('/')static/js/$arquivoJs"			 type="text/javascript"></script>
