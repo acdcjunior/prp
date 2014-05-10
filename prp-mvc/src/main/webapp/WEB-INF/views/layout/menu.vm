@@ -1,0 +1,102 @@
+#set($mobile = true)
+#set($titulo = "PRP :: Menu")
+
+
+<div class="ui-page-theme-a">
+	
+    <div class="ui-header ui-bar-inherit">
+		 <a class="ui-btn-left ui-btn-corner-all ui-btn ui-icon-home ui-btn-icon-notext ui-shadow" href="#"
+			title="Esta jah eh a home!" onclick="alert('Esta jah eh a home!')">&nbsp;</a>
+         <h1 class="ui-title" aria-level="1">Menu</h1>
+    </div>
+	
+	<div class="ui-content">
+		
+		#set($anoInicial = 2011)
+		#set($anoAtual = $dateTool.year)
+		#set($anoAnterior = $anoAtual - 1)
+		#set($mesAtual = $dateTool.month +1)
+    	<ul class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+    		
+    	    <li class="ui-li ui-li-divider ui-bar-d ui-first-child">Planejamento Anual</li>
+    		<li class="ui-btn ui-btn-inner ui-li ui-last-child">
+				#foreach ($ano in [$anoInicial..$anoAtual])
+				<a href="#springUrl('/')ano/2011">$ano</a>&emsp;
+				#end
+			</li>
+    
+    	    <li class="ui-li ui-li-divider ui-bar-d ui-first-child">Movimentacoes</li>
+    		<li class="ui-btn ui-li"><a href="#springUrl('/movimentacao/sumario')">Sumario</a></li>
+    		<li class="ui-btn ui-li ui-last-child">
+				<a href="#springUrl('/')movimentacao/add">Adicionar nova movimentacao</a>
+			</li>
+    		<li class="ui-btn ui-li"><a href="#springUrl('/movimentacao')">Todas as Movimentacoes</a></li>
+    		<li class="ui-btn ui-li">
+				Movimentacoes de um ano:
+				#foreach ($ano in [$anoInicial..$anoAtual])
+					<a href="#springUrl('/')movimentacao/$ano">$ano</a>&emsp;
+				#end
+			</li>
+    		<li class="ui-btn ui-li">
+				Movimentacoes de um mes:
+				<br>
+				#foreach ($ano in [$anoInicial..$anoAnterior])
+					#foreach ($mes in [1..12])
+						<a href="#springUrl('/')movimentacao/$ano/$mes">${ano}-$mes</a>&emsp;
+					#end
+					<br>
+				#end
+				#foreach ($mes in [1..$mesAtual])
+					<a href="#springUrl('/')movimentacao/$anoAtual/$mes">${anoAtual}-$mes</a>&emsp;
+				#end
+			</li>
+    		
+    	    <li class="ui-li ui-li-divider ui-bar-d">Previsoes</li>
+    		<li class="ui-btn ui-li"><a href="#springUrl('/previsao')">Todas</a></li>
+			
+    		<li class="ui-btn ui-li">
+				Previsoes de um mes:
+				<br>
+				#foreach ($ano in [$anoInicial..$anoAnterior])
+					#foreach ($mes in [1..12])
+						<a href="#springUrl('/')previsao/$ano/$mes">${ano}-$mes</a>&emsp;
+					#end
+					<br>
+				#end
+				#foreach ($mes in [1..$mesAtual])
+					<a href="#springUrl('/')previsao/$anoAtual/$mes">${anoAtual}-$mes</a>&emsp;
+				#end
+			</li>
+			<li class="ui-btn ui-li">
+				BILLS de um mes:
+				<br>
+				#foreach ($ano in [$anoInicial..$anoAnterior])
+					#foreach ($mes in [1..12])
+						<a href="#springUrl('/')previsao/bills/$ano/$mes">${ano}-$mes</a>&emsp;
+					#end
+					<br>
+				#end
+				#foreach ($mes in [1..$mesAtual])
+					<a href="#springUrl('/')previsao/bills/$anoAtual/$mes">${anoAtual}-$mes</a>&emsp;
+				#end
+			</li>
+			<li class="ui-btn ui-li">
+				Previsoes de um ano:
+				#foreach ($ano in [$anoInicial..$anoAtual])
+					<a href="#springUrl('/')previsao/ano/$ano">$ano</a>&emsp;
+				#end
+			</li>
+    		<li class="ui-btn ui-li"><a href="#springUrl('/previsao/categoria/8')">Previsoes de uma Categoria (8)</a></li>
+    		<li class="ui-btn ui-li"><a href="#springUrl('/previsao/1')">Por ID/1</a></li>
+    		<li class="ui-btn ui-li ui-last-child"><a href="#springUrl('/previsao/add')">Adicionar nova Previsao</a></li>
+			
+    	    <li class="ui-li ui-li-divider ui-bar-d ui-first-child">Categorias</li>
+    		<li class="ui-btn ui-li"><a href="#springUrl('/categoria')">Todas</a></li>
+    		<li class="ui-btn ui-li ui-last-child"><a href="#springUrl('/categoria/1')">Por ID/1</a></li>
+    		
+    	    <li class="ui-li ui-li-divider ui-bar-d ui-first-child">Origens</li>
+    		<li class="ui-btn ui-li ui-last-child"><a href="#springUrl('/origem')">Todas</a></li>
+    	</ul>
+		
+    </div>
+</div>

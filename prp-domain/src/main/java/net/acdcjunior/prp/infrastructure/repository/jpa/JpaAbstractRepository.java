@@ -10,8 +10,7 @@ import javax.persistence.TypedQuery;
 import net.acdcjunior.prp.domain.BaseEntity;
 import net.acdcjunior.prp.domain.BaseRepository;
 
-public abstract class JpaAbstractRepository<T extends BaseEntity> implements
-		BaseRepository<T> {
+public abstract class JpaAbstractRepository<T extends BaseEntity> implements BaseRepository<T> {
 
 	@PersistenceContext
 	protected EntityManager em;
@@ -37,14 +36,12 @@ public abstract class JpaAbstractRepository<T extends BaseEntity> implements
 
 	@Override
 	public List<T> findAll() {
-		return this.em.createQuery("FROM " + implEntityClass().getSimpleName(),
-				implEntityClass()).getResultList();
+		return this.em.createQuery("FROM " + implEntityClass().getSimpleName(), implEntityClass()).getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	private Class<T> implEntityClass() {
-		ParameterizedType genericSuperclass = (ParameterizedType) getClass()
-				.getGenericSuperclass();
+		ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
 		return (Class<T>) genericSuperclass.getActualTypeArguments()[0];
 	}
 

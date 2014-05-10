@@ -7,7 +7,7 @@
 <div class="ui-page-theme-a">
 	
     <div class="ui-header ui-bar-inherit">
-		 <a class="ui-btn-left ui-btn-corner-all ui-btn ui-icon-home ui-btn-icon-notext ui-shadow" title=" Home " href="#springUrl('/')previsao" > Home </a>
+		 <a class="ui-btn-left ui-btn-corner-all ui-btn ui-icon-home ui-btn-icon-notext ui-shadow" title=" Menu " href="#springUrl('/')" > Menu </a>
          <h1 class="ui-title" aria-level="1">Bills de $descricao</h1>
     	#if ("$!linkPrev" != "")
 		 <a class="ui-btn-right ui-btn-corner-all ui-btn ui-icon-carat-l ui-btn-icon-notext ui-shadow" title="Prev" href="#springUrl('/')$linkPrev" style="margin-right: 40px">a</a>

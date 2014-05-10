@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class IndexController {
 
     @RequestMapping(method = RequestMethod.GET)
-    public String criarUsuario() {
-        return "redirect:/movimentacao";
+    public String index() {
+        return "layout/menu";
     }
     
 }
