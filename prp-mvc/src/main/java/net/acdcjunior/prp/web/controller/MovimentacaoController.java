@@ -72,7 +72,7 @@ public class MovimentacaoController {
     
     @RequestMapping(value="/limitrofes/{ano}/{mes}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Map<String, Object> anoMesJson(@PathVariable("ano") int ano, @PathVariable("mes") int mes, Model model) {
+    public Map<String, Object> anoMesJson(@PathVariable("ano") int ano, @PathVariable("mes") int mes) {
     	return movimentacaoService.getMovimentacoesMesComLimitrofes(ano, mes);
     }
     

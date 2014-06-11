@@ -122,7 +122,7 @@ public class PrevisaoController {
     }
     
     @RequestMapping(method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-    public List<Previsao> allJson(Model model) {
+    public List<Previsao> allJson() {
     	return previsaoRepository.findAll();
     }
     
