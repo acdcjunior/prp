@@ -70,6 +70,9 @@
 	<button ng-click="novaMovimentacao()">Nova Movimentacao</button>
 	<br>
 	<button ng-click="enviar()">ENVIAR</button>
+    <br>
+    <br>
+    <button ng-click="importar()">IMPORTAR/COLAR</button>
 	
 	<hr />
 </div>

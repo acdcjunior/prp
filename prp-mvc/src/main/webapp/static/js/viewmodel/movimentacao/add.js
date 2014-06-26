@@ -8,19 +8,24 @@ function MovimentacaoController($scope) {
 	$scope.saldoCalculado = 0;
 	
 	$scope.controleMovimentacoes = 1;
-	
-	$scope.novaMovimentacao = function() {
+
+    function incluirMovimentacao(novaMov, obs) {
+        novaMov.__controle = $scope.controleMovimentacoes++;
+
+        $scope.movimentacoes.push(novaMov);
+        $scope.calcularSaldo();
+        $scope.mensagens.unshift({msg: '@' + novaMov.__controle + ': ' + ' movimentacao ' +
+            (obs !== undefined ? '(' + obs + ')' : '') + ' adicionada.'});
+    }
+
+    $scope.novaMovimentacao = function() {
 		if ($scope.origemSelecionada == null) {
 			alert('Selecione uma origem!');
 			return;
 		}
 		var novaMov = new prp.movimentacao.Movimentacao();
-		novaMov.__controle = $scope.controleMovimentacoes++;
-
-		$scope.movimentacoes.push(novaMov);
-		$scope.calcularSaldo();
-		$scope.mensagens.unshift({msg: '@'+ novaMov.__controle +': '+'Nova movimentacao (em branco) adicionada.'});
-	};
+        incluirMovimentacao(novaMov);
+    };
 	
 	$scope.calcularSaldo = function() {
 		if ($scope.movimentacoes.length == 0) {
@@ -194,5 +199,41 @@ function MovimentacaoController($scope) {
 	
 	/* MENSAGENS */
 	$scope.mensagens = [];
+
+
+    // BOTAO IMPORTAR -------------------------------------------------------------------------------------------------
+    function calcular(valorString) {
+        var doubleValue = parseFloat(valorString.replace(".", "").replace(" D", "").replace(" C", "").replace(",", "."));
+        switch(valorString[valorString.length-1]) {
+            case "C":
+                return doubleValue;
+            case "D":
+                return -doubleValue;
+            default:
+                throw new Error("Tipo de valor inesperado: "+ valorString[valorString.length-1]);
+        }
+    }
+
+    $scope.importar = function () {
+        var movs = prompt("Cole a lista de movimentacoes");
+        if (movs != null && movs.length > 0) {
+            var regex = /^(\d{2}\/\d{2}\/\d{4}) (\d+) (.*?) ([\d.,]+ [CD]) ([\d.,]+ [CD]) $/gm;
+            var match;
+            var novasMovimentacoes = [];
+            while (match = regex.exec(movs)) {
+                var novaMov = new prp.movimentacao.Movimentacao();
+                novaMov.data = moment(match[1], "DD/MM/YYYY").format('YYYY-MM-DD');
+                novaMov.numeroDocumento = match[2];
+                novaMov.descricao1 = match[3];
+                novaMov.valor = calcular(match[4]);
+                novaMov.saldo = calcular(match[5]);
+                novasMovimentacoes.push(novaMov);
+            }
+            for (var i = 0; i < novasMovimentacoes.length; i++) {
+                var nMov = novasMovimentacoes[i];
+                incluirMovimentacao(nMov, nMov.descricao1);
+            }
+        }
+    };
 	
 }
