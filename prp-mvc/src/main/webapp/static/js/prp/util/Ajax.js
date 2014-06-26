@@ -24,6 +24,7 @@ prp.dependencias('jQuery');
 				type: metodo,
 				url: window.prp.URL + url,
 				data : data,
+                dataType: (metodo === "GET" ? "json" : undefined),
 				contentType: "application/json",
 				success : function (data, textStatus, jqXHR) {
 					callback(data, textStatus, jqXHR);
