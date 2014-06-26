@@ -96,6 +96,9 @@
     		
     	    <li class="ui-li ui-li-divider ui-bar-d ui-first-child">Origens</li>
     		<li class="ui-btn ui-li ui-last-child"><a href="#springUrl('/origem')">Todas</a></li>
+
+    	    <li class="ui-li ui-li-divider ui-bar-d ui-first-child">AngularJS Previsoes</li>
+    		<li class="ui-btn ui-li ui-last-child"><a href="#springUrl('/')static/angularjs/angularjs.html#/previsao-list">Previsao/List</a></li>
     	</ul>
 		
     </div>
