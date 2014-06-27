@@ -1,0 +1,62 @@
+<div class="container">
+    <h1>Movimentacao detail</h1>
+
+    <form novalidate="novalidate" class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label">Data:</label>
+            <div class="controls">{{ movimentacao.data }}</div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="inputNumDoc">Numero Documento:</label>
+            <div class="controls"><input type="text" id="inputNumDoc" ng-model="movimentacao.numeroDocumento" class="input-large"/></div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="inputDescricao1">Descricao1:</label>
+            <div class="controls"><input type="text" id="inputDescricao1" ng-model="movimentacao.descricao1" class="input-xxlarge"/></div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="inputDescricao2">Descricao2:</label>
+            <div class="controls"><input type="text" id="inputDescricao2" ng-model="movimentacao.descricao2" class="input-xxlarge"/></div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="inputDescricao3">Descricao3:</label>
+            <div class="controls"><input type="text" id="inputDescricao3" ng-model="movimentacao.descricao3" class="input-xxlarge"/></div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">Valor:</label>
+            <div class="controls">{{ movimentacao.valor }}</div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">Saldo:</label>
+            <div class="controls">{{ movimentacao.saldo }}</div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">Origem:</label>
+            <div class="controls">{{ movimentacao.origem.nome }}</div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">Realiza:</label>
+            <div class="controls">{{ movimentacao.realiza.descricao }}</div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">Anterior:</label>
+            <div class="controls">#{{ movimentacao.anteriorId }}</div>
+        </div>
+        
+        <div class="control-group">
+            <div class="controls">
+                <a ng-click="cancel()" class="btn btn-small">cancel</a>
+                <a ng-click="updateMovimentacao()" class="btn btn-small btn-primary">update Movimentacao</a>
+            </div>
+        </div>
+    </form>
+</div>

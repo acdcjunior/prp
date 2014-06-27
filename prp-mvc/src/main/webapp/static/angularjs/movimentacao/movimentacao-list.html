@@ -1,0 +1,46 @@
+<div class="span6">
+
+    <div class="control-group">
+        <label class="control-label" for="filtroMes">Mes:</label>
+        <div class="controls"><input type="month" id="filtroMes" ng-model="filtroMes"/></div>
+        Total: {{ movs.length }}
+    </div>
+
+    <table class="table table-striped table-condensed">
+        <thead>
+        <tr>
+            <th style="min-width: 15px;">#</th>
+            <th style="min-width: 80px;">Data</th>
+            <th style="min-width: 80px;">Num. Doc.</th>
+            <th style="min-width: 280px;">Descricao1</th>
+            <th style="min-width: 40px; overflow-wrap: break-word">D2</th>
+            <th style="min-width: 40px;">D3</th>
+            <th style="min-width: 80px;">Valor</th>
+            <th style="min-width: 80px;">Saldo</th>
+            <th style="min-width: 280px;">Origem</th>
+            <th style="min-width: 50px;">#Anterior</th>
+            <th style="min-width: 250px;">Realiza</th>
+            <th style="width:20px;">&nbsp;</th>
+            <th style="width:20px;">&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="movimentacao in movs = (movimentacoes | filter: {data: filtroMes})">
+            <td>{{ movimentacao.id }}</td>
+            <td>{{ movimentacao.data }}</td>
+            <td>{{ movimentacao.numeroDocumento }}</td>
+            <td>{{ movimentacao.descricao1 }}</td>
+            <td>{{ movimentacao.descricao2 }}</td>
+            <td>{{ movimentacao.descricao3 }}</td>
+            <td>{{ movimentacao.valor }}</td>
+            <td>{{ movimentacao.saldo }}</td>
+            <td>{{ movimentacao.origem.nome }}</td>
+            <td>{{ movimentacao.anteriorId }}</td>
+            <td>{{ movimentacao.realiza.descricao }}</td>
+            <td><a ng-click="editMovimentacao(movimentacao.id)" class="btn btn-small btn-primary">edit</a></td>
+            <td><a ng-click="deleteMovimentacao(movimentacao.id)" class="btn btn-small btn-danger">delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <a ng-click="createNewMovimentacao()" class="btn btn-small">create new Movimentacao</a>
+</div>

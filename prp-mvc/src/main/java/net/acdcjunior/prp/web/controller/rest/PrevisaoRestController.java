@@ -1,4 +1,4 @@
-package net.acdcjunior.prp.web.controller;
+package net.acdcjunior.prp.web.controller.rest;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/rest/previsoes")
-public class RestController {
+public class PrevisaoRestController {
 
 	@Autowired
 	private PrevisaoRepository previsaoRepository;
@@ -63,4 +63,5 @@ public class RestController {
     	previsaoRepository.remove(p);
     	return p;
     }
+
 }

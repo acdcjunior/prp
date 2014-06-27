@@ -4,25 +4,25 @@
     <form novalidate="novalidate" class="form-horizontal">
         <div class="control-group">
             <label class="control-label" for="inputData">Data:</label>
-
             <div class="controls">
                 <input type="date" id="inputData" ng-model="previsao.data"/>
             </div>
         </div>
+
         <div class="control-group">
             <label class="control-label" for="inputDescricao">Descricao:</label>
-
             <div class="controls">
                 <input type="text" id="inputDescricao" ng-model="previsao.descricao"/>
             </div>
         </div>
+
         <div class="control-group">
             <label class="control-label" for="inputValor">Valor:</label>
-
             <div class="controls">
-                <input type="text" id="inputValor" ng-model="valor"/>
+                <input type="text" id="inputValor" ng-model="previsao.valor"/>
             </div>
         </div>
+
         <div class="control-group">
             <div class="controls">
                 <a ng-click="createNewPrevisao()" class="btn btn-small btn-primary">create new previsao</a>
