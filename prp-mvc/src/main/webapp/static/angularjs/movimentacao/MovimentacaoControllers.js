@@ -2,6 +2,8 @@
 app.controller('MovimentacaoListCtrl', ['$scope', 'MovimentacoesFactory', 'MovimentacaoFactory', '$location',
     function ($scope, MovimentacoesFactory, MovimentacaoFactory, $location) {
 
+        $scope.filtroMes = moment().format("YYYY-MM");
+
         $scope.editMovimentacao = function (pId) {
             $location.path('/movimentacao-detail/' + pId);
         };
