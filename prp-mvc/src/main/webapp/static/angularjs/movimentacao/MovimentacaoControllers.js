@@ -1,8 +1,12 @@
 
-app.controller('MovimentacaoListCtrl', ['$scope', 'MovimentacoesFactory', 'MovimentacaoFactory', '$location',
-    function ($scope, MovimentacoesFactory, MovimentacaoFactory, $location) {
-
-        $scope.filtroMes = moment().format("YYYY-MM");
+app.controller('MovimentacaoListCtrl', ['$scope', '$routeParams', 'MovimentacoesFactory', 'MovimentacaoFactory', '$location',
+    function ($scope, $routeParams, MovimentacoesFactory, MovimentacaoFactory, $location) {
+        var parametroFiltroMes = $routeParams.anoMes;
+        if (parametroFiltroMes) {
+            $scope.filtroMes = parametroFiltroMes;
+        } else {
+            $scope.filtroMes = moment().format("YYYY-MM");
+        }
 
         $scope.editMovimentacao = function (pId) {
             $location.path('/movimentacao-detail/' + pId);
@@ -21,13 +25,14 @@ app.controller('MovimentacaoListCtrl', ['$scope', 'MovimentacoesFactory', 'Movim
     }
 ]);
 
-app.controller('MovimentacaoDetailCtrl', ['$scope', '$routeParams', 'MovimentacaoFactory', '$location', '$modal',
-    function ($scope, $routeParams, MovimentacaoFactory, $location, $modal) {
+app.controller('MovimentacaoDetailCtrl', ['$scope', '$routeParams', 'MovimentacaoFactory', '$location', '$modal', '$timeout',
+    function ($scope, $routeParams, MovimentacaoFactory, $location, $modal, $timeout) {
         $scope.updateMovimentacao = function () {
             MovimentacaoFactory.update($scope.movimentacao);
-            setTimeout(function () {
-                $location.path('/movimentacao-list');
-            }, 3000);
+            $scope.salvando = true;
+            $timeout(function () {
+                $location.path('/movimentacao-list/'+$scope.movimentacao.data.substring(0, 7));
+            }, 2000);
         };
 
         $scope.cancel = function () {
