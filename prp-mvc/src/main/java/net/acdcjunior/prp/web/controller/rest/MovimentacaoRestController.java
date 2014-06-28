@@ -2,6 +2,8 @@ package net.acdcjunior.prp.web.controller.rest;
 
 import net.acdcjunior.prp.domain.movimentacao.Movimentacao;
 import net.acdcjunior.prp.domain.movimentacao.MovimentacaoRepository;
+import net.acdcjunior.prp.domain.previsao.Previsao;
+import net.acdcjunior.prp.domain.previsao.PrevisaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,9 @@ public class MovimentacaoRestController {
 
 	@Autowired
 	private MovimentacaoRepository movimentacaoRepository;
+
+	@Autowired
+	private PrevisaoRepository previsaoRepository;
 	
     @RequestMapping(method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -46,7 +51,14 @@ public class MovimentacaoRestController {
         movimentacao.setDescricao1(m.getDescricao1());
         movimentacao.setDescricao2(m.getDescricao2());
         movimentacao.setDescricao3(m.getDescricao3());
-    	movimentacaoRepository.save(movimentacao);
+
+        Previsao previsaoRealizada = m.getRealiza();
+        if (previsaoRealizada != null) {
+            previsaoRealizada = previsaoRepository.findById(previsaoRealizada.getId());
+        }
+        movimentacao.setRealiza(previsaoRealizada);
+
+        movimentacaoRepository.save(movimentacao);
         return m;
     }
 

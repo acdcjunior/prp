@@ -23,7 +23,9 @@ app.controller('MovimentacaoDetailCtrl', ['$scope', '$routeParams', 'Movimentaca
     function ($scope, $routeParams, MovimentacaoFactory, $location, $modal) {
         $scope.updateMovimentacao = function () {
             MovimentacaoFactory.update($scope.movimentacao);
-            $location.path('/movimentacao-list');
+            setTimeout(function () {
+                $location.path('/movimentacao-list');
+            }, 3000);
         };
 
         $scope.cancel = function () {
