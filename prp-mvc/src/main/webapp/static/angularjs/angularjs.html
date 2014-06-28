@@ -4,36 +4,34 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Previsoes AngularJS</title>
-    <link rel="stylesheet" href="css/app.css"/>
-    <link rel="stylesheet" href="css/bootstrap/bootstrap-responsive.min.css"/>
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" href="prp-app.css"/>
+    <link rel="stylesheet" href="lib/bootstrap-3.2.0-dist/css/bootstrap.min.css"/>
 </head>
 <body>
-<ul class="menu">
-    <li><a href="#/previsao-list">previsao-list</a></li>
-    <li><a href="#/previsao-detail/1">previsao-detail/1</a></li>
-    <li><a href="#/previsao-creation">previsao-creation</a></li>
-</ul>
+    <ul class="menu">
+        <li><a href="/prp">PRP-MENU</a></li>
+        <li><a href="#/previsao-list">previsao-list</a></li>
+        <li><a href="#/previsao-detail/1">previsao-detail/1</a></li>
+        <li><a href="#/previsao-creation">previsao-creation</a></li>
+        <li><a href="#/movimentacao-list">movimentacao-list</a></li>
+        <li><a href="#/movimentacao-detail/1">movimentacao-detail/1</a></li>
+        <li><a href="#/movimentacao-creation">movimentacao-creation</a></li>
+    </ul>
 
-<div ng-view></div>
+    <div ng-view></div>
 
-<!-- JQuery ================================================================ -->
-<script src="js/lib/jquery/jquery-2.0.3.js"></script>
+    <script src="../js/lib/moment-2.6.0.min.js"></script>
+    <script src="lib/jquery/jquery-2.1.1.min.js"></script>
+    <script src="lib/angularjs/angular-1.2.18/angular.js"></script>
+    <script src="lib/angularjs/angular-1.2.18/angular-resource.js"></script>
+    <script src="lib/angularjs/angular-1.2.18/angular-route.js"></script>
+    <script src="lib/angularjs/angular-ui/bootstrap/ui-bootstrap-tpls-0.11.0.min.js"></script>
 
-<!-- Bootstrap ============================================================= -->
-<script src="js/lib/bootstrap/bootstrap.js"></script>
-
-<!-- AngularJS ============================================================= -->
-<!-- In production use:
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
--->
-<script src="js/lib/angular/angular.js"></script>
-<script src="js/lib/angular/angular-resource.js"></script>
-
-<!-- AngularJS App Code ==================================================== -->
-<script src="js/app.js"></script>
-<script src="js/services.js"></script>
-<script src="js/controllers.js"></script>
-
+    <!-- AngularJS PRP -->
+    <script src="prp-app.js"></script>
+    <script src="previsao/PrevisaoServices.js"></script>
+    <script src="previsao/PrevisaoControllers.js"></script>
+    <script src="movimentacao/MovimentacaoServices.js"></script>
+    <script src="movimentacao/MovimentacaoControllers.js"></script>
 </body>
 </html>

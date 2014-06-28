@@ -1,0 +1,39 @@
+<div class="container">
+    <h1>Movimentacao Detail</h1>
+
+    <form novalidate="novalidate" class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label" for="inputData">Data:</label>
+            <div class="controls">
+                <input type="date" id="inputData" ng-model="movimentacao.data"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="inputDescricao1">Descricao1:</label>
+            <div class="controls">
+                <input type="text" id="inputDescricao1" ng-model="movimentacao.descricao1"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="inputDescricao2">Descricao2:</label>
+            <div class="controls">
+                <input type="text" id="inputDescricao2" ng-model="movimentacao.descricao2"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="inputValor">Valor:</label>
+            <div class="controls">
+                <input type="text" id="inputValor" ng-model="movimentacao.valor"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <a ng-click="createNewMovimentacao()" class="btn btn-small btn-primary">create new Movimentacao</a>
+            </div>
+        </div>
+    </form>
+</div>
