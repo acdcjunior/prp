@@ -1,0 +1,53 @@
+<div class="modal-header">
+    <h3 class="modal-title">Selecionar Previsão Realizada</h3>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-sm-1 control-label" for="filtroPrevisaoMes">Mes:</label>
+                <div class="col-sm-5"><input type="month" class="form-control" id="filtroPrevisaoMes" ng-model="filtroPrevisaoMes"/></div>
+                <div class="col-sm-4"><p class="form-control-static">Encontradas: {{ prevs.length }}</p></div>
+            </div>
+        </form>
+
+        <div class="col-sm-12 table-responsive" style="height: 400px; overflow-y: auto">
+            <table class="table table-striped table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Descricao</th>
+                    <th>Valor</th>
+                    <th>RZ</th>
+                    <th>BI</th>
+                    <th>&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody style="font-size: 80%">
+                <tr ng-repeat="previsao in prevs = ( previsoes | filter: {data: filtroPrevisaoMes} )">
+                    <td>{{ previsao.data }}</td>
+                    <td>{{ previsao.descricao }}</td>
+                    <td ng-class="{'negative-number': previsao.valor < 0, 'positive-number': previsao.valor >= 0}">{{ previsao.valor | brl }}</td>
+                    <td>
+                        <span ng-show="previsao.realizada" class="glyphicon glyphicon-thumbs-up" style="color: green"></span>
+                        <span ng-show="!previsao.realizada" class="glyphicon glyphicon-thumbs-down" style="color: red"></span>
+                    </td>
+                    <td>
+                        <span ng-show="previsao.bill" class="glyphicon glyphicon-thumbs-up" style="color: green"></span>
+                        <span ng-show="!previsao.bill" class="glyphicon glyphicon-thumbs-down" style="color: red"></span>
+                    </td>
+                    <td>
+                        <a ng-click="selecionar(previsao)" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-check"></span></a>
+                        <a ng-click="editarPrevisao(previsao.id)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" ng-click="cancel()">Cancelar</button>
+</div>

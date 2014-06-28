@@ -19,8 +19,8 @@ app.controller('MovimentacaoListCtrl', ['$scope', 'MovimentacoesFactory', 'Movim
     }
 ]);
 
-app.controller('MovimentacaoDetailCtrl', ['$scope', '$routeParams', 'MovimentacaoFactory', '$location',
-    function ($scope, $routeParams, MovimentacaoFactory, $location) {
+app.controller('MovimentacaoDetailCtrl', ['$scope', '$routeParams', 'MovimentacaoFactory', '$location', '$modal',
+    function ($scope, $routeParams, MovimentacaoFactory, $location, $modal) {
         $scope.updateMovimentacao = function () {
             MovimentacaoFactory.update($scope.movimentacao);
             $location.path('/movimentacao-list');
@@ -31,6 +31,47 @@ app.controller('MovimentacaoDetailCtrl', ['$scope', '$routeParams', 'Movimentaca
         };
 
         $scope.movimentacao = MovimentacaoFactory.show({id: $routeParams.id});
+
+        $scope.modalAlterarPrevisaoRealizada = function () {
+            var modalInstance = $modal.open({
+                templateUrl: 'movimentacao/movimentacao-detail-previsao.html',
+                controller: 'ModalAlterarPrevisaoRealizadaCtrl',
+                resolve: {
+                    movimentacao: function () {
+                        return $scope.movimentacao;
+                    }
+                }
+            });
+            modalInstance.result.then(function (previsaoSelecionada) {
+                $scope.movimentacao.realiza = previsaoSelecionada;
+            }, function () {
+                console.log('Modal dismissed at: ' + new Date());
+            });
+        };
+
+    }
+]);
+
+app.controller('ModalAlterarPrevisaoRealizadaCtrl', ['$scope', '$modalInstance', '$location', 'PrevisoesFactory', 'movimentacao',
+    function ($scope, $modalInstance, $location, PrevisoesFactory, movimentacao) {
+        $scope.filtroPrevisaoMes = movimentacao.data.substring(0, 7);
+
+        $scope.previsoes = PrevisoesFactory.query();
+
+        $scope.previsaoAtual = movimentacao.realiza;
+
+        $scope.selecionar = function (previsao) {
+            $modalInstance.close(previsao);
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+
+        $scope.editarPrevisao = function (pId) {
+            $modalInstance.dismiss('cancel');
+            $location.path('/previsao-detail/' + pId);
+        };
     }
 ]);
 

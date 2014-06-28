@@ -1,4 +1,4 @@
-angular.module('prp', ['prp.services', 'prp.controllers']).
+angular.module('prp', ['ngRoute', 'ui.bootstrap', 'prp.services', 'prp.controllers']).
     config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/previsao-list', 		    {templateUrl: 'previsao/previsao-list.html', 	    controller: 'PrevisaoListCtrl'});
         $routeProvider.when('/previsao-detail/:id',     {templateUrl: 'previsao/previsao-detail.html', 	    controller: 'PrevisaoDetailCtrl'});
@@ -16,3 +16,13 @@ angular.module('prp', ['prp.services', 'prp.controllers']).
 var services = angular.module('prp.services', ['ngResource']);
 
 var app = angular.module('prp.controllers', []);
+
+app.filter('brl', [ '$filter',
+    function(filter) {
+        var currencyFilter = filter('currency');
+        return function(amount, currencySymbol) {
+            var value = currencyFilter(amount, "R$ ");
+            return value.replace(".", "!").replace(",", ".").replace("!", ",");
+        };
+    }
+]);

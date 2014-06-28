@@ -1,62 +1,74 @@
-<div class="container">
-    <h1>Movimentacao detail</h1>
+<div class="container-fluid">
+    <h1>Detalhes da Movimentacao #{{ movimentacao.id }}</h1>
 
     <form novalidate="novalidate" class="form-horizontal">
-        <div class="control-group">
-            <label class="control-label">Data:</label>
-            <div class="controls">{{ movimentacao.data }}</div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Data:</label>
+            <div class="col-sm-10"><p class="form-control-static">{{ movimentacao.data }}</p></div>
         </div>
 
-        <div class="control-group">
-            <label class="control-label" for="inputNumDoc">Numero Documento:</label>
-            <div class="controls"><input type="text" id="inputNumDoc" ng-model="movimentacao.numeroDocumento" class="input-large"/></div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputNumDoc">Numero Documento:</label>
+            <div class="col-sm-10"><input type="text" id="inputNumDoc" ng-model="movimentacao.numeroDocumento" class="form-control"/></div>
         </div>
 
-        <div class="control-group">
-            <label class="control-label" for="inputDescricao1">Descricao1:</label>
-            <div class="controls"><input type="text" id="inputDescricao1" ng-model="movimentacao.descricao1" class="input-xxlarge"/></div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputDescricao1">Descricao1:</label>
+            <div class="col-sm-10"><input type="text" id="inputDescricao1" ng-model="movimentacao.descricao1" class="form-control"/></div>
         </div>
 
-        <div class="control-group">
-            <label class="control-label" for="inputDescricao2">Descricao2:</label>
-            <div class="controls"><input type="text" id="inputDescricao2" ng-model="movimentacao.descricao2" class="input-xxlarge"/></div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputDescricao2">Descricao2:</label>
+            <div class="col-sm-10"><input type="text" id="inputDescricao2" ng-model="movimentacao.descricao2" class="form-control"/></div>
         </div>
 
-        <div class="control-group">
-            <label class="control-label" for="inputDescricao3">Descricao3:</label>
-            <div class="controls"><input type="text" id="inputDescricao3" ng-model="movimentacao.descricao3" class="input-xxlarge"/></div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputDescricao3">Descricao3:</label>
+            <div class="col-sm-10"><input type="text" id="inputDescricao3" ng-model="movimentacao.descricao3" class="form-control"/></div>
         </div>
 
-        <div class="control-group">
-            <label class="control-label">Valor:</label>
-            <div class="controls">{{ movimentacao.valor }}</div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Valor:</label>
+            <div class="col-sm-10">
+                <p class="form-control-static" ng-class="{'negative-number': movimentacao.valor < 0, 'positive-number': movimentacao.valor >= 0}">
+                    {{ movimentacao.valor | brl }}
+                </p>
+            </div>
         </div>
 
-        <div class="control-group">
-            <label class="control-label">Saldo:</label>
-            <div class="controls">{{ movimentacao.saldo }}</div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Saldo:</label>
+            <div class="col-sm-10">
+                <p class="form-control-static" ng-class="{'negative-number': movimentacao.saldo < 0, 'positive-number': movimentacao.saldo >= 0}">
+                    {{ movimentacao.saldo | brl }}
+                </p>
+            </div>
         </div>
 
-        <div class="control-group">
-            <label class="control-label">Origem:</label>
-            <div class="controls">{{ movimentacao.origem.nome }}</div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Origem:</label>
+            <div class="col-sm-10"><p class="form-control-static">{{ movimentacao.origem.nome }}</p></div>
         </div>
 
-        <div class="control-group">
-            <label class="control-label">Realiza:</label>
-            <div class="controls">{{ movimentacao.realiza.descricao }}</div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Realiza:</label>
+            <div class="col-sm-4">
+                <p class="form-control-static">{{ movimentacao.realiza.descricao }}</p>
+                <button class="btn btn-info" ng-click="modalAlterarPrevisaoRealizada()">Alterar</button>
+            </div>
         </div>
 
-        <div class="control-group">
-            <label class="control-label">Anterior:</label>
-            <div class="controls">#{{ movimentacao.anteriorId }}</div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Anterior:</label>
+            <div class="col-sm-10"><p class="form-control-static">#{{ movimentacao.anteriorId }}</p></div>
         </div>
         
-        <div class="control-group">
-            <div class="controls">
-                <a ng-click="cancel()" class="btn btn-small">cancel</a>
-                <a ng-click="updateMovimentacao()" class="btn btn-small btn-primary">update Movimentacao</a>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <a ng-click="cancel()" class="btn btn-default">Cancelar</a>
+                <a ng-click="updateMovimentacao()" class="btn btn-default btn-primary">Atualizar Movimentação</a>
             </div>
         </div>
     </form>
+
 </div>

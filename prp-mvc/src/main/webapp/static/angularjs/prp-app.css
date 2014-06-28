@@ -26,3 +26,10 @@
   content: "";
   padding: 0;
 }
+
+.negative-number {
+    color: red;
+}
+.positive-number {
+    color: blue;
+}
