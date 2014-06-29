@@ -1,41 +1,45 @@
-<div class="container">
-    <h1>Previsao detail</h1>
+<div class="container-fluid">
+    <h1>Detalhes da Previsaox #{{ previsao.id }}</h1>
 
     <form novalidate="novalidate" class="form-horizontal">
-        <div class="control-group">
-            <label class="control-label" for="inputData">Data:</label>
-            <div class="controls"><input type="date" id="inputData" ng-model="previsao.data"/></div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputData">Data:</label>
+            <div class="col-sm-2"><input type="date" id="inputData" ng-model="previsao.data" class="form-control"/></div>
         </div>
         
-        <div class="control-group">
-            <label class="control-label" for="inputDescricao">Descricao:</label>
-            <div class="controls"><input type="text" id="inputDescricao" ng-model="previsao.descricao"/></div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputDescricao">Descricao:</label>
+            <div class="col-sm-6"><input type="text" id="inputDescricao" ng-model="previsao.descricao" class="form-control"/></div>
         </div>
         
-        <div class="control-group">
-            <label class="control-label" for="inputValor">Valor:</label>
-            <div class="controls"><input type="text" id="inputValor" ng-model="previsao.valor"/></div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputValor">Valor:</label>
+            <div class="col-sm-1"><input type="number" step="any" id="inputValor" ng-model="previsao.valor" class="form-control"/></div>
         </div>
         
-        <div class="control-group">
-            <label class="control-label" for="inputRealizada">Realizada:</label>
-            <div class="controls"><input type="checkbox" id="inputRealizada" ng-model="previsao.realizada"/></div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputRealizada">Realizada:</label>
+            <div class="col-sm-1"><input type="checkbox" id="inputRealizada" ng-model="previsao.realizada" class="form-control"/></div>
         </div>
         
-        <div class="control-group">
-            <label class="control-label" for="inputBill">Bill:</label>
-            <div class="controls"><input type="checkbox" id="inputBill" ng-model="previsao.bill"/></div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputBill">Bill:</label>
+            <div class="col-sm-1"><input type="checkbox" id="inputBill" ng-model="previsao.bill" class="form-control"/></div>
         </div>
         
-        <div class="control-group">
-            <label class="control-label">Categoria:</label>
-            <div class="controls">{{ previsao.categoria.nome }}</div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Categoria:</label>
+            <div class="col-sm-10"><p class="form-control-static"><strong><i>{{ previsao.categoria.nome }}</i></strong></p></div>
         </div>
         
-        <div class="control-group">
-            <div class="controls">
-                <a ng-click="cancel()" class="btn btn-small">cancel</a>
-                <a ng-click="updatePrevisao()" class="btn btn-small btn-primary">update previsao</a>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10" ng-show="!salvando">
+                <a ng-click="deletePrevisao()" class="btn btn-danger">Excluir</a>
+                <a ng-click="cancel()" class="col-sm-offset-1 btn btn-default" ng-disabled="salvando">Cancelar</a>
+                <a ng-click="updatePrevisao()" class="btn btn-default btn-primary" ng-disabled="salvando">Atualizar Previsão</a>
+            </div>
+            <div class="col-sm-offset-2 col-sm-10" ng-show="salvando">
+                <a class="btn btn-default" ng-disabled="salvando">Salvando...</a>
             </div>
         </div>
     </form>

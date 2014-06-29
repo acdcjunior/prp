@@ -47,19 +47,18 @@ public class PrevisaoRestController {
     @ResponseBody
     @Transactional
     public Previsao update(@RequestBody Previsao p) {
-    	System.out.println("@# UPDATING: "+p.getDescricao());
     	previsaoRepository.save(p);
         return p; 
     }
 
-    @RequestMapping(value="/{id}", method=RequestMethod.DELETE, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value="/{id}", method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @Transactional
-    public Previsao remove(@PathVariable("id") int id, @RequestBody Previsao p) {
-    	if (p.getId() != id) {
-    		throw new RuntimeException("Id da URL diferente do da previsao fornecida!");
+    public Previsao remove(@PathVariable("id") int id) {
+        Previsao p = previsaoRepository.findById(id);
+    	if (p == null) {
+    		throw new RuntimeException("Previsao #"+id+" nao existe!");
     	}
-    	System.out.println("@# DELETING: "+p.getDescricao());
     	previsaoRepository.remove(p);
     	return p;
     }

@@ -5,7 +5,7 @@
             <div class="col-sm-2"><input type="text" class="form-control" id="filtroPrevisao" ng-model="filtroPrevisao"/></div>
             <div class="col-sm-2"><p class="form-control-static">Total: {{ prevs.length }}</p></div>
             <div class="col-sm-offset-2 col-sm-2">
-                <a ng-click="createNewPrevisao()" class="btn btn-xs btn-primary">Criar Nova Previsão</a>
+                <a href="/prp/previsao/add" class="btn btn-xs btn-primary">Criar Nova Previsão</a>
             </div>
         </div>
     </form>
@@ -33,9 +33,9 @@
             <td>{{ previsao.valor | brl }}</td>
             <td>{{ previsao.realizada }}</td>
             <td>{{ previsao.bill }}</td>
-            <td>{{ previsao.categoria.nome }}</td>
-            <td><a ng-click="editPrevisao(previsao.id)" class="btn btn-primary btn-xs">edit</a></td>
-            <td><a ng-click="deletePrevisao(previsao.id)" class="btn btn-danger btn-xs">delete</a></td>
+            <td><strong><i>{{ previsao.categoria.nome }}</i></strong></p></td>
+            <td><a ng-click="editPrevisao(previsao.id)" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
+            <td></td>
         </tr>
         </tbody>
     </table>
