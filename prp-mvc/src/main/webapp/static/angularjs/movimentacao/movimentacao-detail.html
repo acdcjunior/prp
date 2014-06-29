@@ -53,8 +53,8 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">Realiza:</label>
             <div class="col-sm-4">
-                <p class="form-control-static"><strong><i>{{ movimentacao.realiza.descricao }}</i></strong></p>
-                <button class="btn btn-info" ng-click="modalAlterarPrevisaoRealizada()">Alterar</button>
+                <p class="form-control-static referencia-entidade">{{ movimentacao.realiza.descricao }}</p>
+                <button class="btn btn-info" ng-click="modalAlterarPrevisaoRealizada()" ng-disabled="salvando">Alterar</button>
             </div>
         </div>
 

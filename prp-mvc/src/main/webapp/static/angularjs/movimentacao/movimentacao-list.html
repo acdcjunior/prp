@@ -49,7 +49,7 @@
             <td>{{ movimentacao.saldo | brl }}</td>
             <td>{{ movimentacao.origem.nome }}</td>
             <td>{{ movimentacao.anteriorId }}</td>
-            <td><strong><i>{{ movimentacao.realiza.descricao }}</i></strong></td>
+            <td class="referencia-entidade">{{ movimentacao.realiza.descricao }}</td>
             <td>
                 <a ng-click="editMovimentacao(movimentacao.id)" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
                 <a ng-click="selecionarMovimentacao(movimentacao)" class="btn btn-xs"
