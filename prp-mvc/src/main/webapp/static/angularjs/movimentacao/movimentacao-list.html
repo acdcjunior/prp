@@ -7,6 +7,14 @@
             <div class="col-sm-offset-2 col-sm-2">
                 <a href="/prp/movimentacao/add" class="btn btn-default btn-primary">Adicionar Movimentações</a>
             </div>
+            <div class="col-sm-2">
+                <a ng-click="alterarMovimentacoesSelecionadas()" class="btn btn-success"
+                   ng-show="(movimentacoesSelecionadas = (movs | filter: {selecionada: true})).length > 0">Alterar Movimentações Selecionadas</a>
+            </div>
+            <div class="col-sm-1">
+                <a ng-click="removerSelecoes()" class="btn btn-success"
+                   ng-show="movimentacoesSelecionadas.length > 0"><span class="glyphicon glyphicon-ban-circle"></span></a>
+            </div>
         </div>
     </form>
 
@@ -29,7 +37,8 @@
         </thead>
         <tbody>
         <tr ng-repeat="movimentacao in movs = (movimentacoes | filter: {data: filtroMes})"
-            ng-class="{'negative-number': movimentacao.valor < 0, 'positive-number': movimentacao.valor >= 0}">
+            ng-class="{'negative-number': movimentacao.valor < 0, 'positive-number': movimentacao.valor >= 0,
+            'success': movimentacao.selecionada}">
             <td>{{ movimentacao.id }}</td>
             <td>{{ movimentacao.data }}</td>
             <td>{{ movimentacao.numeroDocumento }}</td>
@@ -43,6 +52,11 @@
             <td><strong><i>{{ movimentacao.realiza.descricao }}</i></strong></td>
             <td>
                 <a ng-click="editMovimentacao(movimentacao.id)" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a ng-click="selecionarMovimentacao(movimentacao)" class="btn btn-xs"
+                   ng-class="{'btn-success': movimentacao.selecionada, 'btn-warning': !movimentacao.selecionada}">
+                    <span ng-show="!movimentacao.selecionada" class="glyphicon glyphicon-unchecked"></span>
+                    <span ng-show="movimentacao.selecionada" class="glyphicon glyphicon-check"></span>
+                </a>
             </td>
         </tr>
         </tbody>
