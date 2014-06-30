@@ -123,7 +123,7 @@ app.controller('MovimentacaoDetailCtrl', ['$scope', '$routeParams', 'Movimentaca
             MovimentacaoFactory.update($scope.movimentacao);
             $scope.salvando = true;
             $timeout(function () {
-                $location.search("filtro", $scope.filtroGeral).search('mes', $scope.filtroMes).path('/movimentacao-list/'+$scope.movimentacao.data.substring(0, 7));
+                $location.search("filtro", $scope.filtroGeral).search('mes', $scope.filtroMes).path('/movimentacao-list/');
             }, 2000);
         };
 
