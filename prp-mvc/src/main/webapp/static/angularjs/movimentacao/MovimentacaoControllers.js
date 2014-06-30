@@ -81,7 +81,8 @@ app.controller('ModalAlterarMovimentacoesSelecionadasCtrl',
                     mov.realiza = $scope.alts.previsaoSelecionada;
                 }
                 if ($scope.alts.alterarDescricao2) {
-                    mov.descricao2 = $scope.alts.descricao2;
+                    var mes = mov.data.substring(0, 7).replace("-", ".");
+                    mov.descricao2 = $scope.alts.descricao2.replace(/\$mes/gi, mes);
                 }
                 if ($scope.alts.alterarPrevisao || $scope.alts.alterarDescricao2) {
                     MovimentacaoFactory.update(mov);
