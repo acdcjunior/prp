@@ -3,7 +3,7 @@
         <div class="form-group">
             <div class="col-sm-2"><input type="text" class="form-control" ng-model="filtroGeral"/></div>
             <div class="col-sm-2"><input type="month" class="form-control" ng-model="filtroMes"/></div>
-            <div class="col-sm-1"><p class="form-control-static">Total: {{ movs.length }}</p></div>
+            <div class="col-sm-1"><p class="form-control-static">T: {{ movs.length }} &nbsp; <span ng-show="movimentacoesSelecionadas.length > 0">S: {{ movimentacoesSelecionadas.length }}</span></p></div>
             <div class="col-sm-2">
                 <a href="/prp/movimentacao/add" class="btn btn-default btn-primary btn-xs">Adicionar Movimentações</a>
             </div>
