@@ -4,21 +4,21 @@
             <label class="col-sm-1 control-label" for="filtroMes">Mes:</label>
             <div class="col-sm-2"><input type="month" class="form-control" id="filtroMes" ng-model="filtroMes"/></div>
             <div class="col-sm-2"><p class="form-control-static">Total: {{ movs.length }}</p></div>
-            <div class="col-sm-offset-2 col-sm-2">
-                <a href="/prp/movimentacao/add" class="btn btn-default btn-primary">Adicionar Movimentações</a>
+            <div class="col-sm-2">
+                <a href="/prp/movimentacao/add" class="btn btn-default btn-primary btn-xs">Adicionar Movimentações</a>
             </div>
             <div class="col-sm-2">
-                <a ng-click="alterarMovimentacoesSelecionadas()" class="btn btn-success"
+                <a ng-click="alterarMovimentacoesSelecionadas()" class="btn btn-success btn-xs"
                    ng-show="(movimentacoesSelecionadas = (movs | filter: {selecionada: true})).length > 0">Alterar Movimentações Selecionadas</a>
             </div>
-            <div class="col-sm-1">
-                <a ng-click="removerSelecoes()" class="btn btn-success"
+            <div class="col-sm-offset-1 col-sm-1">
+                <a ng-click="removerSelecoes()" class="btn btn-success btn-xs"
                    ng-show="movimentacoesSelecionadas.length > 0"><span class="glyphicon glyphicon-ban-circle"></span></a>
             </div>
         </div>
     </form>
 
-    <table class="table table-striped table-condensed table-hover" style="font-size: 80%">
+    <table class="table table-striped table-condensed table-hover" style="font-size: 60%">
         <thead>
         <tr>
             <th>#</th>
@@ -51,11 +51,14 @@
             <td>{{ movimentacao.anteriorId }}</td>
             <td class="referencia-entidade">{{ movimentacao.realiza.descricao }}</td>
             <td>
-                <a ng-click="editMovimentacao(movimentacao.id)" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a ng-click="editMovimentacao(movimentacao.id)" class="btn btn-primary btn-xs">
+                    &emsp;<span class="glyphicon glyphicon-pencil"></span>&emsp;
+                </a>
+                &nbsp;
                 <a ng-click="selecionarMovimentacao(movimentacao)" class="btn btn-xs"
                    ng-class="{'btn-success': movimentacao.selecionada, 'btn-warning': !movimentacao.selecionada}">
-                    <span ng-show="!movimentacao.selecionada" class="glyphicon glyphicon-unchecked"></span>
-                    <span ng-show="movimentacao.selecionada" class="glyphicon glyphicon-check"></span>
+                    &emsp;&emsp;<span ng-show="!movimentacao.selecionada" class="glyphicon glyphicon-unchecked"></span>
+                    <span ng-show="movimentacao.selecionada" class="glyphicon glyphicon-check"></span>&emsp;&emsp;
                 </a>
             </td>
         </tr>
