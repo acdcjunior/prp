@@ -224,7 +224,7 @@
 				</configuration>
 			</plugin>
 		
-			<!-- Code coverage do JavaScript com o Saga  -->
+			<!-- Code coverage do JavaScript com o Saga  - ->
 			<plugin>
 				<groupId>com.github.timurstrekalov</groupId>
 				<artifactId>saga-maven-plugin</artifactId>
@@ -241,12 +241,12 @@
 					<baseDir>http://localhost:${jasmine.serverPort}</baseDir>
 					<outputDir>${project.build.directory}/javascript-coverage</outputDir>
 					<noInstrumentPatterns>
-						<pattern>.*/spec/.*</pattern> <!-- don't instrument specs -->
-						<pattern>.*/src/lib/.*</pattern> <!-- nem as libs -->
+						<pattern>.*/spec/.*</pattern> <!- - don't instrument specs - ->
+						<pattern>.*/src/lib/.*</pattern> <!- - nem as libs - ->
 					</noInstrumentPatterns>
 				</configuration>
 			</plugin>
-			<!-- FIM Jasmine-Maven -->
+			<!- - FIM Jasmine-Maven -->
 	        
 		</plugins>
 	</build>
