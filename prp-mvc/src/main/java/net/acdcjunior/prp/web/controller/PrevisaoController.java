@@ -177,7 +177,10 @@ public class PrevisaoController {
     public String add(Model model,
     		@RequestParam(value="categoria", required=false) Integer categoriaId,
     		@RequestParam(value="ano", required=false) Integer ano,
-    		@RequestParam(value="mes", required=false) Integer mes) {
+    		@RequestParam(value="mes", required=false) Integer mes,
+            @RequestParam(value="descricao", required=false) String descricao) {
+
+        model.addAttribute("descricaoInicial", descricao);
     	
         {        
 	        String categoriaInicial = "";

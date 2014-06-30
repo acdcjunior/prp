@@ -67,6 +67,7 @@
 
 #define ($script)
     <script type='text/javascript'>
+        var descricaoInicial = '$descricaoInicial';
         var dataInicial = '$dataInicial';
         var categorias = jQuery.parseJSON('$categorias');
         

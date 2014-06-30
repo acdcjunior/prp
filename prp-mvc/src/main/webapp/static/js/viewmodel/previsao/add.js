@@ -4,7 +4,7 @@ function PrevisaoAddController($scope, $compile) {
 	
 	$scope.categorias = categorias;
 	
-	$scope.previsao = new prp.previsao.Previsao({categoria: categoriaInicial, data: dataInicial, descricao: "", valor: -100.55});
+	$scope.previsao = new prp.previsao.Previsao({categoria: categoriaInicial, data: dataInicial, descricao: descricaoInicial, valor: -100.55});
 	
 	$scope.desabilitar = function () { $scope.desabilitarTodos = true; };
 	$scope.habilitar = function () { $scope.desabilitarTodos = false; };
