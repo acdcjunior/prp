@@ -8,8 +8,10 @@ app.controller('MovimentacaoListCtrl', ['$scope', '$routeParams', 'Movimentacoes
             $scope.filtroMes = moment().format("YYYY-MM");
         }
 
+        $scope.filtroGeral = $routeParams.filtro;
+
         $scope.editMovimentacao = function (pId) {
-            $location.path('/movimentacao-detail/' + pId);
+            $location.search("filtro", $scope.filtroGeral).path('/movimentacao-detail/' + pId);
         };
 
         $scope.deleteMovimentacao = function (pId) {
@@ -113,11 +115,14 @@ app.controller('ModalAlterarMovimentacoesSelecionadasCtrl',
 
 app.controller('MovimentacaoDetailCtrl', ['$scope', '$routeParams', 'MovimentacaoFactory', '$location', '$modal', '$timeout',
     function ($scope, $routeParams, MovimentacaoFactory, $location, $modal, $timeout) {
+
+        $scope.filtroGeral = $routeParams.filtro;
+
         $scope.updateMovimentacao = function () {
             MovimentacaoFactory.update($scope.movimentacao);
             $scope.salvando = true;
             $timeout(function () {
-                $location.path('/movimentacao-list/'+$scope.movimentacao.data.substring(0, 7));
+                $location.search("filtro", $scope.filtroGeral).path('/movimentacao-list/'+$scope.movimentacao.data.substring(0, 7));
             }, 2000);
         };
 
