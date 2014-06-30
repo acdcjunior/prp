@@ -36,6 +36,7 @@ app.controller('MovimentacaoListCtrl', ['$scope', '$routeParams', 'Movimentacoes
             var modalInstance = $modal.open({
                 templateUrl: 'movimentacao/movimentacao-list-alterar-selecionadas.html',
                 controller: 'ModalAlterarMovimentacoesSelecionadasCtrl',
+                backdrop: 'static',
                 resolve: {
                     movimentacoesSelecionadas: function () {
                         return $scope.movimentacoesSelecionadas;
@@ -98,6 +99,7 @@ app.controller('ModalAlterarMovimentacoesSelecionadasCtrl',
             var modalInstance = $modal.open({
                 templateUrl: 'movimentacao/movimentacao-detail-previsao.html',
                 controller: 'ModalAlterarPrevisaoRealizadaCtrl',
+                backdrop: 'static',
                 resolve: {
                     dataAtual: function () { return movimentacoesSelecionadas[0].data; },
                     descricaoAtual: function () { return $scope.alts.descricao2; },
@@ -137,6 +139,7 @@ app.controller('MovimentacaoDetailCtrl', ['$scope', '$routeParams', 'Movimentaca
             var modalInstance = $modal.open({
                 templateUrl: 'movimentacao/movimentacao-detail-previsao.html',
                 controller: 'ModalAlterarPrevisaoRealizadaCtrl',
+                backdrop: 'static',
                 resolve: {
                     dataAtual: function () { return $scope.movimentacao.data; },
                     descricaoAtual: function () { return $scope.movimentacao.descricao2; },
