@@ -25,7 +25,8 @@
                 </tr>
                 </thead>
                 <tbody style="font-size: 80%">
-                <tr ng-repeat="previsao in prevs = ( previsoes | filter: {data: filtroPrevisaoMes} )">
+                <tr ng-repeat="previsao in prevs = ( previsoes | filter: {data: filtroPrevisaoMes} )"
+                        ng-class="{'success': previsao.id == previsaoAtual.id}">
                     <td><a ng-click="editarPrevisao(previsao.id)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
                     <td>{{ previsao.data }}</td>
                     <td>{{ previsao.descricao }}</td>
@@ -50,4 +51,8 @@
 </div>
 <div class="modal-footer">
     <button class="btn btn-warning" ng-click="cancel()">Cancelar</button>
+    <a class="btn btn-info" target="_blank"
+       href="/prp/previsao/add?ano={{previsaoAtual.data.substring(0,4)}}&mes={{previsaoAtual.data.substring(5,7)}}&descricao={{descricaoAtual}}">
+        Criar Nova
+    </a>
 </div>

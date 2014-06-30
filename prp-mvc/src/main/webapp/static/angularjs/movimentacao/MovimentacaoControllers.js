@@ -97,12 +97,9 @@ app.controller('ModalAlterarMovimentacoesSelecionadasCtrl',
                 templateUrl: 'movimentacao/movimentacao-detail-previsao.html',
                 controller: 'ModalAlterarPrevisaoRealizadaCtrl',
                 resolve: {
-                    mesInicial: function () {
-                        return movimentacoesSelecionadas[0].data.substring(0, 7);
-                    },
-                    previsaoAtual: function () {
-                        return undefined;
-                    }
+                    dataAtual: function () { return movimentacoesSelecionadas[0].data; },
+                    descricaoAtual: function () { return $scope.alts.descricao2; },
+                    previsaoAtual: function () { return movimentacoesSelecionadas[0].realiza; }
                 }
             });
             modalInstance.result.then(function (previsaoSelecionada) {
@@ -135,12 +132,9 @@ app.controller('MovimentacaoDetailCtrl', ['$scope', '$routeParams', 'Movimentaca
                 templateUrl: 'movimentacao/movimentacao-detail-previsao.html',
                 controller: 'ModalAlterarPrevisaoRealizadaCtrl',
                 resolve: {
-                    mesInicial: function () {
-                        return $scope.movimentacao.data.substring(0, 7);
-                    },
-                    previsaoAtual: function () {
-                        return $scope.movimentacao.realiza;
-                    }
+                    dataAtual: function () { return $scope.movimentacao.data; },
+                    descricaoAtual: function () { return $scope.movimentacao.descricao2; },
+                    previsaoAtual: function () { return $scope.movimentacao.realiza; }
                 }
             });
             modalInstance.result.then(function (previsaoSelecionada) {
@@ -153,14 +147,15 @@ app.controller('MovimentacaoDetailCtrl', ['$scope', '$routeParams', 'Movimentaca
     }
 ]);
 
-app.controller('ModalAlterarPrevisaoRealizadaCtrl', ['$scope', '$modalInstance', '$location', 'PrevisoesFactory', 'mesInicial', 'previsaoAtual',
-    function ($scope, $modalInstance, $location, PrevisoesFactory, mesInicial, previsaoAtual) {
+app.controller('ModalAlterarPrevisaoRealizadaCtrl',
+    ['$scope', '$modalInstance', '$location', 'PrevisoesFactory', 'dataAtual', 'descricaoAtual', 'previsaoAtual',
+    function ($scope, $modalInstance, $location, PrevisoesFactory, dataAtual, descricaoAtual, previsaoAtual) {
 
-        $scope.filtroPrevisaoMes = mesInicial;
+        $scope.descricaoAtual = descricaoAtual;
+        $scope.filtroPrevisaoMes = dataAtual.substring(0, 7);
         $scope.previsaoAtual = previsaoAtual;
 
         $scope.previsoes = PrevisoesFactory.query();
-
 
         $scope.selecionar = function (previsao) {
             $modalInstance.close(previsao);
