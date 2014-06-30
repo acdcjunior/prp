@@ -1,9 +1,9 @@
 <div class="container-fluid">
     <form class="form-horizontal" role="form">
         <div class="form-group">
-            <label class="col-sm-1 control-label" for="filtroMes">Mes:</label>
-            <div class="col-sm-2"><input type="month" class="form-control" id="filtroMes" ng-model="filtroMes"/></div>
-            <div class="col-sm-2"><p class="form-control-static">Total: {{ movs.length }}</p></div>
+            <div class="col-sm-2"><input type="text" class="form-control" ng-model="filtroGeral"/></div>
+            <div class="col-sm-2"><input type="month" class="form-control" ng-model="filtroMes"/></div>
+            <div class="col-sm-1"><p class="form-control-static">Total: {{ movs.length }}</p></div>
             <div class="col-sm-2">
                 <a href="/prp/movimentacao/add" class="btn btn-default btn-primary btn-xs">Adicionar Movimentações</a>
             </div>
@@ -36,7 +36,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="movimentacao in movs = (movimentacoes | filter: {data: filtroMes})"
+        <tr ng-repeat="movimentacao in movs = (movimentacoes | filter: {data: filtroMes} | filter: filtroGeral)"
             ng-class="{'negative-number': movimentacao.valor < 0, 'positive-number': movimentacao.valor >= 0,
             'success': movimentacao.selecionada}">
             <td>{{ movimentacao.id }}</td>
