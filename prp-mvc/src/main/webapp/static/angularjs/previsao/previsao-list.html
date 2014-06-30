@@ -26,7 +26,7 @@
         <tbody>
         <tr ng-repeat="previsao in prevs = ( previsoes | filter: filtroPrevisao )"
             ng-class="{'negative-number': previsao.valor < 0, 'positive-number': previsao.valor >= 0}">
-            <td>{{ previsao.id }}</td>
+            <td><a href="/prp/previsao/{{ previsao.id }}" target="_blank">{{ previsao.id }}</a></td>
             <td>{{ previsao.data }}</td>
             <td>{{ previsao.descricao }}</td>
             <td>{{ previsao.valor | brl }}</td>
