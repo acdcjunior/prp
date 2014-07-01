@@ -1,10 +1,11 @@
 <div class="container-fluid">
     <form class="form-horizontal" role="form">
         <div class="form-group">
-            <label class="col-sm-1 control-label" for="filtroPrevisao">Filtrar:</label>
-            <div class="col-sm-2"><input type="text" class="form-control" id="filtroPrevisao" ng-model="filtroPrevisao"/></div>
+            <label class="col-sm-2 control-label">Filtros Geral/Mes:</label>
+            <div class="col-sm-2"><input type="text" class="form-control" ng-model="filtroGeral"/></div>
+            <div class="col-sm-2"><input type="month" class="form-control" ng-model="filtroMes"/></div>
             <div class="col-sm-2"><p class="form-control-static">Total: {{ prevs.length }}</p></div>
-            <div class="col-sm-offset-2 col-sm-2">
+            <div class="col-sm-2">
                 <a href="/prp/previsao/add" class="btn btn-primary">Criar Nova Previsão</a>
             </div>
         </div>
@@ -24,7 +25,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="previsao in prevs = ( previsoes | filter: filtroPrevisao )"
+        <tr ng-repeat="previsao in prevs = ( previsoes | filter: {data: filtroMes} | filter: filtroGeral)"
             ng-class="{'negative-number': previsao.valor < 0, 'positive-number': previsao.valor >= 0}">
             <td><a href="/prp/previsao/{{ previsao.id }}" target="_blank">{{ previsao.id }}</a></td>
             <td>{{ previsao.data }}</td>
@@ -32,7 +33,7 @@
             <td>{{ previsao.valor | brl }}</td>
             <td>{{ previsao.realizada }}</td>
             <td>{{ previsao.bill }}</td>
-            <td><strong><i>{{ previsao.categoria.nome }}</i></strong></p></td>
+            <td class="referencia-entidade"><a href="prp/categoria/{{ previsao.categoria.id }}" target="_blank">{{ previsao.categoria.nome }}</a></td>
             <td><a ng-click="editPrevisao(previsao.id)" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
         </tr>
         </tbody>

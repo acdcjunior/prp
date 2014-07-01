@@ -1,8 +1,15 @@
 
-app.controller('PrevisaoListCtrl', ['$scope', 'PrevisoesFactory', 'PrevisaoFactory', '$location',
-	function ($scope, PrevisoesFactory, PrevisaoFactory, $location) {
-	
-	    $scope.editPrevisao = function (pId) {
+app.controller('PrevisaoListCtrl', ['$scope', '$routeParams', 'PrevisoesFactory', 'PrevisaoFactory', '$location',
+	function ($scope, $routeParams, PrevisoesFactory, PrevisaoFactory, $location) {
+
+        $scope.filtroGeral = $routeParams.filtro;
+        $scope.filtroMes = $routeParams.mes;
+
+        if (typeof $scope.filtroMes === "undefined" && typeof $scope.filtroGeral === "undefined") {
+            $scope.filtroMes = moment().format("YYYY-MM");
+        }
+
+        $scope.editPrevisao = function (pId) {
 	        $location.path('/previsao-detail/' + pId);
 	    };
 	
