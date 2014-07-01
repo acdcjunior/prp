@@ -51,12 +51,19 @@
 		<property name="prefix" value="" />
 		<property name="suffix" value=".vm" />
 		<property name="layoutUrl" value="layout/layout.vm" />
+        <property name="contentType" value="text/html;charset=UTF-8" />
 
 		<property name="toolboxConfigLocation" value="/WEB-INF/velocityTools.xml" />
 	</bean>
 
 	<!-- FIM :: TECNOLOGIA DA VIEW -->
-    
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+        <!-- one of the properties available; the maximum file size in bytes -->
+        <property name="maxUploadSize" value="15000000" /><!-- 15MB -->
+    </bean>
 
     
     <!-- INICIO :: BANCO DE DADOS E TRANSACOES -->
