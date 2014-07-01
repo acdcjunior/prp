@@ -37,7 +37,7 @@
             <tr class="addMovimentacao" ng-class="{readOnly: mov._readOnly}">
 				<td>{{mov.__controle ? '@' + mov.__controle : ''}}</td>
 				<td>
-					<input type="date"	 ng-model="mov.data"			 class='required'	ng-readonly="mov._readOnly" />
+					<input type="date"	 ng-model="mov.data"			 class='required'	ng-readonly="mov._readOnly" style="line-height: inherit;"/>
                 	<a href='' class="copiarSeguinte" ng-class="{apagado: mov._readOnly || movimentacoes.indexOf(mov) == movimentacoes.length-1}"	ng-click="copiarDataSeguinte(mov)" title="Copiar Data da linha posterior" ><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
                 	<a href='' class="copiarAnterior" ng-class="{apagado: mov._readOnly}" #*													*#	ng-click="copiarDataAnterior(mov)" title="Copiar Data da linha anterior" ><span class="glyphicon glyphicon-circle-arrow-up"></span></a>
 				</td>
