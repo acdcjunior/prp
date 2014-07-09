@@ -4,7 +4,6 @@
 "prp/previsao/PrevisaoDEPRECATED.js", "prp/movimentacao/AlterarPrevisaoDialog.js", "viewmodel/movimentacao/add.js"])
 
 <div id="addPrevisao" class="usuario movimentacoes">
-	<img src="#springUrl('/static/img/flat/bills.png')" alt="Movimentacoes" class="imagemDetalhe" />
 	<h1>Nova Movimentacao</h1>
 	<div style="clear: both;"></div>
 </div>
