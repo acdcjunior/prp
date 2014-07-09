@@ -5,10 +5,6 @@ li { list-style-type: disc; margin-left: 20px; }
 .addMovimentacao * {
 	font-family: Verdana; font-size: small;
 }
-.addMovimentacao input[type=text]:not(.menor) {
-	min-width: 280px;
-	width: 100%;
-}
 .addMovimentacao input[type=date] {
 	width: 140px;
 }
@@ -17,6 +13,18 @@ li { list-style-type: disc; margin-left: 20px; }
 }
 .addMovimentacao .menor {
 	width: 70px;
+}
+.addMovimentacao .medio {
+    min-width: 100px;
+    width: 100%;
+}
+.addMovimentacao .maior {
+    min-width: 120px;
+    width: 100%;
+}
+.addMovimentacao .imenso {
+    min-width: 280px;
+    width: 100%;
 }
 .painel {
 	float: left;
@@ -57,4 +65,39 @@ li { list-style-type: disc; margin-left: 20px; }
 	border: 1px solid gray;
 	height: 100px;
 	width: 500px;
+}
+
+.credito {
+    color: blue;
+}
+.debito {
+    color: red;
+}
+
+
+
+/*-------------------------------------------------------------------------------*/
+/* AREA DE TEXTO EMBAIXO */
+.bulk {
+    padding: 12px;
+}
+textarea {
+    width: 90%;
+    margin: 0 auto;
+    border: 2px solid #666;
+    font-family: consolas, monospace;
+    height: 200px;
+    overflow: auto;
+    display: block;
+}
+.bulk table, .bulk tr, .bulk td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-family: consolas;
+    font-size: 10pt;
+}
+.bulk .erro {
+    color: red;
+    font-weight: bold;
+    background: yellow;
 }

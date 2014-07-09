@@ -235,5 +235,107 @@ function MovimentacaoController($scope) {
             }
         }
     };
+
+    $scope.globalMovsCopiado = [];
+    $scope.habilitarImportarGlobal = function () {
+        $scope.globalMovsCopiado = globalMovs;
+    }
+
+    $scope.importarGlobal = function () {
+        if (globalMovs != null && globalMovs.length > 0) {
+            var novasMovimentacoes = [];
+            for (var i = 0; i < globalMovs.length; i++) {
+                var gMov = globalMovs[i];
+                var novaMov = new prp.movimentacao.Movimentacao();
+
+                novaMov.data = gMov.data;
+                novaMov.numeroDocumento = gMov.numeroDocumento;
+                novaMov.descricao1 = gMov.descricao1;
+                novaMov.descricao2 = gMov.descricao2;
+                novaMov.valor = gMov.valor;
+                novaMov.saldo = gMov.saldo;
+                novasMovimentacoes.push(novaMov);
+            }
+            for (var i = 0; i < novasMovimentacoes.length; i++) {
+                var nMov = novasMovimentacoes[i];
+                incluirMovimentacao(nMov, nMov.descricao1);
+            }
+        }
+    };
 	
 }
+
+tabIndent.render($('#source')[0]);
+globalMovs = [];
+
+function parse() {
+    $('#erros').empty();
+    var tr, td, colunasInvalidas, colunasInvalidasCount = 0, movs = [];
+
+    var source = $('#source').val();
+    var linhas = source.split(/\r?\n/);
+
+    for(var i = 0; i < linhas.length; i++) {
+        var colunas = linhas[i].split(/\t/);
+        var data = colunas[0];
+        var numDoc = colunas[1];
+        var d1 = colunas[2];
+        var d2 = colunas[3];
+        var valor = colunas[4];
+        var saldo = colunas[5];
+        if (colunas.length < 5 || colunas.length > 6) {
+            alert("Erro: numero de colunas inesperado: "+colunas.length+". Linha: "+i+". Espera-se 5 ou 6!");
+            return;
+        }
+        if (colunas.length == 5) {
+            colunas.splice(3, 0, ''); // insere '' na coluna 4, representando d2
+        }
+        colunasInvalidas = validarColunas(colunas[0], colunas[1], colunas[2],
+                                          colunas[3], colunas[4], colunas[5]);
+        colunasInvalidasCount += colunasInvalidas.length;
+        tr = $('<tr>').appendTo('#output');
+        for(var j = 0; j < 6; j++) {
+            td = $('<td>').text(colunas[j]).appendTo(tr);
+            if (colunasInvalidas.indexOf(j) > -1) {
+                td.addClass('erro');
+            }
+        }
+        movs.push({
+            data: colunas[0],
+            numeroDocumento: colunas[1],
+            descricao1: colunas[2],
+            descricao2: colunas[3],
+            valor: paraDouble(colunas[4]),
+            saldo: paraDouble(colunas[5])
+        });
+    }
+
+    $('#erros').text('Total de erros encontrados: '+colunasInvalidasCount);
+
+    if (colunasInvalidasCount === 0) {
+        globalMovs = movs;
+    } else {
+        globalMovs = [];
+    }
+
+}
+
+function paraDouble(valorString) {
+    return parseFloat(valorString.replace(".", "").replace(",", "."));
+}
+
+function validarColunas(data, numDoc, d1, d2, valor, saldo) {
+    var regexData = /^\d{4}(-\d{2}){2}$/;
+    var regexNumero = /^\s*-?[\d.,]*\d+([,.]\d+)?\s*$/;
+
+    var colunasInvalidas = [];
+    if (!regexData.test(data)) { colunasInvalidas.push(0); }
+    if (numDoc.length === 0) { colunasInvalidas.push(1); }
+    if (d1.length === 0) { colunasInvalidas.push(2); }
+    // d2 nao valida
+    if (!regexNumero.test(valor)) {colunasInvalidas.push(4); }
+    if (!regexNumero.test(saldo)) { colunasInvalidas.push(5); }
+    return colunasInvalidas;
+}
+
+$('#parse').click(parse);
