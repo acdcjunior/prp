@@ -5,7 +5,12 @@
             <div class="col-sm-1"><input type="text" class="form-control" ng-model="filtroGeral"/></div>
             <div class="col-sm-2"><input type="month" class="form-control" ng-model="filtroMes"/></div>
             <div class="col-sm-1">
-                <select class="form-control" ng-model="filtroBill" ng-options="obj.value as obj.label for obj in billCombo"></select>
+                <img src="img/check.png" alt="bill" />
+                <select class="form-control" ng-model="filtroRealizada" ng-options="obj.value as obj.label for obj in booleanCombo"></select>
+            </div>
+            <div class="col-sm-1">
+                <img src="img/bill.png" alt="bill" />
+                <select class="form-control" ng-model="filtroBill" ng-options="obj.value as obj.label for obj in booleanCombo"></select>
             </div>
             <div class="col-sm-2"><p class="form-control-static">Total: {{ prevs.length }}</p></div>
             <div class="col-sm-2">
@@ -31,18 +36,18 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="previsao in prevs = ( previsoes | filter: {data: filtroMes, bill: filtroBill} | filter: filtroGeral)"
+        <tr ng-repeat="previsao in prevs = ( previsoes | filter: {data: filtroMes, realizada: filtroRealizada, bill: filtroBill} | filter: filtroGeral)"
             ng-class="{'negative-number': previsao.valor < 0, 'positive-number': previsao.valor >= 0}"
                 >
             <td><a href="/prp/previsao/{{ previsao.id }}" target="_blank">{{ previsao.id }}</a></td>
             <td ng-class="{realizada: previsao.realizada}">{{ previsao.data }}</td>
             <td ng-class="{realizada: previsao.realizada}">{{ previsao.descricao }}</td>
             <td>
-                <img src="img/check.png" alt="" height="60%" ng-show="previsao.realizada" />
+                <img src="img/check.png" alt="realizada" height="60%" ng-show="previsao.realizada" />
                 <span ng-show="!previsao.realizada">-</span>
             </td>
             <td>
-                <img src="img/bill.png" alt="" height="60%" ng-show="previsao.bill" />
+                <img src="img/bill.png" alt="bill" height="60%" ng-show="previsao.bill" />
                 <span ng-show="!previsao.bill">-</span>
             </td>
             <td>{{ previsao.qtdMovimentacoes }}</td>

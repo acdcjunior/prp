@@ -19,8 +19,8 @@ app.controller('PrevisaoListCtrl', ['$scope', '$routeParams', 'PrevisoesFactory'
 
 	    $scope.previsoes = PrevisoesFactory.query();
 
-        $scope.billCombo = [
-            {"value": undefined, "label":"Nada"},
+        $scope.booleanCombo = [
+            {"value": undefined, "label":"Indiferente"},
             {"value": true, "label":"Sim"},
             {"value": false, "label":"Nao"}
         ];
