@@ -27,9 +27,9 @@
             <th>Descricao</th>
             <th>Realizada</th>
             <th>Bill</th>
+            <th>Valor</th>
             <th>Qtd Movs</th>
             <th>Val Movs</th>
-            <th>Valor</th>
             <th>Val Final</th>
             <th>Categoria</th>
             <th>&nbsp;</th>
@@ -50,9 +50,9 @@
                 <img src="img/bill.png" alt="bill" height="60%" ng-show="previsao.bill" />
                 <span ng-show="!previsao.bill">-</span>
             </td>
+            <td>{{ previsao.valor | brl }}</td>
             <td>{{ previsao.qtdMovimentacoes }}</td>
             <td>{{ previsao.somaValorMovimentacoes | brl }}</td>
-            <td>{{ previsao.valor | brl }}</td>
             <td ng-class="{boldie: previsao.realizada}">{{ previsao.valorFinal | brl }}</td>
             <td class="referencia-entidade"><a href="prp/categoria/{{ previsao.categoria.id }}" target="_blank">{{ previsao.categoria.nome }}</a></td>
             <td><a ng-click="editPrevisao(previsao.id)" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
