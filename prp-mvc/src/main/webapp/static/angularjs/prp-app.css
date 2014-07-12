@@ -38,3 +38,13 @@
     font-style: italic;
     font-weight: bold;
 }
+
+/* Usada em prev-list para denotar uma prev realizada */
+.realizada {
+    color: limegreen;
+    font-weight: bold;
+}
+
+.boldie {
+    font-weight: bold;
+}

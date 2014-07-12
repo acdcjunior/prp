@@ -5,6 +5,8 @@ import java.util.List;
 import net.acdcjunior.prp.domain.previsao.Previsao;
 import net.acdcjunior.prp.domain.previsao.PrevisaoRepository;
 
+import net.acdcjunior.prp.domain.previsaomovimentacoes.PrevisaoComMovs;
+import net.acdcjunior.prp.domain.previsaomovimentacoes.PrevisaoComMovsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -21,11 +23,14 @@ public class PrevisaoRestController {
 
 	@Autowired
 	private PrevisaoRepository previsaoRepository;
+
+    @Autowired
+    private PrevisaoComMovsRepository previsaoComMovsRepository;
 	
     @RequestMapping(method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<Previsao> getAllPrevisoes() {
-        return previsaoRepository.findAll();
+    public List<PrevisaoComMovs> getAllPrevisoes() {
+        return previsaoComMovsRepository.findAll();
     }
 
     @RequestMapping(value="/{id}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)

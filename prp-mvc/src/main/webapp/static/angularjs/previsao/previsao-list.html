@@ -20,22 +20,35 @@
             <th>#</th>
             <th>Data</th>
             <th>Descricao</th>
-            <th>Valor</th>
             <th>Realizada</th>
             <th>Bill</th>
+            <th>Qtd Movs</th>
+            <th>Val Movs</th>
+            <th>Valor</th>
+            <th>Val Final</th>
             <th>Categoria</th>
             <th>&nbsp;</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="previsao in prevs = ( previsoes | filter: {data: filtroMes, bill: filtroBill} | filter: filtroGeral)"
-            ng-class="{'negative-number': previsao.valor < 0, 'positive-number': previsao.valor >= 0}">
+            ng-class="{'negative-number': previsao.valor < 0, 'positive-number': previsao.valor >= 0}"
+                >
             <td><a href="/prp/previsao/{{ previsao.id }}" target="_blank">{{ previsao.id }}</a></td>
-            <td>{{ previsao.data }}</td>
-            <td>{{ previsao.descricao }}</td>
+            <td ng-class="{realizada: previsao.realizada}">{{ previsao.data }}</td>
+            <td ng-class="{realizada: previsao.realizada}">{{ previsao.descricao }}</td>
+            <td>
+                <img src="img/check.png" alt="" height="60%" ng-show="previsao.realizada" />
+                <span ng-show="!previsao.realizada">-</span>
+            </td>
+            <td>
+                <img src="img/bill.png" alt="" height="60%" ng-show="previsao.bill" />
+                <span ng-show="!previsao.bill">-</span>
+            </td>
+            <td>{{ previsao.qtdMovimentacoes }}</td>
+            <td>{{ previsao.somaValorMovimentacoes | brl }}</td>
             <td>{{ previsao.valor | brl }}</td>
-            <td>{{ previsao.realizada }}</td>
-            <td>{{ previsao.bill }}</td>
+            <td ng-class="{boldie: previsao.realizada}">{{ previsao.valorFinal | brl }}</td>
             <td class="referencia-entidade"><a href="prp/categoria/{{ previsao.categoria.id }}" target="_blank">{{ previsao.categoria.nome }}</a></td>
             <td><a ng-click="editPrevisao(previsao.id)" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
         </tr>
