@@ -18,6 +18,13 @@ app.controller('PrevisaoListCtrl', ['$scope', '$routeParams', 'PrevisoesFactory'
 	    };
 
 	    $scope.previsoes = PrevisoesFactory.query();
+
+        $scope.billCombo = [
+            {"value": undefined, "label":"Nada"},
+            {"value": true, "label":"Sim"},
+            {"value": false, "label":"Nao"}
+        ];
+        $scope.filtroBill = undefined;
 	}
 ]);
 
