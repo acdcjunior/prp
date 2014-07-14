@@ -31,6 +31,7 @@
             <th>Qtd Movs</th>
             <th>Val Movs</th>
             <th>Val Final</th>
+            <th>Diferenca</th>
             <th>Categoria</th>
             <th>&nbsp;</th>
         </tr>
@@ -54,6 +55,7 @@
             <td>{{ previsao.qtdMovimentacoes }}</td>
             <td>{{ previsao.somaValorMovimentacoes | brl }}</td>
             <td ng-class="{boldie: previsao.realizada}">{{ previsao.valorFinal | brl }}</td>
+            <td>{{ previsao.valorFinal - previsao.valor | brl }}</td>
             <td class="referencia-entidade"><a href="prp/categoria/{{ previsao.categoria.id }}" target="_blank">{{ previsao.categoria.nome }}</a></td>
             <td><a ng-click="editPrevisao(previsao.id)" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
         </tr>
