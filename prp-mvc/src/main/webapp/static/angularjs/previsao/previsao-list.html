@@ -55,7 +55,12 @@
             <td>{{ previsao.qtdMovimentacoes }}</td>
             <td>{{ previsao.somaValorMovimentacoes | brl }}</td>
             <td ng-class="{boldie: previsao.realizada}">{{ previsao.valorFinal | brl }}</td>
-            <td>{{ previsao.valorFinal - previsao.valor | brl }}</td>
+            <td>
+                <div ng-show="previsao.realizada">
+                    <span ng-show="(previsao.valorFinal - previsao.valor) == 0">-</span>
+                    <span ng-show="(previsao.valorFinal - previsao.valor) != 0">{{ previsao.valorFinal - previsao.valor | brl }}</span>
+                </div>
+            </td>
             <td class="referencia-entidade"><a href="prp/categoria/{{ previsao.categoria.id }}" target="_blank">{{ previsao.categoria.nome }}</a></td>
             <td><a ng-click="editPrevisao(previsao.id)" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></a></td>
         </tr>
