@@ -1,9 +1,12 @@
 <div class="container-fluid">
     <form class="form-horizontal" role="form">
         <div class="form-group">
+            <div class="col-sm-1"><p class="form-control-static">T: {{ movs.length }} &nbsp; <span ng-show="movimentacoesSelecionadas.length > 0">S: {{ movimentacoesSelecionadas.length }}</span></p></div>
             <div class="col-sm-2"><input type="text" class="form-control" ng-model="filtroGeral"/></div>
             <div class="col-sm-2"><input type="month" class="form-control" ng-model="filtroMes"/></div>
-            <div class="col-sm-1"><p class="form-control-static">T: {{ movs.length }} &nbsp; <span ng-show="movimentacoesSelecionadas.length > 0">S: {{ movimentacoesSelecionadas.length }}</span></p></div>
+            <div class="col-sm-1">
+                <select class="form-control" ng-model="filtroOrigem" ng-options="obj.value as obj.label for obj in origemCombo"></select>
+            </div>
             <div class="col-sm-2">
                 <a href="/prp/movimentacao/add" class="btn btn-default btn-primary btn-xs">Adicionar Movimentações</a>
             </div>
@@ -36,15 +39,15 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="movimentacao in movs = (movimentacoes | filter: {data: filtroMes} | filter: filtroGeral)"
+        <tr ng-repeat="movimentacao in movs = (movimentacoes | filter: {data: filtroMes, origem: filtroOrigem} | filter: filtroGeral)"
             ng-class="{'negative-number': movimentacao.valor < 0, 'positive-number': movimentacao.valor >= 0,
             'success': movimentacao.selecionada}">
-            <td>{{ movimentacao.id }}</td>
-            <td>{{ movimentacao.data }}</td>
-            <td>{{ movimentacao.numeroDocumento }}</td>
-            <td>{{ movimentacao.descricao1 }}</td>
-            <td>{{ movimentacao.descricao2 }}</td>
-            <td>{{ movimentacao.descricao3 }}</td>
+            <td ng-class="{realizada: movimentacao.realiza}">{{ movimentacao.id }}</td>
+            <td ng-class="{realizada: movimentacao.realiza}">{{ movimentacao.data }}</td>
+            <td ng-class="{realizada: movimentacao.realiza}">{{ movimentacao.numeroDocumento }}</td>
+            <td ng-class="{realizada: movimentacao.realiza}">{{ movimentacao.descricao1 }}</td>
+            <td ng-class="{realizada: movimentacao.realiza}">{{ movimentacao.descricao2 }}</td>
+            <td ng-class="{realizada: movimentacao.realiza}">{{ movimentacao.descricao3 }}</td>
             <td>{{ movimentacao.valor | brl }}</td>
             <td>{{ movimentacao.saldo | brl }}</td>
             <td>{{ movimentacao.origem.nome }}</td>

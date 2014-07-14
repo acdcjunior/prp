@@ -56,6 +56,13 @@ app.controller('MovimentacaoListCtrl', ['$scope', '$routeParams', 'Movimentacoes
                 $scope.movimentacoesSelecionadas[i].selecionada = false;
             }
         };
+
+        $scope.origemCombo = [
+            {"value": undefined, "label":"-"},
+            {"value": 1, "label":"Caixa"},
+            {"value": 2, "label":"Visa"}
+        ];
+        $scope.filtroOrigem = undefined;
     }
 ]);
 
