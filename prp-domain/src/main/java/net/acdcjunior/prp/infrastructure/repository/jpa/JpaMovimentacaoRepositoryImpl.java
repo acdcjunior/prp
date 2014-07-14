@@ -137,4 +137,9 @@ public class JpaMovimentacaoRepositoryImpl extends JpaAbstractRepository<Movimen
 		return this.em.createNamedQuery(FIND_ANOS, Integer.class).getResultList();
 	}
 
+    @Override
+    public List<Movimentacao> findAllPorDataNumDoc() {
+        return this.em.createQuery("FROM Movimentacao m order by m.data, m.numeroDocumento", Movimentacao.class).getResultList();
+    }
+
 }

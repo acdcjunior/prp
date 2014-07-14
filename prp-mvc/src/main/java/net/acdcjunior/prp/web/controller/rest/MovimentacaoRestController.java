@@ -24,8 +24,8 @@ public class MovimentacaoRestController {
 	
     @RequestMapping(method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<Movimentacao> getAllPrevisoes() {
-        return movimentacaoRepository.findAll();
+    public List<Movimentacao> getAllMovimentacoes() {
+        return movimentacaoRepository.findAllPorDataNumDoc();
     }
 
     @RequestMapping(value="/{id}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)

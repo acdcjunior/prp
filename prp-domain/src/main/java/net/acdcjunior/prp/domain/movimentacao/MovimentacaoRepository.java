@@ -35,4 +35,6 @@ public interface MovimentacaoRepository extends BaseRepository<Movimentacao> {
 
 	List<Movimentacao> findByAnoMesSemCategoria(int ano, int mes);
 
+    List<Movimentacao> findAllPorDataNumDoc();
+
 }
