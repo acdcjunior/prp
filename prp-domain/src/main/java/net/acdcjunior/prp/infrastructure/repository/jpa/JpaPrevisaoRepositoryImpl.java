@@ -18,6 +18,11 @@ public class JpaPrevisaoRepositoryImpl extends JpaAbstractRepository<Previsao>
 	private static final String FIND_BY_ANO_MES = "Previsao.findByAnoMes";
 	private static final String FIND_BY_ANO = "Previsao.findByAno";
 	private static final String SUM_VALOR_BY_ANO_MES_CATEGORIA = "Previsao.sumValorByAnoMesCategoria";
+
+    @Override
+    public List<Previsao> findAll() {
+        return this.em.createQuery("FROM Previsao p order by p.data", Previsao.class).getResultList();
+    }
 	
 	@Override
 	public List<Previsao> findByCategoria(Categoria categoria) {
