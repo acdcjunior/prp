@@ -12,6 +12,7 @@ import static org.junit.Assert.assertThat;
 import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import net.acdcjunior.prp.domain.categoria.Categoria;
 import net.acdcjunior.prp.domain.categoria.CategoriaRepository;
@@ -185,14 +186,25 @@ public class JpaMovimentacaoRepositoryImplTest {
         // when
         List<Movimentacao> movimentacoes = jpaMovimentacaoRepositoryImpl.findAllPorListaEncadeadaAnterior();
         // then
-        Iterator<Movimentacao> iterator = movimentacoes.iterator();
-        Movimentacao m = iterator.next();
-        Integer id = m.getId();
-        while (iterator.hasNext()) {
-            m = iterator.next();
-            assertThat(m.getAnteriorId(), is(id));
-            id = m.getId();
+
+        List<Origem> origens = movimentacoes.stream().map(Movimentacao::getOrigem).distinct().collect(Collectors.toList());
+        for (Origem o : origens) {
+
+            List<Movimentacao> movsDestaOrigem = movimentacoes.stream().filter(m -> m.getOrigem().equals(o)).collect(Collectors.toList());
+
+            Iterator<Movimentacao> iterator = movsDestaOrigem.iterator();
+            Movimentacao m = iterator.next();
+            Integer id = m.getId();
+            assertThat(m.getAnteriorId(), is(nullValue()));
+            while (iterator.hasNext()) {
+                m = iterator.next();
+                assertThat(m.getAnteriorId(), is(id));
+                id = m.getId();
+            }
+
         }
+
+
     }
 	
 }

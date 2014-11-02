@@ -126,9 +126,9 @@ INSERT INTO `tb_previsao` (`ID`, `DATA`, `DESCRICAO`, `VALOR`, `CATEGORIA`, `BIL
 INSERT INTO `TB_MOVIMENTACAO`
 (`ID`, `DATA`,       `NUMERODOCUMENTO`, `DESCRICAO1`,                           `DESCRICAO2`,   `DESCRICAO3`,  `VALOR`,       `ORIGEM`,    `SALDO`,     `REALIZA`, `ANTERIOR`) VALUES
 (1,    '2010-01-03', '0',               'MULTA JUROS CH ESP',                   NULL,           NULL,           -6.95,         1,          1613.65,     281,      NULL),
-(3,    '2010-02-01', '569',             'DATA FORA DE ORDEM',                   NULL,           NULL,           172.42,        2,          172.42,      NULL,     1),
-(2,    '2010-02-12', '123',             'PAGAMENTO FATURA ANTERIOR',            NULL,           NULL,           1280.52,       2,          0,           NULL,     3),
-(10,   '2010-03-01', '2',               'BOLATO PRIMEIRO DIA DO MES',           NULL,           NULL,           -40.00,        1,          19960.00,    NULL,     2),
+(2,    '2010-02-01', '569',             'DATA FORA DE ORDEM',                   NULL,           NULL,           172.42,        2,          172.42,      NULL,     NULL),
+(3,    '2010-02-12', '123',             'PAGAMENTO FATURA ANTERIOR',            NULL,           NULL,           1280.52,       2,          0,           NULL,     2),
+(10,   '2010-03-01', '2',               'BOLATO PRIMEIRO DIA DO MES',           NULL,           NULL,           -40.00,        1,          19960.00,    NULL,     1),
 (11,   '2010-03-10', '3',               'BOLATO DECIMO DIA DO MES',             NULL,           NULL,           -50.77,        1,          613.59,      NULL,     10),
 (12,   '2010-03-25', '4',               'BOLATO ULTIMO DIA DO MES',             NULL,           NULL,           1000.06,       1,          1613.65,     NULL,     11),
 (178,  '2011-01-03', '5',               'BOLATO: PRIMEIRA DE 2011/01',          NULL,           NULL,           -68.61,        1,          1545.04,     461,      12),

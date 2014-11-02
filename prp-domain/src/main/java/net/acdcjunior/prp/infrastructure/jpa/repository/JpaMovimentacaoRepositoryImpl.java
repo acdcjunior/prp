@@ -144,17 +144,21 @@ public class JpaMovimentacaoRepositoryImpl extends JpaAbstractRepository<Movimen
     public List<Movimentacao> findAllPorListaEncadeadaAnterior() {
         List<Movimentacao> movimentacoes = this.findAll();
 
-        Map<Integer, Movimentacao> movMap = movimentacoes.stream().collect(Collectors.toMap(Movimentacao::getAnteriorId, Function.identity()));
 
-        Movimentacao primeira = movimentacoes.stream().filter(m -> m.getAnterior() == null).findFirst().get();
+        List<Origem> origens = movimentacoes.stream().map(Movimentacao::getOrigem).distinct().collect(Collectors.toList());
 
         List<Movimentacao> movsOrdenadas = new LinkedList<>();
-        movsOrdenadas.add(primeira);
+        for (Origem o : origens) {
+            Map<Integer, Movimentacao> movMap = movimentacoes.stream().filter(m -> m.getOrigem().equals(o)).collect(Collectors.toMap(Movimentacao::getAnteriorId, Function.identity()));
 
-        Movimentacao proxima = movMap.get(primeira.getId());
-        while (proxima != null) {
-            movsOrdenadas.add(proxima);
-            proxima = movMap.get(proxima.getId());
+            Movimentacao primeira = movimentacoes.stream().filter(m -> m.getOrigem().equals(o) && m.getAnterior() == null).findFirst().get();
+            movsOrdenadas.add(primeira);
+
+            Movimentacao proxima = movMap.get(primeira.getId());
+            while (proxima != null) {
+                movsOrdenadas.add(proxima);
+                proxima = movMap.get(proxima.getId());
+            }
         }
         if (movsOrdenadas.size() != movimentacoes.size()) {
             movimentacoes.removeAll(movsOrdenadas);
