@@ -16,7 +16,7 @@
    	<bean id="prpDataSource"
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.h2.Driver" />
-        <property name="url" value="jdbc:h2:mem:bancoDeTestesEmMemoria;INIT=RUNSCRIPT FROM 'classpath:sql/esquema.sql'\;RUNSCRIPT FROM 'classpath:sql/dados.sql'\;" />
+        <property name="url" value="jdbc:h2:mem:bancoDeTestesEmMemoria;INIT=RUNSCRIPT FROM 'file:../prp-domain/src/test/resources/sql/esquema.sql'\;RUNSCRIPT FROM 'file:../prp-domain/src/test/resources/sql/dados.sql'\;" />
         <property name="username" value="sa" />
         <property name="password" value="" />
 	</bean>

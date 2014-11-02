@@ -8,7 +8,7 @@
 	    name="jdbc/prpDataSource"
 	    type="javax.sql.DataSource"
 	    driverClassName="org.h2.Driver"
-	    url="jdbc:h2:target/tomcat7-run;INIT=RUNSCRIPT FROM 'classpath:esquema.sql'\;RUNSCRIPT FROM 'classpath:dados.sql'\;" 
+	    url="jdbc:h2:target/tomcat7-run;INIT=RUNSCRIPT FROM 'file:../prp-domain/src/test/resources/sql/esquema.sql'\;RUNSCRIPT FROM 'file:../prp-domain/src/test/resources/sql/dados.sql'\;"
 	    username="sa"
 	    password=""
    	    maxActive="8"
