@@ -22,11 +22,9 @@ public class MovimentacaoSumarioMes {
 	}
 
 	private void adicionarMovimentacoes(List<Movimentacao> movimentacoesDoMes) {
-		for (Movimentacao movimentacao : movimentacoesDoMes) {
-			if (movimentacaoPertenceAoMes(movimentacao)) {
-				adicionarMovimentacao(movimentacao);
-			}
-		}
+        movimentacoesDoMes.stream()
+                .filter(this::movimentacaoPertenceAoMes)
+                .forEach(this::adicionarMovimentacao);
 	}
 	
 	private boolean movimentacaoPertenceAoMes(Movimentacao movimentacao) {
