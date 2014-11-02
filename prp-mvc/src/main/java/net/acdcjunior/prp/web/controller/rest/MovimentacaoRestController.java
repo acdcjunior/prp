@@ -50,7 +50,6 @@ public class MovimentacaoRestController {
         movimentacao.setNumeroDocumento(m.getNumeroDocumento());
         movimentacao.setDescricao1(m.getDescricao1());
         movimentacao.setDescricao2(m.getDescricao2());
-        movimentacao.setDescricao3(m.getDescricao3());
 
         Previsao previsaoRealizada = m.getRealiza();
         if (previsaoRealizada != null) {

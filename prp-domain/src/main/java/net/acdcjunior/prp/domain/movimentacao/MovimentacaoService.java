@@ -39,7 +39,6 @@ public class MovimentacaoService {
 		mov.setNumeroDocumento(movimentacao.getNumeroDocumento());
 		mov.setDescricao1(movimentacao.getDescricao1());
 		mov.setDescricao2(movimentacao.getDescricao2());
-		mov.setDescricao3(movimentacao.getDescricao3());
 		mov.setRealiza(movimentacao.getRealiza());
 		movimentacaoRepository.save(mov);
 		return mov;

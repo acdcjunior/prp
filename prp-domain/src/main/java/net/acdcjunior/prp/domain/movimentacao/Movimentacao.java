@@ -38,9 +38,6 @@ public class Movimentacao extends BaseEntity {
 	private String descricao2;
 	
 	@Column
-	private String descricao3;
-	
-	@Column
 	private BigDecimal valor;
 	
 	@ManyToOne
@@ -77,9 +74,6 @@ public class Movimentacao extends BaseEntity {
 	
 	public String getDescricao2() { return descricao2; }
 	public void setDescricao2(String descricao2) { this.descricao2 = descricao2; }
-	
-	public String getDescricao3() { return descricao3; }
-	public void setDescricao3(String descricao3) { this.descricao3 = descricao3; }
 	
 	public BigDecimal getValor() { return valor; }
 	public void setValor(BigDecimal valor) { this.valor = valor; }
