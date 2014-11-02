@@ -10,6 +10,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 import java.math.BigDecimal;
+import java.util.Iterator;
 import java.util.List;
 
 import net.acdcjunior.prp.domain.categoria.Categoria;
@@ -176,5 +177,22 @@ public class JpaMovimentacaoRepositoryImplTest {
 		// then
 		assertThat(ultimaMov, hasProperty("descricao1", is(equalTo("MOCK"))));
 	}
+
+
+    @Test
+    public void findAllPorListaEncadeadaAnterior() {
+        // given
+        // when
+        List<Movimentacao> movimentacoes = jpaMovimentacaoRepositoryImpl.findAllPorListaEncadeadaAnterior();
+        // then
+        Iterator<Movimentacao> iterator = movimentacoes.iterator();
+        Movimentacao m = iterator.next();
+        Integer id = m.getId();
+        while (iterator.hasNext()) {
+            m = iterator.next();
+            assertThat(m.getAnteriorId(), is(id));
+            id = m.getId();
+        }
+    }
 	
 }

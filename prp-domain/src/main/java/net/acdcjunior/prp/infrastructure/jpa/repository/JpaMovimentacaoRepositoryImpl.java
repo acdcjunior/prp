@@ -1,7 +1,11 @@
 package net.acdcjunior.prp.infrastructure.jpa.repository;
 
 import java.math.BigDecimal;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import javax.persistence.TypedQuery;
 
@@ -137,8 +141,28 @@ public class JpaMovimentacaoRepositoryImpl extends JpaAbstractRepository<Movimen
 	}
 
     @Override
-    public List<Movimentacao> findAllPorDataNumDoc() {
-        return this.em.createQuery("FROM Movimentacao m order by m.data, m.numeroDocumento", Movimentacao.class).getResultList();
+    public List<Movimentacao> findAllPorListaEncadeadaAnterior() {
+        List<Movimentacao> movimentacoes = this.findAll();
+
+        Map<Integer, Movimentacao> movMap = movimentacoes.stream().collect(Collectors.toMap(Movimentacao::getAnteriorId, Function.identity()));
+
+        Movimentacao primeira = movimentacoes.stream().filter(m -> m.getAnterior() == null).findFirst().get();
+
+        List<Movimentacao> movsOrdenadas = new LinkedList<>();
+        movsOrdenadas.add(primeira);
+
+        Movimentacao proxima = movMap.get(primeira.getId());
+        while (proxima != null) {
+            movsOrdenadas.add(proxima);
+            proxima = movMap.get(proxima.getId());
+        }
+        if (movsOrdenadas.size() != movimentacoes.size()) {
+            movimentacoes.removeAll(movsOrdenadas);
+            throw new RuntimeException("Nao foi possivel ordenar as movimentacoes pelo campo ANTERIORID! Veio do banco pelo menos uma" +
+                    " movimentacao que nao estava na lista encadeada: "+movimentacoes);
+        }
+
+        return movsOrdenadas;
     }
 
 }

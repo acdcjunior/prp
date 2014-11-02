@@ -90,5 +90,5 @@ public class Movimentacao extends BaseEntity {
 		int month = this.data.getMonthValue();
 		return year != ano || month != mes;
 	}
-	
+
 }
