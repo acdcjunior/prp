@@ -11,8 +11,8 @@ import net.acdcjunior.prp.domain.categoria.Categoria;
 import net.acdcjunior.prp.domain.categoria.CategoriaRepository;
 import net.acdcjunior.prp.domain.previsao.Previsao;
 import net.acdcjunior.prp.domain.previsao.PrevisaoRepository;
-import net.acdcjunior.prp.infrastructure.repository.jpa.JpaCategoriaRepositoryImpl;
-import net.acdcjunior.prp.infrastructure.repository.jpa.JpaPrevisaoRepositoryImpl;
+import net.acdcjunior.prp.infrastructure.jpa.repository.JpaCategoriaRepositoryImpl;
+import net.acdcjunior.prp.infrastructure.jpa.repository.JpaPrevisaoRepositoryImpl;
 import net.acdcjunior.prp.test.InjetarEntityManagerRule;
 import net.acdcjunior.prp.test.InjetarEntityManagerRule.InjetarEntityManager;
 

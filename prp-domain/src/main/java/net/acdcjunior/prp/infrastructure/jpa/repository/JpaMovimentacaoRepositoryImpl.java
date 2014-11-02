@@ -1,4 +1,4 @@
-package net.acdcjunior.prp.infrastructure.repository.jpa;
+package net.acdcjunior.prp.infrastructure.jpa.repository;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -84,11 +84,10 @@ public class JpaMovimentacaoRepositoryImpl extends JpaAbstractRepository<Movimen
 	
 	@Override
 	public Long countByAnoMesSemRealizacao(int ano, int mes) {
-		Long count = this.em.createNamedQuery(COUNT_BY_ANO_MES_SEM_REALIZACAO, Long.class)
+		return this.em.createNamedQuery(COUNT_BY_ANO_MES_SEM_REALIZACAO, Long.class)
 				.setParameter("ano", ano)
 				.setParameter("mes", mes)
 				.getSingleResult();
-		return count;
 	}
 
 	@Override

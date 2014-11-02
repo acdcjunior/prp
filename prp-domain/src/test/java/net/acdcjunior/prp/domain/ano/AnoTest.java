@@ -1,26 +1,15 @@
 package net.acdcjunior.prp.domain.ano;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-
-import net.acdcjunior.prp.domain.ano.Ano;
-import net.acdcjunior.prp.domain.ano.categorianoano.CategoriaNoAno;
-import net.acdcjunior.prp.domain.ano.categorianoano.CategoriaNoMes;
 import net.acdcjunior.prp.domain.categoria.CategoriaRepository;
 import net.acdcjunior.prp.domain.movimentacao.MovimentacaoRepository;
 import net.acdcjunior.prp.domain.previsao.PrevisaoRepository;
-import net.acdcjunior.prp.infrastructure.repository.jpa.JpaCategoriaRepositoryImpl;
-import net.acdcjunior.prp.infrastructure.repository.jpa.JpaMovimentacaoRepositoryImpl;
-import net.acdcjunior.prp.infrastructure.repository.jpa.JpaPrevisaoRepositoryImpl;
-import net.acdcjunior.prp.test.FieldManipulator;
+import net.acdcjunior.prp.infrastructure.jpa.repository.JpaCategoriaRepositoryImpl;
+import net.acdcjunior.prp.infrastructure.jpa.repository.JpaMovimentacaoRepositoryImpl;
+import net.acdcjunior.prp.infrastructure.jpa.repository.JpaPrevisaoRepositoryImpl;
 import net.acdcjunior.prp.test.InjetarEntityManagerRule;
 import net.acdcjunior.prp.test.InjetarEntityManagerRule.InjetarEntityManager;
 
-import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
 
 @SuppressWarnings("unused")
 public class AnoTest {

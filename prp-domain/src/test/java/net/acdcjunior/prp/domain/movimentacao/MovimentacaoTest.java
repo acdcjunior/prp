@@ -4,8 +4,9 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-import org.joda.time.DateTime;
 import org.junit.Test;
+
+import java.time.LocalDate;
 
 public class MovimentacaoTest {
 
@@ -13,7 +14,7 @@ public class MovimentacaoTest {
 	public void isNotInMonth__deve_trazer_false_se_for_o_mesmo_mes() {
 		// given
 		Movimentacao m = new Movimentacao();
-		m.setData(new DateTime(2014, 6, 15, 0, 0).toDate());
+		m.setData(LocalDate.of(2014, 6, 15));
 		// when
 		boolean notInMonth = m.isNotInMonth(2014, 6);
 		// then
@@ -24,7 +25,7 @@ public class MovimentacaoTest {
 	public void isNotInMonth__deve_trazer_true_se_nao_for_o_mesmo_mes() {
 		// given
 		Movimentacao m = new Movimentacao();
-		m.setData(new DateTime(2014, 6, 15, 0, 0).toDate());
+        m.setData(LocalDate.of(2014, 6, 15));
 		// when
 		boolean notInMonth = m.isNotInMonth(2014, 7);
 		// then

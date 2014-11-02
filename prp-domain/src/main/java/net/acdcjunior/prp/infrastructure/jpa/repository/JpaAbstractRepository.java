@@ -1,4 +1,4 @@
-package net.acdcjunior.prp.infrastructure.repository.jpa;
+package net.acdcjunior.prp.infrastructure.jpa.repository;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;

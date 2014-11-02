@@ -1,4 +1,4 @@
-package net.acdcjunior.prp.infrastructure.repository.jpa;
+package net.acdcjunior.prp.infrastructure.jpa.repository;
 
 import net.acdcjunior.prp.domain.movimentacao.Origem;
 import net.acdcjunior.prp.domain.movimentacao.OrigemRepository;

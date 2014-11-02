@@ -1,24 +1,14 @@
 package net.acdcjunior.prp.domain.movimentacao;
 
-import java.math.BigDecimal;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
+import net.acdcjunior.prp.domain.BaseEntity;
+import net.acdcjunior.prp.domain.previsao.Previsao;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-import net.acdcjunior.prp.domain.BaseEntity;
-import net.acdcjunior.prp.domain.previsao.Previsao;
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "TB_Movimentacao")
@@ -26,7 +16,7 @@ import net.acdcjunior.prp.domain.previsao.Previsao;
 public class Movimentacao extends BaseEntity {
 
 	@Column
-    private Date data;
+    private LocalDate data;
     
 	@Column
 	private String numeroDocumento;
@@ -63,8 +53,8 @@ public class Movimentacao extends BaseEntity {
 	@Column(name="anterior", insertable=false, updatable=false)
 	private Integer anteriorId;
 	
-	public Date getData() { return data; }
-	public void setData(Date data) { this.data = data; }
+	public LocalDate getData() { return data; }
+	public void setData(LocalDate data) { this.data = data; }
 
 	public String getNumeroDocumento() { return numeroDocumento; }
 	public void setNumeroDocumento(String numeroDocumento) { this.numeroDocumento = numeroDocumento; }
@@ -96,10 +86,8 @@ public class Movimentacao extends BaseEntity {
 	public Integer getAnteriorId() { return anteriorId; }
 	
 	public boolean isNotInMonth(int ano, int mes) {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(this.data);
-		int year = cal.get(Calendar.YEAR);
-		int month = cal.get(Calendar.MONTH) + 1;
+		int year = this.data.getYear();
+		int month = this.data.getMonthValue();
 		return year != ano || month != mes;
 	}
 	

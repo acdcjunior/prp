@@ -18,6 +18,9 @@ import net.acdcjunior.prp.domain.movimentacao.Movimentacao;
 import net.acdcjunior.prp.domain.movimentacao.MovimentacaoRepository;
 import net.acdcjunior.prp.domain.movimentacao.Origem;
 import net.acdcjunior.prp.domain.movimentacao.OrigemRepository;
+import net.acdcjunior.prp.infrastructure.jpa.repository.JpaCategoriaRepositoryImpl;
+import net.acdcjunior.prp.infrastructure.jpa.repository.JpaMovimentacaoRepositoryImpl;
+import net.acdcjunior.prp.infrastructure.jpa.repository.JpaOrigemRepositoryImpl;
 import net.acdcjunior.prp.test.InjetarEntityManagerRule;
 import net.acdcjunior.prp.test.InjetarEntityManagerRule.InjetarEntityManager;
 

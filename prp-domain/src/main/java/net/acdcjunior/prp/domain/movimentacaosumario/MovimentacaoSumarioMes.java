@@ -1,11 +1,9 @@
 package net.acdcjunior.prp.domain.movimentacaosumario;
 
+import net.acdcjunior.prp.domain.movimentacao.Movimentacao;
+
 import java.math.BigDecimal;
 import java.util.List;
-
-import org.joda.time.DateTime;
-
-import net.acdcjunior.prp.domain.movimentacao.Movimentacao;
 
 public class MovimentacaoSumarioMes {
 	
@@ -32,8 +30,8 @@ public class MovimentacaoSumarioMes {
 	}
 	
 	private boolean movimentacaoPertenceAoMes(Movimentacao movimentacao) {
-		boolean ehDoAno = new DateTime(movimentacao.getData()).year().get() == ano;
-		boolean ehDoMes = new DateTime(movimentacao.getData()).monthOfYear().get() == mes;
+		boolean ehDoAno = movimentacao.getData().getYear() == ano;
+		boolean ehDoMes = movimentacao.getData().getMonthValue() == mes;
 		if (!ehDoAno || !ehDoMes) {
 			throw new RuntimeException("Movimentacao enviada eh nao pertence ao mes do sumario! -> "+movimentacao);
 		}

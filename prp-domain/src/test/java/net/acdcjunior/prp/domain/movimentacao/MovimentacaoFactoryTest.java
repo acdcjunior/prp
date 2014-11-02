@@ -6,11 +6,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 import net.acdcjunior.prp.domain.previsao.Previsao;
 
-import org.joda.time.DateTime;
 import org.junit.Test;
 
 public class MovimentacaoFactoryTest {
@@ -20,7 +19,7 @@ public class MovimentacaoFactoryTest {
 	@Test
 	public void criar__deve_criar_uma_movimentacao_com_as_propriedades_passadas__apontando_para_a_outra_mov_passada_e_calculando_a_origem_e_saldo_com_base_nesta() {
 		// given
-		Date date = new DateTime(2012, 1, 29, 0, 0).toDate();
+		LocalDate date = LocalDate.of(2012, 1, 29);
 		String numeroDocumento = "numero documento";
 		String descricao1 = "descricao1";
 		String descricao2 = "descricao2";

@@ -1,18 +1,16 @@
 package net.acdcjunior.prp.domain.movimentacaosumario;
 
-import static org.junit.Assert.*;
+import net.acdcjunior.prp.domain.movimentacao.Movimentacao;
+import net.acdcjunior.prp.domain.previsao.Previsao;
+import net.acdcjunior.prp.test.ObjectBuilder;
+import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
-import net.acdcjunior.prp.domain.movimentacao.Movimentacao;
-import net.acdcjunior.prp.domain.movimentacaosumario.MovimentacaoSumarioMes;
-import net.acdcjunior.prp.domain.previsao.Previsao;
-import net.acdcjunior.prp.test.ObjectBuilder;
-
-import org.joda.time.DateTime;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 public class MovimentacaoSumarioMesTest {
 
@@ -21,9 +19,9 @@ public class MovimentacaoSumarioMesTest {
 		// GIVEN
 		int anoBase = 2014;
 		int mesBase = 1;
-		DateTime dataBase = new DateTime(anoBase,mesBase,15,12,0); // 2014-01-15 12:00:00
-		
-		ObjectBuilder<Movimentacao> movimentacaoBase = new ObjectBuilder<>(Movimentacao.class).with("data", dataBase.toDate());
+		LocalDate dataBase = LocalDate.of(anoBase, mesBase, 15);
+
+		ObjectBuilder<Movimentacao> movimentacaoBase = new ObjectBuilder<>(Movimentacao.class).with("data", dataBase);
 		BigDecimal valorCredito1 = new BigDecimal(123.78);
 		BigDecimal valorCredito2 = new BigDecimal(63457.99);
 		Movimentacao credito1 = movimentacaoBase.with("valor", valorCredito1).build();
@@ -50,9 +48,9 @@ public class MovimentacaoSumarioMesTest {
 		// GIVEN
 		int anoBase = 2014;
 		int mesBase = 1;
-		DateTime dataEmFevereiro = new DateTime(anoBase,mesBase+1,15,12,0);
+        LocalDate dataEmFevereiro = LocalDate.of(anoBase, mesBase+1, 15);
 		
-		ObjectBuilder<Movimentacao> movimentacaoBase = new ObjectBuilder<>(Movimentacao.class).with("data", dataEmFevereiro.toDate()).with("valor", new BigDecimal(999.99));
+		ObjectBuilder<Movimentacao> movimentacaoBase = new ObjectBuilder<>(Movimentacao.class).with("data", dataEmFevereiro).with("valor", new BigDecimal(999.99));
 		Movimentacao movimentacaoComDataDeFevereiro = movimentacaoBase.build();
 		List<Movimentacao> movimentacoes = Arrays.asList(movimentacaoComDataDeFevereiro);
 		// WHEN
@@ -66,9 +64,9 @@ public class MovimentacaoSumarioMesTest {
 		// GIVEN
 		int anoBase = 2014;
 		int mesBase = 1;
-		DateTime dataBase = new DateTime(anoBase,mesBase,15,12,0); // 2014-01-15 12:00:00
+        LocalDate dataBase = LocalDate.of(anoBase, mesBase, 15);
 		
-		ObjectBuilder<Movimentacao> movimentacaoBase = new ObjectBuilder<>(Movimentacao.class).with("data", dataBase.toDate()).with("valor", BigDecimal.ONE);
+		ObjectBuilder<Movimentacao> movimentacaoBase = new ObjectBuilder<>(Movimentacao.class).with("data", dataBase).with("valor", BigDecimal.ONE);
 		Movimentacao m1 = movimentacaoBase.with("realiza", new Previsao()).build();
 		Movimentacao m2 = movimentacaoBase.with("realiza", new Previsao()).build();
 		Movimentacao m3 = movimentacaoBase.with("realiza", null).build();

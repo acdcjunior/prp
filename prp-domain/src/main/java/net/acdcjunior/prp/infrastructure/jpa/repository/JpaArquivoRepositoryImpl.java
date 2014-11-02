@@ -1,4 +1,4 @@
-package net.acdcjunior.prp.infrastructure.repository.jpa;
+package net.acdcjunior.prp.infrastructure.jpa.repository;
 
 import net.acdcjunior.prp.arquivo.Arquivo;
 import net.acdcjunior.prp.arquivo.ArquivoRepository;
