@@ -97,9 +97,9 @@ public class PrevisaoController {
     	Collections.sort(findByAnoMes, new Comparator<Previsao>() {
 			@Override
 			public int compare(Previsao p, Previsao q) {
-		        if (p.getData().before(q.getData())) {
+		        if (p.getData().isBefore(q.getData())) {
 		            return -1;
-		        } else if (p.getData().after(q.getData())) {
+		        } else if (p.getData().isAfter(q.getData())) {
 		            return 1;
 		        } else {
 		            return 0;
@@ -132,9 +132,9 @@ public class PrevisaoController {
     	try {
     		previsaoService.excluir(previsaoId);
 		} catch (ImpossivelExcluirException e) {
-			return new ResponseEntity<String>(e.getMessage(), HttpStatus.PRECONDITION_FAILED);
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.PRECONDITION_FAILED);
 		}
-    	return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
+    	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     
     @RequestMapping(value="/{previsaoId}", method=RequestMethod.GET, produces=MediaType.TEXT_HTML_VALUE)
@@ -170,7 +170,7 @@ public class PrevisaoController {
 		
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.set("Location", servletContext.getContextPath() + "/previsao/" + previsao.getId());
-		return new ResponseEntity<Void>(responseHeaders, HttpStatus.CREATED);
+		return new ResponseEntity<>(responseHeaders, HttpStatus.CREATED);
 	}
 	
     @RequestMapping(value="/add", method=RequestMethod.GET, produces=MediaType.TEXT_HTML_VALUE)
@@ -223,7 +223,7 @@ public class PrevisaoController {
 		
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.set("Location", servletContext.getContextPath() + "/previsao/" + idPrevisao);
-		return new ResponseEntity<CategoriaNoMes>(categoriaNoMes, responseHeaders, HttpStatus.OK);
+		return new ResponseEntity<>(categoriaNoMes, responseHeaders, HttpStatus.OK);
 	}
 	
 }

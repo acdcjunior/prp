@@ -1,17 +1,23 @@
 package net.acdcjunior.prp.web.infrastructure;
 
-import java.text.SimpleDateFormat;
-
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.SerializationConfig;
+import org.codehaus.jackson.map.ser.CustomSerializerFactory;
+
+import java.time.LocalDate;
 
 public class CustomObjectMapper extends ObjectMapper {
 
     public CustomObjectMapper() {
-        configure(SerializationConfig.Feature.WRITE_DATES_AS_TIMESTAMPS, false);            
-        setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
-        configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);            
+        configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        addJavaTimeLocalDateSerialization();
+    }
+
+    private void addJavaTimeLocalDateSerialization() {
+        // serializes java.time.LocalDate to yyyy-MM-dd
+        CustomSerializerFactory sf = new CustomSerializerFactory();
+        sf.addSpecificMapping(LocalDate.class, new LocalDateSerializer());
+        this.setSerializerFactory(sf);
     }
 
 }
