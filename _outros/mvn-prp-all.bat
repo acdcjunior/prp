@@ -1,5 +1,7 @@
 cls
 
+cd ..
+
 call mvn test install
 echo Exit Code = %ERRORLEVEL%
 if not "%ERRORLEVEL%" == "0" exit /b
