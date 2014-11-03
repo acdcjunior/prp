@@ -282,3 +282,11 @@ INSERT INTO `TB_MOVIMENTACAO`
 (325,  '2011-07-26', '2',               'BOLATO: CREDITO 2011.07.26',           NULL,           NULL,           -1296.37,      1,          9253.58,     359,      324),
 (326,  '2011-07-28', '1',               'COMPRA DEBATO',                        NULL,           NULL,           -30.72,        1,          9222.86,     467,      325),
 (327,  '2012-01-29', '2',               'MOCK',                                 NULL,           NULL,           112.06,        1,          22499.17,    NULL,     326);
+
+
+
+INSERT INTO TB_MESCONTABIL
+  (ANO,  MES, CONTACARREGADA, FATURACARREGADA, MESCONCLUIDO, COMENTARIO)
+  VALUES
+  (2011, 6,   TRUE,           TRUE,            TRUE,         NULL),
+  (2011, 7,   TRUE,           FALSE,           TRUE,         'Tudo de boas');
