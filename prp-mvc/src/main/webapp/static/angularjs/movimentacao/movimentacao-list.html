@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" style="margin-left: 10%; margin-right: 10%;">
     <form class="form-horizontal" role="form">
         <div class="form-group">
             <div class="col-sm-1"><p class="form-control-static">T: {{ movs.length }} &nbsp; <span ng-show="movimentacoesSelecionadas.length > 0">S: {{ movimentacoesSelecionadas.length }}</span></p></div>
@@ -21,18 +21,15 @@
         </div>
     </form>
 
-    <table class="table table-striped table-condensed table-hover" style="font-size: 110%">
+    <table class="table table-striped table-condensed table-hover" style="font-size: 130%">
         <thead>
         <tr>
-            <th>#</th>
             <th>Data</th>
             <th>Num. Doc.</th>
             <th>Descricao1</th>
-            <th>D2</th>
             <th>Valor</th>
             <th>Saldo</th>
-            <th>Origem</th>
-            <th>#Anterior</th>
+            <th>Comentario</th>
             <th>Realiza</th>
             <th>&nbsp;</th>
         </tr>
@@ -41,15 +38,12 @@
         <tr ng-repeat="movimentacao in movs = (movimentacoes | filter: {data: filtroMes, origem: filtroOrigem} | filter: filtroGeral)"
             ng-class="{'negative-number': movimentacao.valor < 0, 'positive-number': movimentacao.valor >= 0,
             'success': movimentacao.selecionada}">
-            <td ng-class="{realizada: movimentacao.realiza}">{{ movimentacao.id }}</td>
-            <td ng-class="{realizada: movimentacao.realiza}">{{ movimentacao.data }}</td>
+            <td ng-class="{realizada: movimentacao.realiza}" title="ID da Movimentacao: {{ movimentacao.id }} - Anterior: {{ movimentacao.anteriorId }}">{{ movimentacao.data }}</td>
             <td ng-class="{realizada: movimentacao.realiza}">{{ movimentacao.numeroDocumento }}</td>
             <td ng-class="{realizada: movimentacao.realiza}">{{ movimentacao.descricao1 }}</td>
-            <td ng-class="{realizada: movimentacao.realiza}">{{ movimentacao.descricao2 }}</td>
             <td>{{ movimentacao.valor | brl }}</td>
             <td>{{ movimentacao.saldo | brl }}</td>
-            <td>{{ movimentacao.origem.nome }}</td>
-            <td>{{ movimentacao.anteriorId }}</td>
+            <td ng-class="{realizada: movimentacao.realiza}">{{ movimentacao.descricao2 }}</td>
             <td class="referencia-entidade"><a href="prp/previsao/{{ movimentacao.realiza.id }}" target="_blank">{{ movimentacao.realiza.descricao }}</a></td>
             <td>
                 <a ng-click="editMovimentacao(movimentacao.id)" class="btn btn-primary btn-xs">

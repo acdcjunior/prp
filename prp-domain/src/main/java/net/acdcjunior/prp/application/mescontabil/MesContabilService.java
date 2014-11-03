@@ -35,7 +35,7 @@ public class MesContabilService {
         LocalDate minData = movimentacoes.stream().min(Comparator.comparing(Movimentacao::getData)).map(Movimentacao::getData).get();
 
         LocalDate dataMes = minData.withDayOfMonth(1);
-        LocalDate hoje = LocalDate.now();
+        LocalDate hoje = LocalDate.now().plusMonths(1);
 
         List<MesContabilDto> meses = new LinkedList<>();
         while(hoje.isAfter(dataMes)) {

@@ -4,6 +4,7 @@ app.controller('MovimentacaoListCtrl', ['$scope', '$routeParams', 'Movimentacoes
 
         $scope.filtroGeral = $routeParams.filtro;
         $scope.filtroMes = $routeParams.mes;
+        $scope.filtroOrigem = $routeParams.origem;
 
         if (typeof $scope.filtroMes === "undefined" && typeof $scope.filtroGeral === "undefined") {
             $scope.filtroMes = moment().format("YYYY-MM");
@@ -25,11 +26,7 @@ app.controller('MovimentacaoListCtrl', ['$scope', '$routeParams', 'Movimentacoes
         $scope.movimentacoes = MovimentacoesFactory.query();
 
         $scope.selecionarMovimentacao = function (mov) {
-            if (mov.selecionada) {
-                mov.selecionada = false;
-            } else {
-                mov.selecionada = true;
-            }
+            mov.selecionada = !mov.selecionada;
         };
 
         $scope.alterarMovimentacoesSelecionadas = function () {
@@ -62,7 +59,6 @@ app.controller('MovimentacaoListCtrl', ['$scope', '$routeParams', 'Movimentacoes
             {"value": 1, "label":"Caixa"},
             {"value": 2, "label":"Visa"}
         ];
-        $scope.filtroOrigem = undefined;
     }
 ]);
 

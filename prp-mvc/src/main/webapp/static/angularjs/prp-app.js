@@ -3,9 +3,10 @@ angular.module('prp', ['ngRoute', 'ui.bootstrap', 'prp.services', 'prp.controlle
         $routeProvider.when('/previsao-list', 		        {templateUrl: 'previsao/previsao-list.html', 	         controller: 'PrevisaoListCtrl'});
         $routeProvider.when('/previsao-detail/:id',         {templateUrl: 'previsao/previsao-detail.html', 	         controller: 'PrevisaoDetailCtrl'});
         $routeProvider.when('/previsao-creation',	        {templateUrl: 'previsao/previsao-creation.html',         controller: 'PrevisaoCreationCtrl'});
-        $routeProvider.when('/movimentacao-list/',	{templateUrl: 'movimentacao/movimentacao-list.html', 	 controller: 'MovimentacaoListCtrl'});
+        $routeProvider.when('/movimentacao-list/',          {templateUrl: 'movimentacao/movimentacao-list.html', 	 controller: 'MovimentacaoListCtrl'});
         $routeProvider.when('/movimentacao-detail/:id',     {templateUrl: 'movimentacao/movimentacao-detail.html', 	 controller: 'MovimentacaoDetailCtrl'});
-        $routeProvider.when('/movimentacao-creation',   	{templateUrl: 'movimentacao/movimentacao-creation.html', controller: 'MovimentacaoCreationCtrl'});
+        $routeProvider.when('/movimentacao-creation',       {templateUrl: 'movimentacao/movimentacao-creation.html', controller: 'MovimentacaoCreationCtrl'});
+        $routeProvider.when('/mes-list/',                   {templateUrl: 'mes/mes-list.html',                       controller: 'MesListController'});
         $routeProvider.otherwise({redirectTo: '/user-list'});
     }
 ]);
