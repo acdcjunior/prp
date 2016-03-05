@@ -18,7 +18,7 @@ public class PRPApplication {
 
         @RequestMapping("/")
         public ResponseEntity<String> prp() {
-            return ResponseEntity.ok("Hey! " + String.join(";", "java", "8", "test") + " Now: " + java.time.ZonedDateTime.now());
+            return ResponseEntity.ok("It works!!<br> " + String.join(";", "java", "8", "test") + " Now: " + java.time.ZonedDateTime.now());
         }
 
     }
