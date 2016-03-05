@@ -1,16 +1,11 @@
-#################
-## Eclipse
-#################
+# maven
+target/
 
+# eclipse IDE
 .project
 .classpath
 .settings/
-target/
 
-## IntelliJ
-
+# IntelliJ
 .idea/
 *.iml
-*.ipr
-*.iws
-*.ids
