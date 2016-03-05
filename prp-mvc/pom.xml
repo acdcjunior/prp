@@ -4,8 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>net.acdcjunior</groupId>
-		<artifactId>prp</artifactId>
+		<groupId>io.github.acdcjunior</groupId>
+		<artifactId>prp-legacy</artifactId>
 		<version>1.1.0</version>
 	</parent>
 	<artifactId>prp-mvc</artifactId>
@@ -18,7 +18,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>net.acdcjunior</groupId>
+			<groupId>io.github.acdcjunior</groupId>
 			<artifactId>prp-domain</artifactId>
 			<version>${project.version}</version>
 		</dependency>
