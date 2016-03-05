@@ -1,0 +1,9 @@
+#!/bin/bash
+echo "--------------------> INSTALLING MAVEN at DEPLOY"
+
+cd $OPENSHIFT_DATA_DIR
+
+if [ ! -d apache-maven-3.3.3 ]; then
+  wget http://www.eu.apache.org/dist/maven/maven-3/3.3.3/binaries/apache-maven-3.3.3-bin.tar.gz
+  tar -zxf apache-maven-3.3.3-bin.tar.gz
+fi
