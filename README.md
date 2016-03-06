@@ -6,4 +6,6 @@
 
 [![codecov.io](https://codecov.io/github/acdcjunior/prp/coverage.svg?branch=master)](https://codecov.io/github/acdcjunior/prp?branch=master)
 
+[![CircleCI](https://img.shields.io/circleci/project/acdcjunior/prp.svg?style=flat-square)](https://circleci.com/gh/acdcjunior/prp)
+
 [![Dependency Status](https://www.versioneye.com/user/projects/56db690d309a580038affe40/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56db690d309a580038affe40)
