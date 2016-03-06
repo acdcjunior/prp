@@ -1,1 +1,4 @@
-luna="dog"
+# Sample variable
+aa:
+  bb:
+    cc: Your Java's home is ${JAVA_HOME}
