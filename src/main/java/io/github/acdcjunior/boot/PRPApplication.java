@@ -14,20 +14,4 @@ public class PRPApplication {
         SpringApplication.run(PRPApplication.class, args);
     }
 
-    @RestController
-    static class PRPApplicationController {
-
-        @Value("${aa.bb.cc}")
-        private String ymlProp;
-
-        @RequestMapping("/")
-        public ResponseEntity<String> prp() {
-            return ResponseEntity.ok(
-                    "It works!!<br> " + String.join(";", "java", "8", "test") +
-                    "<br><br>Now: " + java.time.ZonedDateTime.now() +
-                    "<br><br>Luna is "+ ymlProp);
-        }
-
-    }
-
 }
