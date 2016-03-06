@@ -1,5 +1,6 @@
 package io.github.acdcjunior.boot;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +17,15 @@ public class PRPApplication {
     @RestController
     static class PRPApplicationController {
 
+        @Value("${luna}")
+        private String luna;
+
         @RequestMapping("/")
         public ResponseEntity<String> prp() {
-            return ResponseEntity.ok("It works!!<br> " + String.join(";", "java", "8", "test") + " Now: " + java.time.ZonedDateTime.now());
+            return ResponseEntity.ok(
+                    "It works!!<br> " + String.join(";", "java", "8", "test") +
+                    "<br><br>Now: " + java.time.ZonedDateTime.now() +
+                    "<br><br>Luna is "+luna);
         }
 
     }
