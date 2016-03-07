@@ -9,8 +9,8 @@
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<versao.spring>4.0.2.RELEASE</versao.spring>
-		<versao.hibernate>4.3.4.Final</versao.hibernate>
+		<versao.spring>4.2.5.RELEASE</versao.spring>
+		<versao.hibernate>5.0.8.Final</versao.hibernate>
 	</properties>
 
 	<modules>
