@@ -1,4 +1,4 @@
-package io.github.acdcjunior.boot;
+package io.github.acdcjunior.prp;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

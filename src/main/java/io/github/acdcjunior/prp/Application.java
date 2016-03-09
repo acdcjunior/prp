@@ -1,4 +1,4 @@
-package io.github.acdcjunior.boot;
+package io.github.acdcjunior.prp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

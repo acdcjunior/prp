@@ -1,4 +1,4 @@
-package io.github.acdcjunior.boot.mysql;
+package io.github.acdcjunior.prp.mysql;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

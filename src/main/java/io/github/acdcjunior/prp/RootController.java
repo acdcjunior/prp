@@ -1,4 +1,4 @@
-package io.github.acdcjunior.boot;
+package io.github.acdcjunior.prp;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
