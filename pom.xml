@@ -4,9 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.acdcjunior</groupId>
-    <artifactId>prp-boot</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <artifactId>prp</artifactId>
+    <version>3.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -14,6 +14,12 @@
         <version>1.3.3.RELEASE</version>
         <relativePath/>
     </parent>
+
+    <modules>
+        <module>prp-domain</module>
+        <module>prp-mvc</module>
+        <module>prp-boot</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
