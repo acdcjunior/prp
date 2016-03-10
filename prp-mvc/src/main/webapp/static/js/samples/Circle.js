@@ -1,9 +1,10 @@
 // ============================================================
 // Register Namespace
 // ------------------------------------------------------------
-var net = net || {};
-net.acdcjunior = net.acdcjunior || {};
-net.acdcjunior.prp = net.acdcjunior.prp || {};
+var io = io || {};
+io.github =  io.github || {};
+io.github.acdcjunior = io.github.acdcjunior || {};
+io.github.acdcjunior.prp = io.github.acdcjunior.prp || {};
 
 net.acdcjunor.prp.Circle = (function(net) {
 	// ============================================================
@@ -39,10 +40,10 @@ net.acdcjunor.prp.Circle = (function(net) {
 	// Static Functions
 	// ------------------------------------------------------------
 	clazz.CreateSmallBlue = function() {
-		return new net.acdcjunior.prp.Rectangle(5, 8, '#0000ff');
+		return new io.github.acdcjunior.prp.Rectangle(5, 8, '#0000ff');
 	};
 	clazz.CreateBigRed = function() {
-		return new net.acdcjunior.prp.Rectangle(50, 25, '#ff0000');
+		return new io.github.acdcjunior.prp.Rectangle(50, 25, '#ff0000');
 	};
 	
 	clazz.getHotness = function() {
