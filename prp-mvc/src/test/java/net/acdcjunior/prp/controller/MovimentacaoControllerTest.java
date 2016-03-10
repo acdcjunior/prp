@@ -5,9 +5,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import net.acdcjunior.prp.test.ControllerIntegrationTest;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 
+@Ignore
 public class MovimentacaoControllerTest extends ControllerIntegrationTest {
 	
 	@Test

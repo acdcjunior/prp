@@ -11,7 +11,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(TestConstants.CAMINHO_XML_APP_CONTEXT)
+@ContextConfiguration("TestConstants.CAMINHO_XML_APP_CONTEXT")
 public abstract class ControllerIntegrationTest {
 	
     @Autowired

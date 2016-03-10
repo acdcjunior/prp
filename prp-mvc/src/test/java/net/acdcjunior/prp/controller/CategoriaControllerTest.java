@@ -7,8 +7,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import net.acdcjunior.prp.test.ControllerIntegrationTest;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore
 public class CategoriaControllerTest extends ControllerIntegrationTest {
 	
 	@Test
