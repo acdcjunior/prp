@@ -10,5 +10,17 @@
 	</parent>
 
 	<artifactId>prp-boot</artifactId>
+	
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <properties>
+                    <start-class>io.github.acdcjunior.Application</start-class>
+                </properties>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
