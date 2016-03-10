@@ -6,6 +6,7 @@
     <groupId>io.github.acdcjunior</groupId>
     <artifactId>prp</artifactId>
     <version>3.0.1-SNAPSHOT</version>
+
     <packaging>pom</packaging>
 
     <parent>
