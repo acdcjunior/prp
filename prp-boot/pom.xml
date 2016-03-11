@@ -11,6 +11,14 @@
 
     <artifactId>prp-boot</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>io.github.acdcjunior</groupId>
+            <artifactId>prp-mvc</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
