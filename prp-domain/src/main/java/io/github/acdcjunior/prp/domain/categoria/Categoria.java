@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TB_CATEGORIA") 
+@Table(name = "tb_categoria")
 public class Categoria extends BaseEntity {
 
 	@Column(length = 50, unique = true)

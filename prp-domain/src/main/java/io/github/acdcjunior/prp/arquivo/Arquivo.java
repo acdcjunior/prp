@@ -10,7 +10,7 @@ import java.sql.Blob;
 import java.sql.Date;
 
 @Entity
-@Table(name = "TB_ARQUIVO")
+@Table(name = "tb_arquivo")
 public class Arquivo extends BaseEntity {
 
     @Column(length = 50)

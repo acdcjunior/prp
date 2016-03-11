@@ -13,7 +13,7 @@ import javax.persistence.Table;
  * Cada mês contábil terá N movimentações para cada origem e N previsões.
  */
 @Entity
-@Table(name = "TB_MESCONTABIL")
+@Table(name = "tb_mescontabil")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class MesContabil {
 

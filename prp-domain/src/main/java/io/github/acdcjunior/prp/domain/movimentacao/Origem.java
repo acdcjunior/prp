@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TB_ORIGEM") 
+@Table(name = "tb_origem")
 public class Origem extends BaseEntity {
 
 	@Column(length = 100, unique = true)

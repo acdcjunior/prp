@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "TB_Movimentacao")
+@Table(name = "tb_movimentacao")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Movimentacao extends BaseEntity {
 
