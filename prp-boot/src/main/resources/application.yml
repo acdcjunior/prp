@@ -2,8 +2,14 @@
 aa:
   bb:
     cc: Your Java's home is ${JAVA_HOME}
+application:
+  message: Hello, Bob
 
 spring:
+
+  velocity:
+    dateToolAttribute: dateTool
+    #resourceLoaderPath: classpath:/
 
   # DATASOURCE/JPA Configuration
   datasource:

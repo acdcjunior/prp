@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<body>
+Something went wrong: ${status} ${error}
+</body>
+
+</html>
