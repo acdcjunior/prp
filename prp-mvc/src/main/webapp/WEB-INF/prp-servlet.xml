@@ -17,12 +17,5 @@
 	        <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"><property name="objectMapper" ref="customObjectMapper"/></bean>
 	    </mvc:message-converters>
 	</mvc:annotation-driven>
-	
-    <bean id="multipartResolver"
-          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-
-        <!-- one of the properties available; the maximum file size in bytes -->
-        <property name="maxUploadSize" value="15000000" /><!-- 15MB -->
-    </bean>
 
 </beans>
