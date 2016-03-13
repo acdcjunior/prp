@@ -12,81 +12,8 @@
 	<artifactId>prp-mvc</artifactId>
 
 	<dependencies>
-		<dependency>
-			<groupId>io.github.acdcjunior</groupId>
-			<artifactId>prp-domain</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 
-		<dependency>
-			<groupId>dom4j</groupId>
-			<artifactId>dom4j</artifactId>
-			<version>1.6.1</version>
-		</dependency>
 
-	    <dependency>
-	    	<groupId>cglib</groupId>
-			<artifactId>cglib</artifactId>
-			<version>2.2</version>
-	    </dependency>
-	    
-   		<!-- Jackson JSON Mapper -->
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.9.13</version>
-		</dependency>
-	    
-        <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
-            <version>1.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.4</version>
-        </dependency>
-
-        <!-- INICIO: Dependencias de TESTES -->
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>1.3.174</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-test</artifactId>
-		    <version>${spring.version}</version>
-		    <scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-			<version>1.9.5</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-all</artifactId>
-			<version>1.3</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency> <!-- Utilizado no bind JNDI da InjetarEntityManagerRule -->
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>catalina</artifactId>
-			<version>6.0.18</version>
-			<scope>test</scope>
-		</dependency>
-		<!-- FIM: Dependencias de TESTES -->
-		
 	</dependencies>
 
 </project>
