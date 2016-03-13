@@ -18,7 +18,6 @@
 
     <modules>
         <module>prp-domain</module>
-        <module>prp-mvc</module>
         <module>prp-boot</module>
     </modules>
 
