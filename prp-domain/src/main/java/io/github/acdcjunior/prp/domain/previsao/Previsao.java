@@ -9,6 +9,13 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "tb_previsao")
+@NamedQueries({
+		@NamedQuery(name = "Previsao.findByCategoria", query = "SELECT p FROM Previsao p WHERE p.categoria = :categoria"),
+		@NamedQuery(name = "Previsao.findByAnoMesCategoria", query = "SELECT p FROM Previsao p WHERE YEAR(p.data) = :ano and MONTH(p.data) = :mes AND p.categoria = :categoria"),
+		@NamedQuery(name = "Previsao.findByAnoMes", query = "SELECT p FROM Previsao p WHERE YEAR(p.data) = :ano and MONTH(p.data) = :mes"),
+		@NamedQuery(name = "Previsao.findByAno", query = "SELECT p FROM Previsao p WHERE YEAR(p.data) = :ano"),
+		@NamedQuery(name = "Previsao.sumValorByAnoMesCategoria", query = "SELECT sum(p.valor) FROM Previsao p WHERE YEAR(p.data) = :ano and MONTH(p.data) = :mes AND p.categoria = :categoria")
+})
 public class Previsao extends BaseEntity {
 	
 	@Column
