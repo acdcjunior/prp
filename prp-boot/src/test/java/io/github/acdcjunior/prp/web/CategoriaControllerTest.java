@@ -1,4 +1,4 @@
-package io.github.acdcjunior.prp.controller;
+package io.github.acdcjunior.prp.web;
 
 import io.github.acdcjunior.prp.test.ControllerIntegrationTest;
 import org.junit.Ignore;

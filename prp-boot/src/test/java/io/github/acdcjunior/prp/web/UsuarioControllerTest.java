@@ -1,4 +1,4 @@
-package io.github.acdcjunior.prp.controller;
+package io.github.acdcjunior.prp.web;
 
 import io.github.acdcjunior.prp.test.ControllerIntegrationTest;
 import org.junit.Ignore;
@@ -38,7 +38,7 @@ public class UsuarioControllerTest extends ControllerIntegrationTest {
 	public void criarUsuario__deve_trazer_fazer_redirect() throws Exception {
 		buildMockMvc().perform(post("/usuarios").param("nome", "bob"))
         			.andDo(print())
-        			.andExpect(status().isMovedTemporarily())
+        			.andExpect(status().isFound())
         			.andExpect(redirectedUrl("/usuarios"));
 	}
 

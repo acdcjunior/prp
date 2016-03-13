@@ -1,4 +1,4 @@
-package io.github.acdcjunior.prp.web.controller;
+package io.github.acdcjunior.prp.web;
 
 import io.github.acdcjunior.prp.arquivo.Arquivo;
 import io.github.acdcjunior.prp.arquivo.ArquivoRepository;

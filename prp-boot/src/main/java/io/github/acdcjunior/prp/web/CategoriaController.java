@@ -1,4 +1,4 @@
-package io.github.acdcjunior.prp.web.controller;
+package io.github.acdcjunior.prp.web;
 
 import io.github.acdcjunior.prp.domain.ImpossivelExcluirException;
 import io.github.acdcjunior.prp.domain.categoria.Categoria;

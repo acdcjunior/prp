@@ -1,4 +1,4 @@
-package io.github.acdcjunior.prp.web.controller.rest;
+package io.github.acdcjunior.prp.web.rest;
 
 import io.github.acdcjunior.prp.domain.previsao.Previsao;
 import io.github.acdcjunior.prp.domain.previsao.PrevisaoRepository;
