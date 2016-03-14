@@ -1,8 +1,7 @@
-package io.github.acdcjunior.prp.web;
+package io.github.acdcjunior.prp.web.arquivo;
 
 import io.github.acdcjunior.prp.arquivo.Arquivo;
 import io.github.acdcjunior.prp.arquivo.ArquivoRepository;
-import io.github.acdcjunior.prp.web.infrastructure.UploadUtil;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

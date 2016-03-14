@@ -1,4 +1,4 @@
-package io.github.acdcjunior.prp.web.infrastructure;
+package io.github.acdcjunior.prp.web.arquivo;
 
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
