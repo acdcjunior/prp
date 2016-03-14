@@ -24,6 +24,7 @@
         <dependency>
             <groupId>io.github.acdcjunior</groupId>
             <artifactId>prp-domain</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
