@@ -16,7 +16,7 @@ public class UploadUtil {
     @PersistenceContext
     private EntityManager em;
 
-    public Blob createBlob(MultipartFile file) {
+    Blob createBlob(MultipartFile file) {
         try {
             return Hibernate.getLobCreator(em.unwrap(Session.class)).createBlob(file.getInputStream(), file.getSize());
         } catch (IOException e) {
