@@ -25,6 +25,7 @@ public class ArquivoController {
     private UploadUtil uploadUtil;
 
     @ResponseBody
+    @RequestMapping("/rest")
     public List<Arquivo> index() {
         return arquivoRepository.findAll();
     }
