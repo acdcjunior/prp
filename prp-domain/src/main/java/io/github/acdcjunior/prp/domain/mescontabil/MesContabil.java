@@ -1,6 +1,6 @@
 package io.github.acdcjunior.prp.domain.mescontabil;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;

@@ -1,9 +1,9 @@
 package io.github.acdcjunior.prp.domain.movimentacao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.github.acdcjunior.prp.domain.BaseEntity;
 import io.github.acdcjunior.prp.domain.previsao.Previsao;
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

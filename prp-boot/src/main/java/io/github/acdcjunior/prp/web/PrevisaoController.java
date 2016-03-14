@@ -1,5 +1,6 @@
 package io.github.acdcjunior.prp.web;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.acdcjunior.prp.domain.ImpossivelExcluirException;
 import io.github.acdcjunior.prp.domain.ano.categorianoano.CategoriaNoAnoFactory;
 import io.github.acdcjunior.prp.domain.ano.categorianoano.CategoriaNoMes;
@@ -10,7 +11,6 @@ import io.github.acdcjunior.prp.domain.movimentacao.MovimentacaoRepository;
 import io.github.acdcjunior.prp.domain.previsao.Previsao;
 import io.github.acdcjunior.prp.domain.previsao.PrevisaoRepository;
 import io.github.acdcjunior.prp.domain.previsao.PrevisaoService;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
