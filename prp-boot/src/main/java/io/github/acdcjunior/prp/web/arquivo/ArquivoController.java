@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.OutputStream;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -22,6 +23,11 @@ public class ArquivoController {
 
     @Autowired
     private UploadUtil uploadUtil;
+
+    @ResponseBody
+    public List<Arquivo> index() {
+        return arquivoRepository.findAll();
+    }
 
     @RequestMapping
     public String index(Map<String, Object> model) {

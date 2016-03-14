@@ -1,5 +1,6 @@
 package io.github.acdcjunior.prp.arquivo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.github.acdcjunior.prp.domain.BaseEntity;
 
 import javax.persistence.Column;
@@ -16,7 +17,7 @@ public class Arquivo extends BaseEntity {
     @Column(length = 50)
     private String nome;
 
-    @Column(length = 255)
+    @Column
     private String descricao;
 
     @Column(name="DATA_REFERENCIA")
@@ -27,9 +28,10 @@ public class Arquivo extends BaseEntity {
 
     @Column
     @Lob
+    @JsonIgnore
     private Blob conteudo;
 
-    @Column(name="TIPO_CONTEUDO", length = 255)
+    @Column(name="TIPO_CONTEUDO")
     private String tipoConteudo;
 
     public String getNome() { return nome; }
