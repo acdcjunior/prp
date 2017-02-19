@@ -11,7 +11,7 @@ public class RootController {
     @Value("${aa.bb.cc}")
     private String ymlProp;
 
-    @RequestMapping("/")
+    @RequestMapping("/root")
     public ResponseEntity<String> prp() {
         return ResponseEntity.ok(
                 "It works!!<br> " + String.join(";", "java", "8", "test") +
