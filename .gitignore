@@ -1,15 +1,7 @@
-# maven
-target/
-
-# eclipse
-.classpath
-.project
-.settings/
+# Gradle
+.gradle
+/local.properties
 
 # IntelliJ IDEA
 .idea/
 *.iml
-
-# Gradle
-.gradle
-/local.properties

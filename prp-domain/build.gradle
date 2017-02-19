@@ -1,4 +1,5 @@
 description = 'PRP-Domain'
+
 dependencies {
     runtime group: 'com.h2database', name: 'h2', version: '1.4.191'
     testCompile(group: 'junit', name: 'junit', version: '4.12') {
@@ -8,5 +9,7 @@ dependencies {
     testCompile(group: 'org.mockito', name: 'mockito-core', version: '1.10.19') {
         exclude(module: 'hamcrest-core')
     }
+
+    // Utilizado no bind JNDI da InjetarEntityManagerRule
     testCompile group: 'org.apache.tomcat', name: 'catalina', version: '6.0.45'
 }
