@@ -17,3 +17,9 @@ prp-domain: [![Dependency Status](https://www.versioneye.com/user/projects/56e61
 http://yuml.me/edit/d5420fa9
 
 http://plnkr.co/edit/7x5XEnaJLYfXVFjMbwCN
+
+# Infra
+
+## MySQL
+- tive que mexer no `bind-address` do mysql.cnf
+- também tive que adicionar o `lower_case_table_names=1` antes de criar o databse 

@@ -20,13 +20,13 @@ public class MesContabil {
     @EmbeddedId
     private AnoMes anoMes;
 
-    @Column
+    @Column(name = "contacarregada")
     private boolean contaCarregada;
 
-    @Column
+    @Column(name = "faturacarregada")
     private boolean faturaCarregada;
 
-    @Column
+    @Column(name = "mesconcluido")
     private boolean mesConcluido;
 
     @Column

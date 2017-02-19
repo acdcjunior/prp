@@ -34,7 +34,7 @@ public class Movimentacao extends BaseEntity {
 	@Column
     private LocalDate data;
 
-	@Column
+	@Column(name = "numerodocumento")
 	private String numeroDocumento;
 
 	@Column
