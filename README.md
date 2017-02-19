@@ -21,5 +21,7 @@ http://plnkr.co/edit/7x5XEnaJLYfXVFjMbwCN
 # Infra
 
 ## MySQL
-- tive que mexer no `bind-address` do mysql.cnf
-- também tive que adicionar o `lower_case_table_names=1` antes de criar o databse 
+- tive que:
+    - setar `bind-address` do mysql.cnf para `0.0.0.0`
+    - adicionar o `lower_case_table_names=1` antes de criar o database
+    - dar grant para o usario fora do localhost
