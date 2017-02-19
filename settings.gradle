@@ -1,0 +1,6 @@
+rootProject.name = 'prp'
+include ':prp-domain'
+include ':prp-boot'
+
+project(':prp-domain').projectDir = "$rootDir/prp-domain" as File
+project(':prp-boot').projectDir = "$rootDir/prp-boot" as File
