@@ -32,4 +32,24 @@ public class AnoMes implements Serializable {
         return ano + "-" + (mes < 10 ? "0" : "") + mes;
     }
 
+    @Override
+    @SuppressWarnings({"all", "gerado pelo IntelliJ"})
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AnoMes anoMes = (AnoMes) o;
+
+        if (ano != anoMes.ano) return false;
+        return mes == anoMes.mes;
+    }
+
+    @Override
+    @SuppressWarnings({"all", "gerado pelo IntelliJ"})
+    public int hashCode() {
+        int result = ano;
+        result = 31 * result + mes;
+        return result;
+    }
+
 }
