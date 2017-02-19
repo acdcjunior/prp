@@ -24,7 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.ServletContext;
 import java.util.*;
 
-import static org.apache.commons.lang.StringUtils.leftPad;
+import static org.apache.commons.lang3.StringUtils.leftPad;
 
 @Controller
 @RequestMapping("/previsao")
