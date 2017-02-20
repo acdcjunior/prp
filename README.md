@@ -25,3 +25,11 @@ http://plnkr.co/edit/7x5XEnaJLYfXVFjMbwCN
     - setar `bind-address` do mysql.cnf para `0.0.0.0`
     - adicionar o `lower_case_table_names=1` antes de criar o database
     - dar grant para o usario fora do localhost
+    
+# Gradle e IntelliJ
+- O plugin 'idea' nao presta, pois soh cria file-based, nao directory-based
+- Quando voce dah open->import as gradle, ele nao cata direito as build dirs, e um make do intellij (ctrl+f9)
+cria um diretorio `out` bizonho na raiz
+    - Quando eu dei open sem nada e ele, quando abriu, ofereceu pra importar como gradle, funcionou
+     tudo (os filhos gerando tudo na pasta build, independentemente de eu ter usado o intellij ou o gradle itself)
+    - Preciso confirmar pra saber se eh repetitivel
