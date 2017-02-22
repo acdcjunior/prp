@@ -22,9 +22,16 @@ http://plnkr.co/edit/7x5XEnaJLYfXVFjMbwCN
 
 ## MySQL
 - tive que:
-    - setar `bind-address` do mysql.cnf para `0.0.0.0`
-    - adicionar o `lower_case_table_names=1` antes de criar o database
-    - dar grant para o usario fora do localhost
+    - mysql.cnf
+        - `bind-address=0.0.0.0`
+        - `lower_case_table_names=1`
+    - dar grant para o usario fora do localhost:
+    
+            mysql -u root
+            CREATE USER 'intellij'@'localhost' IDENTIFIED BY 'intellij';
+            GRANT ALL PRIVILEGES ON *.* TO 'intellij'@'localhost' WITH GRANT OPTION;
+            CREATE USER 'intellij'@'%' IDENTIFIED BY 'intellij';
+            GRANT ALL PRIVILEGES ON *.* TO 'intellij'@'%' WITH GRANT OPTION;
     
 # Gradle e IntelliJ
 - O plugin 'idea' nao presta, pois soh cria file-based, nao directory-based
