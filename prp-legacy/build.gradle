@@ -1,4 +1,4 @@
-description = 'PRP-Domain'
+description = 'PRP-Legacy'
 
 dependencies {
     compile("dom4j:dom4j:1.6.1")

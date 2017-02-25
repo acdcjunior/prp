@@ -1,8 +1,8 @@
 rootProject.name = 'prp'
-include ':prp-domain'
+include ':prp-legacy'
 include ':prp-scala'
 include ':prp-extratos'
 
-project(':prp-domain').projectDir = "$rootDir/prp-domain" as File
+project(':prp-legacy').projectDir = "$rootDir/prp-legacy" as File
 project(':prp-scala').projectDir = "$rootDir/prp-scala" as File
 project(':prp-extratos').projectDir = "$rootDir/prp-extratos" as File
