@@ -1,7 +1,6 @@
 package io.github.acdcjunior.prp.legacy.web;
 
 import io.github.acdcjunior.prp.legacy.test.ControllerIntegrationTest;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 
@@ -10,7 +9,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@Ignore
 public class MovimentacaoControllerTest extends ControllerIntegrationTest {
 	
 	@Test
@@ -38,7 +36,7 @@ public class MovimentacaoControllerTest extends ControllerIntegrationTest {
 	
 	@Test
 	public void limitrofes() throws Exception {
-		buildMockMvc().perform(get("/movimentacao/limitrofes/2011/2").accept(MediaType.APPLICATION_JSON))
+		buildMockMvc().perform(get("/movimentacao/limitrofes/2017/2").accept(MediaType.APPLICATION_JSON))
 		.andDo(print())
 		.andExpect(status().isOk());
 	}
