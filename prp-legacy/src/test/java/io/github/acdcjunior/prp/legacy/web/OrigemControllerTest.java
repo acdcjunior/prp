@@ -9,15 +9,40 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@Ignore
+@Ignore("Metodo tah retornando 400, tem que checar o json...")
 public class OrigemControllerTest extends ControllerIntegrationTest {
 	
 	@Test
 	public void criarMovimentacoes() throws Exception {
-		String json = "[{\"id\":327,\"data\":\"2012-01-29\",\"numeroDocumento\":\"208855\",\"descricao1\":\"MOCK\",\"descricao2\":null,\"descricao3\":null,"
-				+ "\"valor\":112.06,\"origem\":{\"id\":1,\"nome\":\"Conta-Corrente BANCO\",\"alias\":\"contacorrente\"},\"saldo\":22499.17,\"realiza\":null,"
-				+ "\"anteriorId\":326,\"_readOnly\":true,\"saldoCalculado\":\"22499.17\"},"
-				+ "{\"saldoCalculado\":\"22832.06\",\"data\":\"2012-02-01\",\"numeroDocumento\":\"332\",\"descricao1\":\"332d1\",\"descricao2\":\"332d2\",\"valor\":332.89}]";
+		String json = "[\n" +
+				"  {\n" +
+				"    \"id\": 327,\n" +
+				"    \"data\": \"2012-01-29\",\n" +
+				"    \"numeroDocumento\": \"208855\",\n" +
+				"    \"descricao1\": \"MOCK\",\n" +
+				"    \"descricao2\": null,\n" +
+				"    \"descricao3\": null,\n" +
+				"    \"valor\": 112.06,\n" +
+				"    \"origem\": {\n" +
+				"      \"id\": 1,\n" +
+				"      \"nome\": \"Conta-Corrente BANCO\",\n" +
+				"      \"alias\": \"contacorrente\"\n" +
+				"    },\n" +
+				"    \"saldo\": 22499.17,\n" +
+				"    \"realiza\": null,\n" +
+				"    \"anteriorId\": 326,\n" +
+				"    \"_readOnly\": true,\n" +
+				"    \"saldoCalculado\": \"22499.17\"\n" +
+				"  },\n" +
+				"  {\n" +
+				"    \"saldoCalculado\": \"22832.06\",\n" +
+				"    \"data\": \"2012-02-01\",\n" +
+				"    \"numeroDocumento\": \"332\",\n" +
+				"    \"descricao1\": \"332d1\",\n" +
+				"    \"descricao2\": \"332d2\",\n" +
+				"    \"valor\": 332.89\n" +
+				"  }\n" +
+				"]";
 		buildMockMvc().perform(post("/origem/1").contentType(MediaType.APPLICATION_JSON).content(json))
 		.andDo(print())
 		.andExpect(status().isCreated());
