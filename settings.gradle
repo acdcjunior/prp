@@ -2,7 +2,9 @@ rootProject.name = 'prp'
 include ':prp-domain'
 include ':prp-boot'
 include ':prp-scala'
+include ':prp-extratos'
 
 project(':prp-domain').projectDir = "$rootDir/prp-domain" as File
 project(':prp-boot').projectDir = "$rootDir/prp-boot" as File
 project(':prp-scala').projectDir = "$rootDir/prp-scala" as File
+project(':prp-extratos').projectDir = "$rootDir/prp-extratos" as File
