@@ -1,4 +1,4 @@
-package io.github.acdcjunior.prp.legacy;
+package io.github.acdcjunior.prp.legacy.web.webdemos;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
