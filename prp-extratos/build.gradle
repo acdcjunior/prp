@@ -12,16 +12,8 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 
-group = 'io.github.acdcjunior'
-version = '4.0.1-SNAPSHOT'
-
-repositories {
-    mavenCentral()
-}
-
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-
 tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
 }
