@@ -13,10 +13,10 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver;
 
 @SpringBootApplication
-public class Application {
+public class PrpLegacyApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(PrpLegacyApplication.class, args);
     }
 
     @Bean(name = "velocityViewResolver")
