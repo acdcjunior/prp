@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,9 +47,9 @@ public class OrigemServiceTest {
 		when(origem.getId()).thenReturn(idOrigemAReceber);
 		when(origemRepository.findById(idOrigemAReceber)).thenReturn(origem);
 		when(movimentacaoRepository.findUltimaMovimentacaoByOrigem(origem)).thenReturn(m0);
-		
-		m0.setId(100);
-		
+
+		ReflectionTestUtils.setField(m0, "id", 100);
+
 		m0.setOrigem(origem);
 		m1.setOrigem(origem);
 		m2.setOrigem(origem);
